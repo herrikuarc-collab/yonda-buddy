@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="よんだーばでぃ">
+  <title>ヨンダーバディ - 子どものための読書パートナー</title>
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- PWA Meta tags for beautiful iOS bookmark launcher -->
+  <link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=180&h=180&fit=crop&q=80">
+  
+  <!-- Load Libraries via High-Performance CDNs -->
+  <!-- 1. Lucide Icons (Premium clean icons) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- 2. HTML5-QRCode scanner -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <!-- 3. Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <!-- App Shell Container -->
+  <div id="app-container">
+    
+    <!-- Top Sticky Header -->
+    <header class="app-header">
+      <div class="app-title-container">
+        <div class="logo-icon">📖</div>
+        <div class="app-title">ヨンダーバディ</div>
+      </div>
+      <div class="header-status">
+        <!-- Coin Wallet -->
+        <div class="coin-badge">
+          <span class="coin-icon">🟡</span>
+          <span class="coin-value">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ----------------------------------------- -->
+    <!-- 1. HOME SCREEN (ホーム) -->
+    <!-- ----------------------------------------- -->
+    <main id="screen-home" class="screen active">
+      
+      <!-- Mascot (よんだーくん) Welcome Bubble -->
+      <section class="buddy-container">
+        <div id="buddy-mascot" class="buddy-avatar-wrapper">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+        <div class="buddy-speech-bubble">
+          よんだーくんだよ！ようこそ！きょうはどんな本をよんだのかな？バーコードをスキャンして、ぼくに教えてね！🌸
+        </div>
+      </section>
+
+      <!-- Reading Tree Level Dashboard -->
+      <section class="card tree-dashboard">
+        <div class="level-badge">レベル <span id="level-value">1</span></div>
+        <div id="tree-dashboard-visual" class="tree-container">
+          <!-- Seed, sprout, branch, tree SVG rendered dynamically -->
+        </div>
+        <div class="progress-bar-container">
+          <div id="xp-progress-bar" class="progress-bar"></div>
+        </div>
+        <div class="progress-text">
+          つぎのレベルまで: <span id="xp-current">0</span> / <span id="xp-needed">100</span> XP
+        </div>
+      </section>
+
+      <!-- Stats Grid -->
+      <section class="stats-row">
+        <div class="stat-card">
+          <div id="stat-total-books" class="stat-value">0</div>
+          <div class="stat-label">よんだ本の合計</div>
+        </div>
+        <div class="stat-card">
+          <div id="stat-month-books" class="stat-value">0</div>
+          <div class="stat-label">今月よんだ本</div>
+        </div>
+      </section>
+
+      <!-- Badges Section -->
+      <section class="card">
+        <h2><i data-lucide="award" style="color:var(--color-secondary);"></i>獲得バッジ</h2>
+        <p class="sub-title">本をたくさん読んであつめよう！</p>
+        <div id="badges-grid-home" class="items-grid">
+          <!-- Loaded dynamically -->
+        </div>
+      </section>
+
+      <!-- Stamped Calendar Section -->
+      <section class="card">
+        <h2><i data-lucide="calendar-check" style="color:var(--color-success);"></i>よんだカレンダー</h2>
+        <p id="calendar-month-title" style="font-size:14px; font-weight:900; margin-top:2px; color:var(--color-text-dark);"></p>
+        <div id="calendar-grid-container" class="calendar-grid">
+          <!-- Loaded dynamically -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ----------------------------------------- -->
+    <!-- 2. BOOKSHELF SCREEN (本棚) -->
+    <!-- ----------------------------------------- -->
+    <main id="screen-bookshelf" class="screen">
+      <h2><i data-lucide="library" style="color:var(--color-primary);"></i>マイ本棚</h2>
+      <p class="sub-title">これまでに読んだ本のコレクションだよ</p>
+      
+      <div id="bookshelf-grid-container" class="bookshelf-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </main>
+
+    <!-- ----------------------------------------- -->
+    <!-- 3. SCAN BARCODE SCREEN (スキャン) -->
+    <!-- ----------------------------------------- -->
+    <main id="screen-scan" class="screen">
+      <h2><i data-lucide="scan-line" style="color:var(--color-primary);"></i>本のバーコードスキャン</h2>
+      <p class="sub-title">本のうしろのバーコードを読み取ってね</p>
+
+      <!-- Scan camera viewport -->
+      <div class="scanner-viewport-wrapper">
+        <!-- Inside scanning state -->
+        <div id="scanner-active-wrapper" style="display:none; width:100%; height:100%; position:relative;">
+          <div id="reader"></div>
+          <div class="scan-guidelines"></div>
+        </div>
+        
+        <!-- Scanner placeholder / Start scan view -->
+        <div id="scan-placeholder" style="width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; color:white; background: linear-gradient(135deg, #444, #222); padding:20px; text-align:center;">
+          <i data-lucide="camera" style="width:48px; height:48px; margin-bottom:12px; color:var(--color-secondary);"></i>
+          <p style="font-size:14px; line-height:1.4;">「スキャンをはじめる」をおして<br>カメラへのアクセスをきょかしてね！</p>
+        </div>
+      </div>
+
+      <!-- Control Buttons -->
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <button id="btn-start-scan" class="btn btn-primary">
+          <i data-lucide="play"></i> スキャンをはじめる
+        </button>
+        <button id="btn-stop-scan" class="btn btn-outline">
+          <i data-lucide="square"></i> スキャンをやめる
+        </button>
+      </div>
+
+      <div style="margin: 16px 0; display:flex; justify-content:center; align-items:center; gap:8px;">
+        <div style="height:2px; background-color:var(--color-border); flex:1;"></div>
+        <span style="font-size:12px; color:var(--color-text-light);">または</span>
+        <div style="height:2px; background-color:var(--color-border); flex:1;"></div>
+      </div>
+
+      <!-- Fallback manual input registration button -->
+      <button id="btn-show-manual" class="btn btn-secondary">
+        🖋️ 手入力で登録する
+      </button>
+
+      <!-- Manual register forms -->
+      <form id="manual-register-form" style="display:none; flex-direction:column; gap:14px; margin-top:16px;" class="card" id="form-manual-book">
+        <h3 style="font-size:16px; font-weight:900;"><i data-lucide="edit-3"></i> 本のじょうほうを入力</h3>
+        
+        <div class="form-group">
+          <label class="form-label" for="manual-title">本のなまえ（ひっす）</label>
+          <input type="text" id="manual-title" class="input-text" placeholder="例：ぐりとぐら" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="manual-author">書いた人・作者</label>
+          <input type="text" id="manual-author" class="input-text" placeholder="例：なかがわ りえこ">
+        </div>
+
+        <button type="submit" class="btn btn-success">登録にすすむ 🚀</button>
+      </form>
+    </main>
+
+    <!-- ----------------------------------------- -->
+    <!-- 4. REVIEW SCAN IMPRESSION SCREEN (感想入力) -->
+    <!-- ----------------------------------------- -->
+    <main id="screen-scan-review" class="screen">
+      <h2><i data-lucide="heart" style="color:var(--color-accent);"></i>きろくをつける</h2>
+      <p class="sub-title">読んだ本の感想をかいてみよう！</p>
+
+      <!-- Scanned Book Info Preview -->
+      <section class="card book-preview-card">
+        <img id="review-book-cover" class="book-cover-preview" src="" alt="cover">
+        <div class="book-preview-info">
+          <div id="review-book-title" class="preview-title">なまえのない本</div>
+          <div id="review-book-author" class="preview-author">しょうにん不明</div>
+        </div>
+      </section>
+
+      <!-- Emotion Stamps -->
+      <section class="card">
+        <h3 style="font-size:15px; margin-bottom:10px;">①どんなきもちになった？（スタンプ）</h3>
+        <div class="stamps-container">
+          <button class="stamp-btn" data-feeling="happy">
+            <span class="stamp-emoji">😄</span>
+            <span class="stamp-label">おもしろい</span>
+          </button>
+          <button class="stamp-btn" data-feeling="thrill">
+            <span class="stamp-emoji">⚡️</span>
+            <span class="stamp-label">どきどき</span>
+          </button>
+          <button class="stamp-btn" data-feeling="sad">
+            <span class="stamp-emoji">😢</span>
+            <span class="stamp-label">かなしい</span>
+          </button>
+          <button class="stamp-btn" data-feeling="hard">
+            <span class="stamp-emoji">🤔</span>
+            <span class="stamp-label">むずかしい</span>
+          </button>
+          <button class="stamp-btn" data-feeling="surprise">
+            <span class="stamp-emoji">😲</span>
+            <span class="stamp-label">びっくり</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Categories Selector -->
+      <section class="card">
+        <h3 style="font-size:15px; margin-bottom:10px;">②どんな本をよんだ？（ジャンル）</h3>
+        <div class="category-container">
+          <button class="cat-btn" data-cat="picture">えほん・ずかん</button>
+          <button class="cat-btn" data-cat="story">おはなし本</button>
+          <button class="cat-btn" data-cat="animal">どうぶつ・いきもの</button>
+          <button class="cat-btn" data-cat="fantasy">ぼうけん・まほう</button>
+          <button class="cat-btn" data-cat="science">かがく・しゃかい</button>
+          <button class="cat-btn" data-cat="other">その他</button>
+        </div>
+      </section>
+
+      <!-- Written Opinion Text Box -->
+      <section class="card">
+        <h3 style="font-size:15px; margin-bottom:4px;">③感想（かんそう）をかいてみよう</h3>
+        <p class="sub-title" style="margin-bottom:8px; font-size:11px;">マイクをおして声で入力することもできるよ！🎙️</p>
+        <textarea id="opinion-text" class="input-text textarea-opinion" placeholder="例：ぐりとぐらがつくる、大きなカステラがとってもおいしそうだった！食べてみたいなあ。"></textarea>
+      </section>
+
+      <!-- Save Button -->
+      <button id="btn-save-review" class="btn btn-primary" style="padding:16px;">
+        よんだーくんにしらせる！🚀
+      </button>
+    </main>
+
+    <!-- ----------------------------------------- -->
+    <!-- 5. MASCOT DRESSING SHOP SCREEN (きせかえ) -->
+    <!-- ----------------------------------------- -->
+    <main id="screen-shop" class="screen">
+      <h2><i data-lucide="sparkles" style="color:var(--color-secondary);"></i>きせかえショップ</h2>
+      <p class="sub-title">「よんだコイン」でよんだーくんをオシャレにしよう！</p>
+
+      <!-- Dressed Mascot Live Preview in Shop -->
+      <section class="card" style="display:flex; justify-content:center; align-items:center; padding:16px;">
+        <div id="shop-mascot-preview" style="width:140px; height:140px; position:relative;">
+          <!-- Loaded dynamically -->
+        </div>
+      </section>
+
+      <!-- Shop Items Grid -->
+      <section class="shop-grid" id="shop-items-grid">
+        <!-- Rendered dynamically by app.js -->
+      </section>
+    </main>
+
+    <!-- ----------------------------------------- -->
+    <!-- 6. SETTINGS SCREEN (設定) -->
+    <!-- ----------------------------------------- -->
+    <main id="screen-setting" class="screen">
+      <h2><i data-lucide="settings" style="color:var(--color-text-light);"></i>おうちの方へ（設定）</h2>
+      <p class="sub-title">アプリの設定やデータのバックアップができます</p>
+
+      <!-- Gemini API Integration Setup -->
+      <section class="card">
+        <h3>🤖 Gemini API連携（本物のAI）</h3>
+        <p class="sub-title" style="margin-top:2px;">お持ちのGemini APIキーを入力することで、よんだーくんの声かけが本物のAIによるオリジナルな対話になります。</p>
+        
+        <div class="form-group" style="margin-top:12px;">
+          <label class="form-label" for="api-key-input">Gemini API キー</label>
+          <input type="password" id="api-key-input" class="input-text" placeholder="AIzaSy...">
+        </div>
+        
+        <div style="display:flex; gap:10px; margin-top:12px;">
+          <button id="btn-save-setting" class="btn btn-primary" style="font-size:13px; padding:8px 16px;">保存する</button>
+          <button id="btn-delete-setting" class="btn btn-outline" style="font-size:13px; padding:8px 16px;">消去する</button>
+        </div>
+        <p style="font-size:10px; color:var(--color-text-light); margin-top:8px;">※キーはブラウザのLocalStorage内に安全に保管されます（外部サーバーには送信されません）。キーを設定しない場合は、あらかじめ組み込まれた可愛いテンプレ会話AIが反応します。</p>
+      </section>
+
+      <!-- Backup Data Management -->
+      <section class="card">
+        <h3>📂 データの保存と移動</h3>
+        <p class="sub-title" style="margin-top:2px;">別のiPhoneやiPadに読書記録を引っ越ししたり、バックアップをとることができます。</p>
+        
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:12px;">
+          <button id="btn-export-data" class="btn btn-secondary" style="font-size:13px; padding:10px 16px;">
+            <i data-lucide="download"></i> データをダウンロードする
+          </button>
+          <button id="btn-import-data" class="btn btn-outline" style="font-size:13px; padding:10px 16px;">
+            <i data-lucide="upload"></i> データを読み込む
+          </button>
+          <input type="file" id="import-file-input" accept=".json" style="display:none;">
+        </div>
+      </section>
+
+      <!-- Safari PWA Setup instructions -->
+      <section class="card" style="background-color: var(--color-success-light); border-color: var(--color-success);">
+        <h3 style="color:var(--color-success);"><i data-lucide="iphone"></i> iPhone/iPadでアプリとして使う方法</h3>
+        <ol style="margin-left: 20px; font-size:12px; margin-top:8px; display:flex; flex-direction:column; gap:6px; color:var(--color-text-dark);">
+          <li>Safariブラウザでこのファイルを開きます。</li>
+          <li>Safariの下のメニューから<strong>「共有（四角に上矢印のボタン）」</strong>をタップします。</li>
+          <li>メニューの中の<strong>「ホーム画面に追加」</strong>をタップします。</li>
+          <li>ホーム画面からいつでも、アプリとして全画面で開くことができるようになります！🎉</li>
+        </ol>
+      </section>
+    </main>
+
+    <!-- ----------------------------------------- -->
+    <!-- BOTTOM NAVIGATION FOOTER BAR -->
+    <!-- ----------------------------------------- -->
+    <nav class="nav-bar">
+      <button class="nav-item active" data-screen="home">
+        <i data-lucide="home"></i>
+        <span>ホーム</span>
+      </button>
+      
+      <button class="nav-item" data-screen="bookshelf">
+        <i data-lucide="library"></i>
+        <span>本棚</span>
+      </button>
+      
+      <!-- Prominent Scan camera Button -->
+      <div class="nav-item-scan-container">
+        <button class="nav-item nav-item-scan-highlight" data-screen="scan">
+          <i data-lucide="camera" style="width:26px; height:26px;"></i>
+        </button>
+      </div>
+      
+      <!-- Place holder to adjust layout column alignment for scan button -->
+      <div></div> 
+      
+      <button class="nav-item" data-screen="shop">
+        <i data-lucide="sparkles"></i>
+        <span>きせかえ</span>
+      </button>
+      
+      <button class="nav-item" data-screen="setting">
+        <i data-lucide="settings"></i>
+        <span>設定</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- ----------------------------------------- -->
+  <!-- DIALOG POPUP MODAL (Universal) -->
+  <!-- ----------------------------------------- -->
+  <div id="info-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="info-modal-title" style="font-weight:900; color:var(--color-primary);">つうしん</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div id="info-modal-body">
+        <!-- Loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------------------------------- -->
+  <!-- LOADING OVERLAY SCREEN -->
+  <!-- ----------------------------------------- -->
+  <div id="loading-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background-color:rgba(253, 250, 246, 0.9); z-index:9999; flex-direction:column; justify-content:center; align-items:center; gap:16px;">
+    <!-- Colorful spinner -->
+    <div style="width: 48px; height: 48px; border: 5px solid var(--color-primary-light); border-top: 5px solid var(--color-primary); border-radius:50%; animation: float 1s linear infinite;"></div>
+    <div id="loading-text" style="font-weight:900; color:var(--color-primary); font-size:16px;">ロード中...</div>
+  </div>
+
+  <!-- JS Code Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
