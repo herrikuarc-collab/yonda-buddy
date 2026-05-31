@@ -121,6 +121,10 @@
     <main id="screen-scan" class="screen">
       <h2><i data-lucide="scan-line" style="color:var(--color-primary);"></i>本のバーコードスキャン</h2>
       <p class="sub-title">本のうしろのバーコードを読み取ってね</p>
+      <div style="background-color: var(--color-primary-light); border: 2px dashed var(--color-primary); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 11px; color: var(--color-text-dark); margin-bottom: 12px; line-height: 1.4;">
+        <strong>💡 スキャンのコツ：</strong><br>
+        日本の本にはバーコードが<strong>2つ</strong>あります。<strong>「978」から始まる上のバーコード</strong>だけをスキャンしてね！下のバーコード（「192」から始まるもの）は指でかくれた状態にすると、まちがえずにスムーズに読み込めるよ！
+      </div>
 
       <!-- Scan camera viewport -->
       <div class="scanner-viewport-wrapper">
@@ -153,13 +157,33 @@
         <div style="height:2px; background-color:var(--color-border); flex:1;"></div>
       </div>
 
-      <!-- Fallback manual input registration button -->
-      <button id="btn-show-manual" class="btn btn-secondary">
-        🖋️ 手入力で登録する
-      </button>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <!-- New ISBN manual input toggle button -->
+        <button id="btn-show-isbn-manual" class="btn btn-secondary">
+          🔢 バーコードの数字を入力してさがす
+        </button>
+        
+        <!-- Fallback manual title/author input registration button -->
+        <button id="btn-show-manual" class="btn btn-outline" style="border-color: var(--color-primary); color: var(--color-primary);">
+          🖋️ 本のなまえを手入力して登録する
+        </button>
+      </div>
+
+      <!-- ISBN number register form -->
+      <form id="isbn-register-form" style="display:none; flex-direction:column; gap:14px; margin-top:16px;" class="card">
+        <h3 style="font-size:16px; font-weight:900;"><i data-lucide="search"></i> バーコードの数字を入力</h3>
+        <p class="sub-title" style="margin-bottom:2px; font-size:11px;">本のうしろにある「978」からはじまる13けたの数字をいれてね！</p>
+        
+        <div class="form-group">
+          <label class="form-label" for="isbn-manual-input">バーコードの数字 (13けた)</label>
+          <input type="tel" id="isbn-manual-input" class="input-text" placeholder="例：9784097263005" pattern="[0-9]*" maxlength="13" required>
+        </div>
+
+        <button type="submit" class="btn btn-success">本をさがす 🔍</button>
+      </form>
 
       <!-- Manual register forms -->
-      <form id="manual-register-form" style="display:none; flex-direction:column; gap:14px; margin-top:16px;" class="card" id="form-manual-book">
+      <form id="form-manual-book" style="display:none; flex-direction:column; gap:14px; margin-top:16px;" class="card">
         <h3 style="font-size:16px; font-weight:900;"><i data-lucide="edit-3"></i> 本のじょうほうを入力</h3>
         
         <div class="form-group">

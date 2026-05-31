@@ -454,13 +454,35 @@ function renderBadgesDashboard() {
 
 // Set up UI Event Listeners
 function setupEventListeners() {
-  // Manual Input Register Toggle
+  // Manual ISBN Input Toggle
+  const btnShowIsbnManual = document.getElementById("btn-show-isbn-manual");
+  const isbnForm = document.getElementById("isbn-register-form");
   const btnShowManual = document.getElementById("btn-show-manual");
-  const manualForm = document.getElementById("manual-register-form");
+  const manualForm = document.getElementById("form-manual-book");
+  
+  if (btnShowIsbnManual && isbnForm) {
+    btnShowIsbnManual.addEventListener("click", () => {
+      const isHidden = isbnForm.style.display === "none" || !isbnForm.style.display;
+      isbnForm.style.display = isHidden ? "flex" : "none";
+      btnShowIsbnManual.textContent = isHidden ? "❌ 入力フォームを閉じる" : "🔢 バーコードの数字を入力してさがす";
+      
+      if (manualForm) {
+        manualForm.style.display = "none";
+        btnShowManual.textContent = "🖋️ 本のなまえを手入力して登録する";
+      }
+    });
+  }
+  
   if (btnShowManual && manualForm) {
     btnShowManual.addEventListener("click", () => {
-      manualForm.style.display = manualForm.style.display === "none" ? "flex" : "none";
-      btnShowManual.textContent = manualForm.style.display === "none" ? "🖋️ 手入力で登録する" : "❌ 手入力を閉じる";
+      const isHidden = manualForm.style.display === "none" || !manualForm.style.display;
+      manualForm.style.display = isHidden ? "flex" : "none";
+      btnShowManual.textContent = isHidden ? "❌ 入力フォームを閉じる" : "🖋️ 本のなまえを手入力して登録する";
+      
+      if (isbnForm) {
+        isbnForm.style.display = "none";
+        btnShowIsbnManual.textContent = "🔢 バーコードの数字を入力してさがす";
+      }
     });
   }
 
@@ -479,10 +501,41 @@ function setupEventListeners() {
     });
   }
 
-  // Register manual book
-  const formManual = document.getElementById("form-manual-book");
-  if (formManual) {
-    formManual.addEventListener("submit", (e) => {
+  // Submit manual ISBN search form
+  if (isbnForm) {
+    isbnForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const isbnInput = document.getElementById("isbn-manual-input").value.trim();
+      const isbn = isbnInput.replace(/[^0-9]/g, "");
+      
+      if (isbn.startsWith("192")) {
+        showModalMessage("バーコードがちがうよ！", 
+          `<p style="font-size:14px; line-height:1.5; text-align:center;">
+            入力された数字は、本の『分類・価格用のコード（192から始まるもの）』みたいだよ。<br><br>
+            もう一方の<strong>『978』から始まる13けたの数字</strong>を入力してね！👍
+          </p>`
+        );
+        return;
+      }
+      
+      if (isbn.length !== 13) {
+        showModalMessage("数字をたしかめてね", "バーコードの下にある「13けたの数字」を正しくいれてね！");
+        return;
+      }
+      
+      // Reset & hide
+      isbnForm.reset();
+      isbnForm.style.display = "none";
+      btnShowIsbnManual.textContent = "🔢 バーコードの数字を入力してさがす";
+      
+      // Search book
+      fetchBookInfo(isbn);
+    });
+  }
+
+  // Register manual book (Title and Author)
+  if (manualForm) {
+    manualForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const title = document.getElementById("manual-title").value.trim();
       const author = document.getElementById("manual-author").value.trim() || "しょうにん不明";
@@ -497,9 +550,9 @@ function setupEventListeners() {
         isbn: ""
       };
       
-      formManual.reset();
+      manualForm.reset();
       manualForm.style.display = "none";
-      if (btnShowManual) btnShowManual.textContent = "🖋️ 手入力で登録する";
+      btnShowManual.textContent = "🖋️ 本のなまえを手入力して登録する";
       
       openReviewScreen();
     });
@@ -628,6 +681,19 @@ function onScanSuccess(decodedText, decodedResult) {
   
   // Validate if it is ISBN (usually starts with 978 or 979 for books)
   const isbn = decodedText.replace(/[^0-9]/g, "");
+  
+  // Check if it's the Japanese classification/price barcode (starts with 192)
+  if (isbn.startsWith("192")) {
+    showModalMessage("バーコードがちがうよ！", 
+      `<p style="font-size:14px; line-height:1.5; text-align:center;">
+        スキャンしたバーコードは、本の『分類・価格用のバーコード（192から始まるもの）』みたいだよ。<br><br>
+        お手数ですが、もう一方の<strong>『978』から始まるバーコード</strong>を映してね。<br>
+        ※もう片方のバーコードを指でかくしながらスキャンすると、まちがえずにうまくいくよ！👍
+      </p>`
+    );
+    return;
+  }
+  
   if (isbn.length !== 13) {
     showModalMessage("あれれ？", "本のバーコード（13ケタの数字）をスキャンしてくださいね。");
     return;
