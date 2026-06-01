@@ -1271,10 +1271,10 @@ async function generateAISpeech(book) {
     ],
     generationConfig: {
       maxOutputTokens: 1024,
-      temperature: 0.7
-    },
-    thinkingConfig: {
-      thinkingBudget: 0
+      temperature: 0.7,
+      thinkingConfig: {
+        thinkingBudget: 0
+      }
     }
   };
 
@@ -2200,10 +2200,10 @@ ${curatedLibraryStr}
     ],
     generationConfig: {
       maxOutputTokens: 4096,
-      temperature: 0.7
-    },
-    thinkingConfig: {
-      thinkingBudget: 0
+      temperature: 0.7,
+      thinkingConfig: {
+        thinkingBudget: 0
+      }
     }
   };
 
