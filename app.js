@@ -340,6 +340,8 @@ function loadState() {
       if (!state.equippedAccessories) state.equippedAccessories = [];
       if (!state.badges) state.badges = [];
       if (state.geminiApiKey === undefined) state.geminiApiKey = "";
+      if (state.wishlistFulfilledCount === undefined) state.wishlistFulfilledCount = 0;
+      if (!state.currentRecommendations) state.currentRecommendations = [];
     } catch (e) {
       console.error("Error parsing saved state:", e);
     }
@@ -459,6 +461,7 @@ function calculateLevel(xp) {
   // Each next level requires (level * 100 + 100) XP.
   let level = 1;
   let accumulatedXp = 0;
+  xp = (typeof xp === "number" && isFinite(xp) && xp >= 0) ? Math.floor(xp) : 0;
   
   while (true) {
     let xpNeeded = level * 100;
@@ -1897,7 +1900,8 @@ function showBookDetailModal(book) {
 }
 
 function exportData() {
-  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state));
+  const exportState = Object.assign({}, state, { geminiApiKey: "" });
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportState));
   const dlAnchorElem = document.createElement("a");
   
   const dateStr = getTodayString().replace(/-/g, "");
@@ -2271,6 +2275,7 @@ function animateCardDismiss(index) {
       // Set to null to keep indexes consistent during active sessions, then filter out
       state.currentRecommendations[index] = null;
     }
+    state.currentRecommendations = (state.currentRecommendations || []).filter(Boolean);
 
     // Check if any cards are still visible
     const remainingCards = document.querySelectorAll(".recommendation-card");
