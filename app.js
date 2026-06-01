@@ -379,7 +379,10 @@ function initNavigation() {
         } else if (targetScreen === "recommend") {
           renderRecommendations();
         } else if (targetScreen === "setting") {
-          document.getElementById("api-key-input").value = state.geminiApiKey || "";
+          const apiKeyEl = document.getElementById("api-key-input");
+          if (apiKeyEl) {
+            apiKeyEl.value = state.geminiApiKey || "";
+          }
           renderWishlist();
         }
       }
@@ -387,7 +390,10 @@ function initNavigation() {
   });
   
   // Show home by default
-  document.querySelector('[data-screen="home"]').click();
+  const defaultTab = document.querySelector('[data-screen="home"]');
+  if (defaultTab) {
+    defaultTab.click();
+  }
 }
 
 // Update UI metrics
@@ -401,20 +407,30 @@ function updateUI() {
   const levelDetails = calculateLevel(state.xp);
   state.level = levelDetails.level;
   
-  document.getElementById("level-value").textContent = state.level;
-  document.getElementById("xp-current").textContent = levelDetails.currentXpInLevel;
-  document.getElementById("xp-needed").textContent = levelDetails.xpNeededForNextLevel;
+  const levelEl = document.getElementById("level-value");
+  if (levelEl) levelEl.textContent = state.level;
+
+  const xpCurrentEl = document.getElementById("xp-current");
+  if (xpCurrentEl) xpCurrentEl.textContent = levelDetails.currentXpInLevel;
+
+  const xpNeededEl = document.getElementById("xp-needed");
+  if (xpNeededEl) xpNeededEl.textContent = levelDetails.xpNeededForNextLevel;
   
   const progressPercent = Math.min(100, (levelDetails.currentXpInLevel / levelDetails.xpNeededForNextLevel) * 100);
-  document.getElementById("xp-progress-bar").style.width = `${progressPercent}%`;
+  const xpBarEl = document.getElementById("xp-progress-bar");
+  if (xpBarEl) xpBarEl.style.width = `${progressPercent}%`;
 
   // Statistics
-  document.getElementById("stat-total-books").textContent = state.books.length;
-  // Calculate average rating or books this month
+  const statTotalEl = document.getElementById("stat-total-books");
+  if (statTotalEl) statTotalEl.textContent = state.books.length;
+
+  // Calculate books this month
   const today = new Date();
   const currentMonthStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
   const booksThisMonth = state.books.filter(b => b.date && b.date.startsWith(currentMonthStr)).length;
-  document.getElementById("stat-month-books").textContent = booksThisMonth;
+  
+  const statMonthEl = document.getElementById("stat-month-books");
+  if (statMonthEl) statMonthEl.textContent = booksThisMonth;
 
   // Render Badges Dashboard (Locked/Unlocked)
   renderBadgesDashboard();
@@ -752,7 +768,9 @@ function setupEventListeners() {
       
       if (manualForm) {
         manualForm.style.display = "none";
-        btnShowManual.textContent = "🖋️ 本のなまえを手入力して登録する";
+        if (btnShowManual) {
+          btnShowManual.textContent = "🖋️ 本のなまえを手入力して登録する";
+        }
       }
     });
   }
@@ -765,7 +783,9 @@ function setupEventListeners() {
       
       if (isbnForm) {
         isbnForm.style.display = "none";
-        btnShowIsbnManual.textContent = "🔢 バーコードの数字を入力してさがす";
+        if (btnShowIsbnManual) {
+          btnShowIsbnManual.textContent = "🔢 バーコードの数字を入力してさがす";
+        }
       }
     });
   }
@@ -789,7 +809,9 @@ function setupEventListeners() {
   if (isbnForm) {
     isbnForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const isbnInput = document.getElementById("isbn-manual-input").value.trim();
+      const inputEl = document.getElementById("isbn-manual-input");
+      if (!inputEl) return;
+      const isbnInput = inputEl.value.trim();
       const isbn = isbnInput.replace(/[^0-9]/g, "");
       
       if (isbn.startsWith("192")) {
@@ -810,7 +832,9 @@ function setupEventListeners() {
       // Reset & hide
       isbnForm.reset();
       isbnForm.style.display = "none";
-      btnShowIsbnManual.textContent = "🔢 バーコードの数字を入力してさがす";
+      if (btnShowIsbnManual) {
+        btnShowIsbnManual.textContent = "🔢 バーコードの数字を入力してさがす";
+      }
       
       // Search book
       fetchBookInfo(isbn);
@@ -821,8 +845,11 @@ function setupEventListeners() {
   if (manualForm) {
     manualForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const title = document.getElementById("manual-title").value.trim();
-      const author = document.getElementById("manual-author").value.trim() || "しょうにん不明";
+      const titleEl = document.getElementById("manual-title");
+      const authorEl = document.getElementById("manual-author");
+      if (!titleEl) return;
+      const title = titleEl.value.trim();
+      const author = authorEl ? authorEl.value.trim() : "しょうにん不明";
       
       if (!title) return;
       
@@ -836,7 +863,9 @@ function setupEventListeners() {
       
       manualForm.reset();
       manualForm.style.display = "none";
-      btnShowManual.textContent = "🖋️ 本のなまえを手入力して登録する";
+      if (btnShowManual) {
+        btnShowManual.textContent = "🖋️ 本のなまえを手入力して登録する";
+      }
       
       openReviewScreen();
     });
@@ -872,7 +901,9 @@ function setupEventListeners() {
   const btnSaveSetting = document.getElementById("btn-save-setting");
   if (btnSaveSetting) {
     btnSaveSetting.addEventListener("click", () => {
-      const apiKey = document.getElementById("api-key-input").value.trim();
+      const apiKeyEl = document.getElementById("api-key-input");
+      if (!apiKeyEl) return;
+      const apiKey = apiKeyEl.value.trim();
       state.geminiApiKey = apiKey;
       saveState();
       showToast("⚙️ 設定を保存したよ！");
@@ -883,7 +914,10 @@ function setupEventListeners() {
   const btnDeleteSetting = document.getElementById("btn-delete-setting");
   if (btnDeleteSetting) {
     btnDeleteSetting.addEventListener("click", () => {
-      document.getElementById("api-key-input").value = "";
+      const apiKeyEl = document.getElementById("api-key-input");
+      if (apiKeyEl) {
+        apiKeyEl.value = "";
+      }
       state.geminiApiKey = "";
       saveState();
       showToast("🗑️ APIキーを消去したよ！");
@@ -899,7 +933,10 @@ function setupEventListeners() {
   const btnImport = document.getElementById("btn-import-data");
   if (btnImport) {
     btnImport.addEventListener("click", () => {
-      document.getElementById("import-file-input").click();
+      const importFileEl = document.getElementById("import-file-input");
+      if (importFileEl) {
+        importFileEl.click();
+      }
     });
   }
 
@@ -1554,7 +1591,10 @@ function renderCalendar() {
   const month = today.getMonth(); // 0-indexed
   
   // Set Calendar Title
-  document.getElementById("calendar-month-title").textContent = `${year}\u5E74 ${month + 1}\u6708`;
+  const titleEl = document.getElementById("calendar-month-title");
+  if (titleEl) {
+    titleEl.textContent = `${year}\u5E74 ${month + 1}\u6708`;
+  }
   
   // Get first day of month and total days
   const firstDayIndex = new Date(year, month, 1).getDay(); // 0 (Sun) - 6 (Sat)
@@ -2033,12 +2073,12 @@ function renderRecommendationCards(books) {
   }
 
   container.innerHTML = "";
-  books.forEach((book, idx) => {
+  books.forEach((book, index) => {
     if (!book) return;
 
     const card = document.createElement("div");
     card.className = "recommendation-card";
-    card.id = `rec-card-${idx}`;
+    card.id = `rec-card-${index}`;
 
     card.innerHTML = `
       <div class="rec-book-header">
@@ -2052,24 +2092,39 @@ function renderRecommendationCards(books) {
       </div>
       
       <div class="rec-mascot-bubble-wrapper">
-        <div class="rec-mascot-avatar" id="rec-mascot-avatar-${idx}"></div>
+        <div class="rec-mascot-avatar" id="rec-mascot-avatar-${index}"></div>
         <div class="rec-speech-bubble">
           ${book.desc}
         </div>
       </div>
       
       <div class="rec-actions-row">
-        <button class="btn btn-outline btn-sm" onclick="handleWishlistDismiss(${idx})">
+        <button class="btn btn-outline btn-sm btn-dismiss">
           🗑️ ほかの本をみる
         </button>
-        <button class="btn btn-primary btn-sm" onclick="handleWishlistAdd('${escapeJs(book.title)}', '${escapeJs(book.author)}', '${book.category}', '${book.categoryName}', '${book.coverChar}', '${escapeJs(book.desc)}', ${idx})">
+        <button class="btn btn-primary btn-sm btn-want">
           ❤️ よみたい！
         </button>
       </div>
     `;
 
+    // Modern dynamic event listener bindings (avoids onclick attribute string parsing issues)
+    const btnDismiss = card.querySelector(".btn-dismiss");
+    if (btnDismiss) {
+      btnDismiss.addEventListener("click", () => {
+        handleWishlistDismiss(index);
+      });
+    }
+
+    const btnWant = card.querySelector(".btn-want");
+    if (btnWant) {
+      btnWant.addEventListener("click", () => {
+        handleWishlistAdd(book.title, book.author, book.category, book.categoryName, book.coverChar, book.desc, index);
+      });
+    }
+
     container.appendChild(card);
-    drawMascot(`rec-mascot-avatar-${idx}`);
+    drawMascot(`rec-mascot-avatar-${index}`);
   });
 }
 
@@ -2236,10 +2291,10 @@ function renderWishlist() {
     return;
   }
 
-  state.wishlist.forEach((item, idx) => {
+  state.wishlist.forEach((item, index) => {
     const itemCard = document.createElement("div");
     itemCard.className = "wishlist-item-card";
-    itemCard.id = `wish-item-${idx}`;
+    itemCard.id = `wish-item-${index}`;
 
     itemCard.innerHTML = `
       <div class="wishlist-info-box">
@@ -2249,10 +2304,18 @@ function renderWishlist() {
           <strong>\uD83E\uDD96 \u3088\u3093\u3060\u30FC\u304F\u3093\u306E\u3057\u3087\u3046\u304B\u3044:</strong> ${item.aiSpeech}
         </div>
       </div>
-      <button class="wishlist-btn-done" onclick="handleWishlistRemove(${idx})">
+      <button class="wishlist-btn-done">
         \u3088\u3046\u3044\u3057\u3066\u3042\u3052\u305F\uFF01
       </button>
     `;
+
+    // Modern dynamic event listener bindings (avoids onclick attribute string parsing issues)
+    const btnDone = itemCard.querySelector(".wishlist-btn-done");
+    if (btnDone) {
+      btnDone.addEventListener("click", () => {
+        handleWishlistRemove(index);
+      });
+    }
 
     container.appendChild(itemCard);
   });
