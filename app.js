@@ -299,18 +299,30 @@ let scannedIsbnTemp = null;
 let scannedBookDataTemp = null;
 
 // Initialize Application
-window.addEventListener("DOMContentLoaded", () => {
+function initApp() {
   loadState();
   initNavigation();
   updateUI();
   setupEventListeners();
   renderCalendar();
   
-  // Lucide Icons initialization
-  if (typeof lucide !== 'undefined') {
-    lucide.createIcons();
+  // Lucide Icons initialization (Safe execution)
+  try {
+    if (typeof window.lucide !== 'undefined' && window.lucide.createIcons) {
+      window.lucide.createIcons();
+    } else if (typeof lucide !== 'undefined' && lucide.createIcons) {
+      lucide.createIcons();
+    }
+  } catch (err) {
+    console.error("Lucide Icons initialization failed:", err);
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
 
 // Load State from LocalStorage
 function loadState() {
