@@ -70,21 +70,6 @@
           つぎのレベルまで: <span id="xp-current">0</span> / <span id="xp-needed">100</span> XP
         </div>
       </section>
-
-      <!-- Recommended Books Section -->
-      <section class="card" id="recommendations-section">
-        <h2><i data-lucide="sparkles" style="color:var(--color-secondary);"></i>よんだーくんのおすすめ本</h2>
-        <p class="sub-title">きみの感想から、よんだーくんがワクワクする本をえらんだよ！</p>
-        
-        <div id="recommendations-container" style="display:flex; flex-direction:column; gap:16px; margin-top:12px;">
-          <!-- Loaded dynamically -->
-          <div class="loader-placeholder" style="text-align:center; padding:20px; color:var(--color-primary);">
-            <div style="width: 24px; height: 24px; border: 3px solid var(--color-primary-light); border-top: 3px solid var(--color-primary); border-radius:50%; animation: float 1s linear infinite; margin: 0 auto 10px;"></div>
-            <p style="font-size:11px; font-weight:900;">おすすめを考えています...</p>
-          </div>
-        </div>
-      </section>
-
       <!-- Stats Grid -->
       <section class="stats-row">
         <div class="stat-card">
@@ -118,14 +103,30 @@
     </main>
 
     <!-- ----------------------------------------- -->
-    <!-- 2. BOOKSHELF SCREEN (本棚) -->
+    <!-- 2. BOOKSHELF SCREEN (ほんだな) -->
     <!-- ----------------------------------------- -->
     <main id="screen-bookshelf" class="screen">
-      <h2><i data-lucide="library" style="color:var(--color-primary);"></i>マイ本棚</h2>
+      <h2><i data-lucide="library" style="color:var(--color-primary);"></i>マイほんだな</h2>
       <p class="sub-title">これまでに読んだ本のコレクションだよ</p>
       
       <div id="bookshelf-grid-container" class="bookshelf-grid">
         <!-- Rendered dynamically by app.js -->
+      </div>
+    </main>
+
+    <!-- ----------------------------------------- -->
+    <!-- NEW RECOMMEND SCREEN (おすすめ) -->
+    <!-- ----------------------------------------- -->
+    <main id="screen-recommend" class="screen">
+      <h2><i data-lucide="sparkles" style="color:var(--color-secondary);"></i>よんだーくんのおすすめ本</h2>
+      <p class="sub-title">きみの感想から、よんだーくんがワクワクする本をえらんだよ！</p>
+      
+      <div id="recommendations-container" style="display:flex; flex-direction:column; gap:16px; margin-top:12px;">
+        <!-- Loaded dynamically by app.js -->
+        <div class="loader-placeholder" style="text-align:center; padding:20px; color:var(--color-primary);">
+          <div style="width: 24px; height: 24px; border: 3px solid var(--color-primary-light); border-top: 3px solid var(--color-primary); border-radius:50%; animation: float 1s linear infinite; margin: 0 auto 10px;"></div>
+          <p style="font-size:11px; font-weight:900;">おすすめを考えています...</p>
+        </div>
       </div>
     </main>
 
@@ -313,7 +314,7 @@
       <!-- Children Wishlist Section for Parents -->
       <section class="card" id="parent-wishlist-section">
         <h3><i data-lucide="heart" style="color:var(--color-accent); fill:var(--color-accent); width:20px; height:20px; display:inline-block; vertical-align:middle; margin-right:4px;"></i> 子どもがよみたい本リスト</h3>
-        <p class="sub-title" style="margin-top:2px;">お子様が「よみたい！」と選んだ本の一覧です。本を用意してあげたときは、ボタンを押して消去してください。</p>
+        <p class="sub-title" style="margin-top:2px;">お子様が「よみたい！」と選んだ本のリストです。本を用意してあげたときは、ボタンをおして消去してください。</p>
         
         <div id="parent-wishlist-container" style="display:flex; flex-direction:column; gap:12px; margin-top:12px;">
           <!-- Loaded dynamically -->
@@ -376,7 +377,7 @@
       
       <button class="nav-item" data-screen="bookshelf">
         <i data-lucide="library"></i>
-        <span>本棚</span>
+        <span>ほんだな</span>
       </button>
       
       <!-- Prominent Scan camera Button -->
@@ -386,11 +387,14 @@
         </button>
       </div>
       
-      <!-- Place holder to adjust layout column alignment for scan button -->
-      <div></div> 
+      <!-- NEW Recommendation Tab (left of きせかえ) -->
+      <button class="nav-item" data-screen="recommend">
+        <i data-lucide="sparkles"></i>
+        <span>おすすめ</span>
+      </button>
       
       <button class="nav-item" data-screen="shop">
-        <i data-lucide="sparkles"></i>
+        <i data-lucide="shirt"></i>
         <span>きせかえ</span>
       </button>
       

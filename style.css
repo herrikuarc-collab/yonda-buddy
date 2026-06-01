@@ -159,7 +159,7 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border-top: 2px solid var(--color-border);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   padding: 10px 6px calc(10px + env(safe-area-inset-bottom, 0px));
   z-index: 1000;
   box-shadow: 0 -4px 20px rgba(0,0,0,0.03);

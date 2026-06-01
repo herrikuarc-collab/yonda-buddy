@@ -21,12 +21,12 @@ let state = {
 const SHOP_ITEMS = [
   // HEAD ACCESSORIES (hat slot)
   { id: "hat", name: "まほうのぼうし", emoji: "🎩", price: 10, type: "head" },
-  { id: "crown", name: "きらきら王冠", emoji: "👑", price: 30, type: "head" },
+  { id: "crown", name: "きらきら王かん", emoji: "👑", price: 30, type: "head" },
   { id: "apple", name: "りんごのぼうし", emoji: "🍎", price: 12, type: "head" },
   { id: "cat_ears", name: "ねこみみ", emoji: "🐱", price: 20, type: "head" },
   { id: "pirate_hat", name: "かいぞくのぼうし", emoji: "🏴‍☠️", price: 18, type: "head" },
   { id: "chef_hat", name: "コックさんのぼうし", emoji: "👨‍🍳", price: 15, type: "head" },
-  { id: "straw_hat", name: "むぎわら帽子", emoji: "👒", price: 8, type: "head" },
+  { id: "straw_hat", name: "むぎわらぼうし", emoji: "👒", price: 8, type: "head" },
   { id: "ninja_band", name: "にんじゃのハチマキ", emoji: "🥷", price: 25, type: "head" },
   
   // FACE ACCESSORIES (eyes slot)
@@ -44,7 +44,7 @@ const SHOP_ITEMS = [
   
   // HAND ACCESSORIES (hand slot)
   { id: "wand", name: "まほうのつえ", emoji: "🪄", price: 15, type: "hand" },
-  { id: "sword", name: "おもちゃの剣", emoji: "⚔️", price: 22, type: "hand" },
+  { id: "sword", name: "おもちゃのけん", emoji: "⚔️", price: 22, type: "hand" },
   { id: "book_hold", name: "ちいさな本", emoji: "📘", price: 10, type: "hand" },
   { id: "lantern", name: "ピカピカランタン", emoji: "🏮", price: 18, type: "hand" },
   { id: "balloon", name: "赤いふうせん", emoji: "🎈", price: 8, type: "hand" },
@@ -74,11 +74,11 @@ const BADGES = [
   
   // 3. Category/Genre Mastery
   { id: "picture_book", name: "絵本マスター", emoji: "🎨", desc: "えほん・ずかんジャンルを登録した！" },
-  { id: "adventure", name: "冒険家", emoji: "🧭", desc: "おはなし・ぼうけんジャンルを登録した！" },
+  { id: "adventure", name: "ぼうけん家", emoji: "🧭", desc: "おはなし・ぼうけんジャンルを登録した！" },
   { id: "animal", name: "動物ドクター", emoji: "🦁", desc: "どうぶつジャンルを登録した！" },
   { id: "science_fan", name: "かがくはかせ", emoji: "🧪", desc: "科学ジャンルを登録した！" },
   { id: "other_fan", name: "ものしりはかせ", emoji: "💡", desc: "その他ジャンルの本を登録した！" },
-  { id: "all_genres", name: "全ジャンル読破", emoji: "🎖️", desc: "4つ以上のちがうジャンルの本を読んだ！" },
+  { id: "all_genres", name: "全ジャンルよんだ！", emoji: "🎖️", desc: "4つ以上のちがうジャンルの本を読んだ！" },
   
   // 4. Reading Streak Habits
   { id: "streak_3", name: "3日連続よんだ！", emoji: "🔥", desc: "3日連続で読書を記録した！" },
@@ -87,7 +87,7 @@ const BADGES = [
   
   // 5. Coin Rewards
   { id: "coin_rich", name: "コイン持ち", emoji: "💰", desc: "コインを50枚ためた！" },
-  { id: "coin_millionaire", name: "コイン大富豪", emoji: "💎", desc: "コインを100枚ためた！" },
+  { id: "coin_millionaire", name: "コイン大金持ち", emoji: "💎", desc: "コインを100枚ためた！" },
   
   // 6. Mascot Customization & Room Makeovers
   { id: "fashion_beginner", name: "オシャレ入門", emoji: "🎩", desc: "ショップでアイテムを1つ手に入れた！" },
@@ -96,12 +96,12 @@ const BADGES = [
   { id: "room_decorator", name: "お部屋デザイナー", emoji: "⛺", desc: "お部屋（背景）をはじめてもようがえした！" },
   
   // 7. Reading Level Milestones
-  { id: "level_5", name: "レベル5到達！", emoji: "🏆", desc: "よんどくレベルが5になった！" },
-  { id: "level_10", name: "レベル10大魔導士", emoji: "🧙", desc: "よんどくレベルが10になった！すごすぎる！" },
+  { id: "level_5", name: "レベル5になったよ！", emoji: "🏆", desc: "よんどくレベルが5になった！" },
+  { id: "level_10", name: "レベル10大まほう使い", emoji: "🧙", desc: "よんどくレベルが10になった！すごすぎる！" },
   
   // 8. Wishlist Discoveries
-  { id: "wishlist_fan", name: "よみたい探求者", emoji: "🔍", desc: "おすすめ本を5冊よみたいリストに入れた！" },
-  { id: "wishlist_fulfilled", name: "夢がかなった！", emoji: "🎁", desc: "親に買ってもらった本リストから2冊消去された！" }
+  { id: "wishlist_fan", name: "よみたい探求者", emoji: "🔍", desc: "おすすめ本を5さつよみたいリストに入れた！" },
+  { id: "wishlist_fulfilled", name: "夢がかなった！", emoji: "🎁", desc: "親に買ってもらった本リストから2さつ消去された！" }
 ];
 
 // Cute Encouraging Speeches for "よんだーくん" Default Mode
@@ -216,6 +216,7 @@ function initNavigation() {
         } else if (targetScreen === "home") {
           updateUI();
           renderCalendar();
+        } else if (targetScreen === "recommend") {
           renderRecommendations();
         } else if (targetScreen === "setting") {
           document.getElementById("api-key-input").value = state.geminiApiKey || "";
@@ -1040,7 +1041,7 @@ async function generateAISpeech(book) {
 
 【メッセージ作成のルール】
 1. 絶対に否定的なことは言わず、本を読み切ったことや感じた気持ちを「すごい！」「素晴らしい！」と大絶賛してください。
-2. ひらがなとカタカナを中心に書いてください。（漢字は最小限に。小学校1年生でも読めるように、「本」「感想」「気持ち」などの簡単な漢字にはふりがなをつけるか、ひらがなで表現してね）
+2. ひらがなとカタカナをベースに、必ず【小学校で習う簡単な漢字】（例：本、犬、猫、大、小、日、月、友だちなど）のみを使用し、中学生以上で習う難しい漢字（例：「推薦」「評論」「分析」「宿命」「大絶賛」などの「絶」「賛」「繊」「細」といった難しい字）は絶対に使用せず、すべてひらがなまたはカタカナで書いてください。
 3. 感想テキスト（ある場合）の内容に優しく共感してください。
 4. キャラクターとしての元気な口調（語尾に「〜だよ！」「〜だね！」「〜かな？」などをつける）にしてください。
 5. 「よんだーくん」以外の第三者として話すのではなく、あなた自身が「よんだーくん」として語りかけてください。
@@ -1415,6 +1416,7 @@ function renderCalendar() {
   }
   
   // Render days of the month
+  // Render days of the month
   for (let day = 1; day <= totalDays; day++) {
     const dayCell = document.createElement("div");
     dayCell.className = "calendar-day";
@@ -1659,54 +1661,281 @@ function showBookDetailModal(book) {
       
       <div class="modal-detail-review-box">
         <strong style="font-size:11px; color:var(--color-primary); display:block; margin-bottom:4px;">✏️ きみの感想</strong>
-        <p style="line-height:1.5; font-size:13px;">${book.comment || '感想は書かなかったよ！でも、よめてえらい！🌟'}</p>
+        <p style="line-height:1.5; font-size:13px;">${book.comment || '感想は書かなかったよ！でも、よめてえらい�// ----------------------------------------------------
+// DATA BACKUP & RESTORE FUNCTIONS
+// ----------------------------------------------------�で解決していく、ハラハラどきどきの本格たんていストーリー！🔍" 
+  },
+  { 
+    title: "らくだい魔女はプリンセス", 
+    author: "石崎洋司", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🧹", 
+    desc: "見習いまじょのフウカが、お城の地下室で不思議な絵を見つけるんだ。だけどフウカの失敗によって、絵の中からおそろしいやみの力がとき放たれてしまう！ハチャメチャなまほうとドキドキの大ぼうけん！✨" 
+  },
+  { 
+    title: "びりっかす of 神さま", 
+    author: "岡田淳", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🏃", 
+    desc: "クラスのかけっこで、一番最後（びり）になった人にしか見えないフシギなおじさん「びりっかすの神さま」！クラスのみんながわざと「びり」になろうとする、優しくてフシギな友情物語！ほっこり感動するよ！🌟" 
+  },
+  { 
+    title: "窓ぎわのトットちゃん", 
+    author: "黒柳徹子", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🏫", 
+    desc: "電車の教室や、おいしいお弁当！ちょっぴり変わったユニークな学校「トモエ学園」に転校したトットちゃん。たくさんの友だちと、優しくあたたかい校長先生とのきせきのような毎日に心がぽかぽかあたたかくなるよ！🌸" 
+  },
+  { 
+    title: "海底二万マイル", 
+    author: "ジュール・ヴェルヌ", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🦑", 
+    desc: "大きなクジラを追っていた博士たちが、海の中でなぞの男「ネモ船長」とせんすいかんノーチラス号にそうぐう！おそろしい海の怪物や未知の海底いせきなど、ハラハラドキドキがぎっしり詰まったSF大ぼうけんファンタジー！🗺️" 
+  },
+  { 
+    title: "シートン動物記 オオカミ王ロボ", 
+    author: "アーネスト・T・シートン", 
+    category: "animal", 
+    categoryName: "どうぶつ・いきもの", 
+    coverChar: "🐺", 
+    desc: "どんなワナをも見破る、かしこくて気高いオオカミの王様ロボ。シートンとロボの息づまるちえ比べと、愛する仲間を助けるためにすべてを投げ出すロボの姿に、胸が熱くなりなみだが止まらなくなるかんどうの実話！😢" 
+  },
+  { 
+    title: "星 of 王子さま", 
+    author: "サンテグジュペリ", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "👑", 
+    desc: "さばくに不時着したパイロットの前に現れた、小さな星からやってきたきんぱつの王子さま。王子さまが話してくれたバラの花やキツネとの出会い。「大切なものは、目に見えないんだよ」というあたたかいおはなし。💫" 
+  },
+  { 
+    title: "科学漫画サバイバル 昆虫世界のサバイバル1", 
+    author: "洪在徹", 
+    category: "science", 
+    categoryName: "かがく・しゃかい", 
+    coverChar: "🐜", 
+    desc: "不思議な光線で、アリのサイズに縮んでしまったジオたち！いつもはちいさなこん虫たちが、命をおびやかす大きなかいじゅうになっておそいかかる！ちょうスリリングな科学サバイバルマンガ、ハラハラどきどきだよ！🔥" 
+  },
+  { 
+    title: "大泥棒ホッツェンプロッツ", 
+    author: "プロイスラー", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "☕", 
+    desc: "おばあさんの大切なコーヒー挽きをぬすんだ大どろぼうホッツェンプロッツ！カスペルたちをつかまえようとするカスペルとゼッペルだけど、逆につかまって悪いまほう使いに売られちゃう！？ハラハラ笑える愉快なぼうけん物語！🎒" 
+  },
+  { 
+    title: "怪盗クイーンはサーカスがお好き", 
+    author: "はやみねかおる", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🎩", 
+    desc: "だれにも正体がわからない、しんしゅつきぼつの怪盗クイーン！ねらった宝物は絶対に盗み出すはずが、なぞのサーカス団に先を越されてお宝を盗まれてしまう！？はなやかでおもしろい大バトルとワクワクのトリックミステリー！🃏" 
+  },
+  { 
+    title: "チョコレート工場の秘密", 
+    author: "ロアルド・ダール", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🍫", 
+    desc: "世界一有名でだれも入れなかった不思議なチョコレート工場。ある日、世界に5枚だけのゴールドチケットを当てた子どもたちが工場に招待される！部屋ごとに広がるおかしな光景と、ドキドキハラハラの不思議な見学ツアー！🍭" 
+  }
+];
+
+// ----------------------------------------------------px; border:1.5px solid var(--color-border);">
+        <img src="${book.cover}" alt="cover" style="width: 48px; height: 68px; object-fit:cover; border-radius:6px; box-shadow:var(--shadow-sm); display: ${book.cover ? 'block' : 'none'};">
+        <div>
+          <div style="font-weight:900; font-size:14px; color:var(--color-text-dark);">${shortenTitle(book.title, 24)}</div>
+          <span style="font-size:11px; color:var(--color-text-light);">${book.author}</span>
+        </div>
       </div>
       
-      <!-- Speech bubble detail -->
-      <div style="display:flex; gap:12px; align-items:flex-start; margin-top:6px;">
-        <div style="width: 44px; height: 44px; flex-shrink:0; position:relative;" id="modal-speech-mascot-container-detail">
-          <!-- small mascot -->
+      <!-- Mascot Speech Bubble -->
+      <div style="display:flex; gap:12px; align-items:flex-start;">
+        <div style="width: 50px; height: 50px; flex-shrink:0; position:relative;" id="modal-speech-mascot-container">
+          <!-- Small dynamic mascot avatar -->
         </div>
-        <div style="background-color: white; border: 2px solid var(--color-primary); border-radius: 16px; padding: 10px 12px; font-size: 12px; line-height: 1.4; color: var(--color-text-dark); position: relative; flex:1; box-shadow: var(--shadow-sm);">
-          <strong style="color:var(--color-primary); font-size:10px; display:block; margin-bottom:2px;">🦊 よんだーくんからの声かけ</strong>
+        <div style="background-color: white; border: 2px solid var(--color-primary); border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.5; color: var(--color-text-dark); position: relative; flex:1; box-shadow: var(--shadow-sm);">
           ${book.aiSpeech}
         </div>
       </div>
       
-      <button class="btn btn-outline" id="btn-delete-book" style="margin-top:20px; padding:8px; font-size:12px; color: var(--color-accent); border-color:var(--color-border);">
-        🗑️ この記録をけす
-      </button>
-    </div>
-  `;
-  
-  document.getElementById("info-modal-body").innerHTML = bodyHtml;
-  drawMascot("modal-speech-mascot-container-detail");
-  
-  modal.classList.add("active");
-  
-  const closeBtn = modal.querySelector(".modal-close-btn");
-  const closeAction = () => {
-    modal.classList.remove("active");
-    closeBtn.removeEventListener("click", closeAction);
-  };
-  closeBtn.addEventListener("click", closeAction);
-  
-  // Setup delete button action
-  const btnDelete = document.getElementById("btn-delete-book");
-  if (btnDelete) {
-    btnDelete.addEventListener("click", () => {
-      if (confirm("この本の読書記録を消してもいいですか？獲得したコインやレベルはそのまま残ります。")) {
-        state.books = state.books.filter(b => b.id !== book.id);
-        saveState();
-        modal.classList.remove("active");
-        renderBookshelf();
-        showToast("🗑️ 記録を消去したよ");
-      }
-    });
+      <!-- Rewards box -->
+      <div style="display:flex; justify-content:space-around; align-items:center; background-color:#fcfcfc; border:2px dashed var(--color-border); border-radius:12px; padding:12px; margin-top:8px;">
+        <div style="text-align:center;">
+          <div style="font-size:20px; font-weight:900; color:var(--color-primary);">+${xpReward}</div>
+          <div style="font-size:10px; color:var(--color-text-light);">よんどくパワー(XP)</div>
+        </div>
+        <div style="width:2px; height:24px; background-color:var(--color-border);"></div>
+        <div style="text-align:center;">
+          <div style="font-size:20px; font-weight:900; color:#ffaa00;">+${coinReward}🟡</div>
+          <div style="font-size:10px; color:var(--color-textconst CURATED_RECOMMENDATIONS_LIBRARY = [
+  { 
+    title: "四つ子ぐらし1 ひみつの姉妹はじめます！", 
+    author: "ひのひまり", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "👧", 
+    desc: "ひとりぼっちだと思ってた主人公のみのが、12才の誕生日にそっくりな四つ子だったことがわかるんだ！しかも四人だけで暮らすことに！？ハラハラどきどきの秘密の生活、絶対に先がよみたくなるよ！🌸" 
+  },
+  { 
+    title: "ふしぎ駄菓子屋 銭天堂1", 
+    author: "廣嶋玲子", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🪙", 
+    desc: "不思議なだがし屋『ぜに天堂』！そこに売っているだがしはね、食べると願いがかなうんだけど、使い方をまちがえると大変なことになっちゃうんだ…！ハラハラする不思議なまほうの世界へ、ぼくといっしょに行こう！✨" 
+  },
+  { 
+    title: "エルマーのぼうけん", 
+    author: "ルース・スタイルス・ガネット", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🐉", 
+    desc: "どうぶつ島にとらわれた「りゅうの子」をたすけるため、エルマーがちえと小さな道具（輪ゴムや歯ブラシ！）だけでもうじゅうたちと戦うんだ！ハラハラする大ぼうけんに、きみもいっしょに出発しよう！🧭" 
+  },
+  { 
+    title: "ハリー・ポッターと賢者の石", 
+    author: "J.K.ローリング", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "⚡", 
+    desc: "自分がまほう使いだと知ったハリーが、まほう学校に入学！空飛ぶほうきでの試合や、おそろしいやみのまほう使いとのドキドキの対決が待っているよ！本を開いたときから、まほうの世界にひきこまれちゃう！🔮" 
+  },
+  { 
+    title: "ルドルフとイッパイアッテナ", 
+    author: "斉藤洋", 
+    category: "animal", 
+    categoryName: "どうぶつ・いきもの", 
+    coverChar: "🐈", 
+    desc: "迷子になって東京へやってきちゃった黒ねこのルドルフ。そこで出会ったのは、人間からたくさんの名前でよばれる大ボスねこ「イッパイアッテナ」！のらねこたちの友情とちえのぼうけんに、胸がジーンとあつくなるよ！🐾" 
+  },
+  { 
+    title: "都会のトム＆ソーヤ1", 
+    author: "はやみねかおる", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🏙️", 
+    desc: "ふつうだけどサバイバルの達人の内人と、大金持ちの天才・そうや。正反対の二人が、街全体をぶたいにしたすごいゲームにチャレンジするんだ！ワクワクするなぞ解きとスリリングなぼうけんがたっぷりつまったちょう人気ミステリー！🕵️‍♂️" 
+  },
+  { 
+    title: "ざんねんないきもの事典", 
+    author: "今泉忠明", 
+    category: "animal", 
+    categoryName: "どうぶつ・いきもの", 
+    coverChar: "🐨", 
+    desc: "「コアラはユーカリのどくで一日中ねている」「ゴリラはちえがありすぎて熱を出す」など、どうぶつたちの愛らしくて「ざんねん」なヒミツがいっぱい！くすっと笑えて科学がもっと好きになるちょう人気ベストセラー！🍀" 
+  },
+  { 
+    title: "大ピンチずかん", 
+    author: "鈴木のりたけ", 
+    category: "other", 
+    categoryName: "その他", 
+    coverChar: "🚨", 
+    desc: "「牛乳がこぼれた」「テープのはしっこがきえた」など、日常のさまざまな『大ピンチ』をユーモアたっぷりにおもしろおかしく大しょうかい！読むと大ピンチも笑いとワクワクに変えてのりこえられる気がしてくるよ！😄" 
+  },
+  { 
+    title: "マジック・ツリーハウス1 恐竜の谷の大冒険", 
+    author: "メアリー・ポープ・オズボーン", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🦖", 
+    desc: "森で見つけた不思議なツリーハウス。本を開いて「行ってみたい」とつぶやくと、なんと本の中のきょうりゅうの世界へタイムスリップ！ティラノサウルスに追われるハラハラドキドキの時間旅行！🦕" 
+  },
+  { 
+    title: "パスワードは、ひ・み・つ", 
+    author: "松原秀行", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "💻", 
+    desc: "パソコン通信で集まった5人の小学生たんてい団が、インターネットにかくされた暗号のなぞにいどむ！次々と起こる不思議な事件を、頭脳とパソコンのちえで解決していく、ハラハラどきどきの本格たんていストーリー！🔍" 
+  },
+  { 
+    title: "らくだい魔女はプリンセス", 
+    author: "石崎洋司", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🧹", 
+    desc: "見習いまじょのフウカが、お城の地下室で不思議な絵を見つけるんだ。だけどフウカの失敗によって、絵の中からおそろしいやみの力がとき放たれてしまう！ハチャメチャなまほうとドキドキの大ぼうけん！✨" 
+  },
+  { 
+    title: "びりっかすの神さま", 
+    author: "岡田淳", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🏃", 
+    desc: "クラスのかけっこで、一番最後（びり）になった人にしか見えないフシギなおじさん「びりっかすの神さま」！クラスのみんながわざと「びり」になろうとする、優しくてフシギな友情物語！ほっこり感動するよ！🌟" 
+  },
+  { 
+    title: "窓ぎわのトットちゃん", 
+    author: "黒柳徹子", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🏫", 
+    desc: "電車の教室や、おいしいお弁当！ちょっぴり変わったユニークな学校「トモエ学園」に転校したトットちゃん。たくさんの友だちと、優しくあたたかい校長先生とのきせきのような毎日に心がぽかぽかあたたかくなるよ！🌸" 
+  },
+  { 
+    title: "海底二万マイル", 
+    author: "ジュール・ヴェルヌ", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🦑", 
+    desc: "大きなクジラを追っていた博士たちが、海の中でなぞの男「ネモ船長」とせんすいかんノーチラス号にそうぐう！おそろしい海の怪物や未知の海底いせきなど、ハラハラドキドキがぎっしり詰まったSF大ぼうけんファンタジー！🗺️" 
+  },
+  { 
+    title: "シートン動物記 オオカミ王ロボ", 
+    author: "アーネスト・T・シートン", 
+    category: "animal", 
+    categoryName: "どうぶつ・いきもの", 
+    coverChar: "🐺", 
+    desc: "どんなワナをも見破る、かしこくて気高いオオカミの王様ロボ。シートンとロボの息づまるちえ比べと、愛する仲間を助けるためにすべてを投げ出すロボの姿に、胸が熱くなりなみだが止まらなくなるかんどうの実話！😢" 
+  },
+  { 
+    title: "星の王子さま", 
+    author: "サンテグジュペリ", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "👑", 
+    desc: "さばくに不時着したパイロットの前に現れた、小さな星からやってきたきんぱつの王子さま。王子さまが話してくれたバラの花やキツネとの出会い。「大切なものは、目に見えないんだよ」というあたたかいおはなし。💫" 
+  },
+  { 
+    title: "科学漫画サバイバル 昆虫世界のサバイバル1", 
+    author: "洪在徹", 
+    category: "science", 
+    categoryName: "かがく・しゃかい", 
+    coverChar: "🐜", 
+    desc: "不思議な光線で、アリのサイズに縮んでしまったジオたち！いつもはちいさなこん虫たちが、命をおびやかす大きなかいじゅうになっておそいかかる！ちょうスリリングな科学サバイバルマンガ、ハラハラどきどきだよ！🔥" 
+  },
+  { 
+    title: "大泥棒ホッツェンプロッツ", 
+    author: "プロイスラー", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "☕", 
+    desc: "おばあさんの大切なコーヒー挽きをぬすんだ大どろぼうホッツェンプロッツ！カスペルたちをつかまえようとするカスペルとゼッペルだけど、逆につかまって悪いまほう使いに売られちゃう！？ハラハラ笑える愉快なぼうけん物語！🎒" 
+  },
+  { 
+    title: "怪盗クイーンはサーカスがお好き", 
+    author: "はやみねかおる", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🎩", 
+    desc: "だれにも正体がわからない、しんしゅつきぼつの怪盗クイーン！ねらった宝物は絶対に盗み出すはずが、なぞのサーカス団に先を越されてお宝を盗まれてしまう！？はなやかでおもしろい大バトルとワクワクのトリックミステリー！🃏" 
+  },
+  { 
+    title: "チョコレート工場の秘密", 
+    author: "ロアルド・ダール", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🍫", 
+    desc: "世界一有名でだれも入れなかった不思議なチョコレート工場。ある日、世界に5枚だけのゴールドチケットを当てた子どもたちが工場に招待される！部屋ごとに広がるおかしな光景と、ドキドキハラハラの不思議な見学ツアー！🍭" 
   }
-}
-
-// ----------------------------------------------------
+];/ ----------------------------------------------------
 // DATA BACKUP & RESTORE FUNCTIONS
 // ----------------------------------------------------
 
@@ -2132,9 +2361,10 @@ async function fetchGeminiRecommendations(booksList) {
 ${booksPromptStr}
 
 【プロンプト作成ルール】
-1. キャラクター「よんだーくん」の元気で温かい口調（ひらがな・カタカナ中心、漢字は最小限に。〜だよ！〜だね！）で書いてね！
-2. 単なるあらすじ説明はNG！「主人公が絶体絶命になっちゃうんだ！」「この謎の答えは本の中に…！」「キャラクターが超カッコいい！」といった物語の面白さのポイントに焦点を当ててください。
-3. 対象は「小学校中学年〜高学年」です。
+1. キャラクター「よんだーくん」の元気で温かい口調（ひらがな・カタカナ中心、〜だよ！〜だね！）で書いてね！
+2. 単なるあらすじ説明はNG！「主人公がピンチになっちゃうんだ！」「この謎の答えは本の中に…！」「キャラクターが超カッコいい！」といった物語の面白さのポイントに焦点を当ててください。
+3. ひらがなとカタカナをベースに、必ず【小学校で習う簡単な漢字】（例：本、犬、猫、大、小、日、月、友だちなど）のみを使用し、中学生以上で習う難しい漢字（例：「推薦」「評論」「分析」「宿命」「魅力」「絶体絶命」などの難しい字）は絶対に使用せず、すべてひらがなまたはカタカナで書いてください。
+4. 対象は「小学校中学年〜高学年」です。
 
 【出力フォーマット】
 必ず以下のJSON配列のみを出力し、余計な説明やMarkdown記法（\`\`\`jsonなど）は一切含めないでください。
