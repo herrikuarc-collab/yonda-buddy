@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Yonda-Buddy (ヨンダーバディ) - Core Application Logic
  * Implements LocalStorage state, Barcode Scanning (html5-qrcode), 
  * openBD API / Google Books API, Gemini API, Mascot Dressing, 
@@ -20,119 +20,116 @@ let state = {
 // Mascot Accessories Database (Expanded to 28 parts in Head, Eyes, Clothes, Hand, and Room categories)
 const SHOP_ITEMS = [
   // HEAD ACCESSORIES (hat slot)
-  { id: "hat", name: "まほうのぼうし", emoji: "🎩", price: 10, type: "head" },
-  { id: "crown", name: "きらきら王かん", emoji: "👑", price: 30, type: "head" },
-  { id: "apple", name: "りんごのぼうし", emoji: "🍎", price: 12, type: "head" },
-  { id: "cat_ears", name: "ねこみみ", emoji: "🐱", price: 20, type: "head" },
-  { id: "pirate_hat", name: "かいぞくのぼうし", emoji: "🏴‍☠️", price: 18, type: "head" },
-  { id: "chef_hat", name: "コックさんのぼうし", emoji: "👨‍🍳", price: 15, type: "head" },
-  { id: "straw_hat", name: "むぎわらぼうし", emoji: "👒", price: 8, type: "head" },
-  { id: "ninja_band", name: "にんじゃのハチマキ", emoji: "🥷", price: 25, type: "head" },
+  { id: "hat", name: "鬲疲ｳ輔・縺ｼ縺・＠", emoji: "自", price: 10, type: "head" },
+  { id: "crown", name: "縺阪ｉ縺阪ｉ邇九°繧・, emoji: "荘", price: 30, type: "head" },
+  { id: "apple", name: "繧翫ｓ縺斐・縺ｼ縺・＠", emoji: "克", price: 12, type: "head" },
+  { id: "cat_ears", name: "縺ｭ縺薙∩縺ｿ", emoji: "棲", price: 20, type: "head" },
+  { id: "pirate_hat", name: "縺九＞縺槭￥縺ｮ縺ｼ縺・＠", emoji: "抄窶坂丐・・, price: 18, type: "head" },
+  { id: "chef_hat", name: "繧ｳ繝・け縺輔ｓ縺ｮ縺ｼ縺・＠", emoji: "捉窶昨沚ｳ", price: 15, type: "head" },
+  { id: "straw_hat", name: "繧縺弱ｏ繧峨⊂縺・＠", emoji: "葬", price: 8, type: "head" },
+  { id: "ninja_band", name: "縺ｫ繧薙§繧・・繝上メ繝槭く", emoji: "･ｷ", price: 25, type: "head" },
   
   // FACE ACCESSORIES (eyes slot)
-  { id: "glasses", name: "サングラス", emoji: "🕶️", price: 15, type: "eyes" },
-  { id: "pink_glasses", name: "まるメガネ", emoji: "👓", price: 10, type: "eyes" },
-  { id: "stars_eyes", name: "お星さまの目", emoji: "🤩", price: 22, type: "eyes" },
-  { id: "monocle", name: "かたむきめがね", emoji: "🧐", price: 18, type: "eyes" },
+  { id: "glasses", name: "繧ｵ繝ｳ繧ｰ繝ｩ繧ｹ", emoji: "文・・, price: 15, type: "eyes" },
+  { id: "pink_glasses", name: "縺ｾ繧九ａ縺後・", emoji: "蒼", price: 10, type: "eyes" },
+  { id: "stars_eyes", name: "縺頑弌縺輔∪縺ｮ逶ｮ", emoji: "､ｩ", price: 22, type: "eyes" },
+  { id: "monocle", name: "縺九◆繧縺阪ａ縺後・", emoji: "ｧ・, price: 18, type: "eyes" },
   
   // BODY ACCESSORIES (clothes slot)
-  { id: "ribbon", name: "かわいいリボン", emoji: "🎀", price: 8, type: "clothes" },
-  { id: "cape", name: "まほうのマント", emoji: "🧥", price: 20, type: "clothes" },
-  { id: "tie", name: "赤いネクタイ", emoji: "👔", price: 12, type: "clothes" },
-  { id: "scarf", name: "もこもこマフラー", emoji: "🧣", price: 14, type: "clothes" },
-  { id: "armor", name: "ゆうしゃのよろい", emoji: "🛡️", price: 35, type: "clothes" },
+  { id: "ribbon", name: "縺九ｏ縺・＞繝ｪ繝懊Φ", emoji: "死", price: 8, type: "clothes" },
+  { id: "cape", name: "鬲疲ｳ輔・繝槭Φ繝・, emoji: "ｧ･", price: 20, type: "clothes" },
+  { id: "tie", name: "襍､縺・ロ繧ｯ繧ｿ繧､", emoji: "藻", price: 12, type: "clothes" },
+  { id: "scarf", name: "繧ゅ％繧ゅ％繝槭ヵ繝ｩ繝ｼ", emoji: "ｧ｣", price: 14, type: "clothes" },
+  { id: "armor", name: "蜍・・・繧医ｍ縺・, emoji: "孱・・, price: 35, type: "clothes" },
   
   // HAND ACCESSORIES (hand slot)
-  { id: "wand", name: "まほうのつえ", emoji: "🪄", price: 15, type: "hand" },
-  { id: "sword", name: "おもちゃのけん", emoji: "⚔️", price: 22, type: "hand" },
-  { id: "book_hold", name: "ちいさな本", emoji: "📘", price: 10, type: "hand" },
-  { id: "lantern", name: "ピカピカランタン", emoji: "🏮", price: 18, type: "hand" },
-  { id: "balloon", name: "赤いふうせん", emoji: "🎈", price: 8, type: "hand" },
+  { id: "wand", name: "鬲疲ｳ輔・縺､縺・, emoji: "ｪ・, price: 15, type: "hand" },
+  { id: "sword", name: "縺翫ｂ縺｡繧・・縺代ｓ", emoji: "笞費ｸ・, price: 22, type: "hand" },
+  { id: "book_hold", name: "縺｡縺・＆縺ｪ譛ｬ", emoji: "祷", price: 10, type: "hand" },
+  { id: "lantern", name: "繝斐き繝斐き繝ｩ繝ｳ繧ｿ繝ｳ", emoji: "尚", price: 18, type: "hand" },
+  { id: "balloon", name: "襍､縺・・縺・○繧・, emoji: "肢", price: 8, type: "hand" },
   
   // ROOM ACCESSORIES (room slot)
-  { id: "room_forest", name: "しんりんのおへや", emoji: "🌲", price: 15, type: "room" },
-  { id: "room_space", name: "うちゅうのおへや", emoji: "🌌", price: 25, type: "room" },
-  { id: "room_castle", name: "おしろのおへや", emoji: "🏰", price: 35, type: "room" },
-  { id: "room_sea", name: "うみのなかのおへや", emoji: "🌊", price: 20, type: "room" },
-  { id: "room_sweet", name: "おかしのおへや", emoji: "🍪", price: 25, type: "room" },
-  { id: "room_camp", name: "キャンプのおへや", emoji: "⛺", price: 18, type: "room" },
-  { id: "room_sakura", name: "さくらのおへや", emoji: "🌸", price: 22, type: "room" }
+  { id: "room_forest", name: "譽ｮ譫励・縺企Κ螻・, emoji: "鹸", price: 15, type: "room" },
+  { id: "room_space", name: "螳・ｮ吶・縺企Κ螻・, emoji: "血", price: 25, type: "room" },
+  { id: "room_castle", name: "縺雁沁縺ｮ縺企Κ螻・, emoji: "床", price: 35, type: "room" },
+  { id: "room_sea", name: "豬ｷ縺ｮ縺ｪ縺九・縺企Κ螻・, emoji: "穴", price: 20, type: "room" },
+  { id: "room_sweet", name: "縺翫°縺励・縺企Κ螻・, emoji: "根", price: 25, type: "room" },
+  { id: "room_camp", name: "繧ｭ繝｣繝ｳ繝励・縺企Κ螻・, emoji: "笵ｺ", price: 18, type: "room" },
+  { id: "room_sakura", name: "縺輔￥繧峨・縺企Κ螻・, emoji: "減", price: 22, type: "room" }
 ];
-
 // Badge Database (Expanded to 27 achievements covering reading metrics, text reviews, streaks, shop accessories, level milestones, wishlist interactions)
 const BADGES = [
   // 1. Reading Volumes Milestones
-  { id: "first_step", name: "はじめての１歩", emoji: "🌟", desc: "はじめて本を登録した！" },
-  { id: "reader_pro", name: "どくしょ名人", emoji: "📚", desc: "本を5さつ登録した！" },
-  { id: "reading_king", name: "読書王", emoji: "👑", desc: "本を10さつ登録した！" },
-  { id: "reading_god", name: "どくしょの神さま", emoji: "🧙‍♂️", desc: "本をなんと25さつ登録した！" },
+  { id: "first_step", name: "縺ｯ縺倥ａ縺ｦ縺ｮ荳豁ｩ", emoji: "験", desc: "縺ｯ縺倥ａ縺ｦ譛ｬ繧堤匳骭ｲ縺励◆繧茨ｼ・ },
+  { id: "reader_pro", name: "繧医∩縺阪ｊ蜷堺ｺｺ", emoji: "当", desc: "譛ｬ繧・縺輔▽逋ｻ骭ｲ縺励◆繧茨ｼ・ },
+  { id: "reading_king", name: "隱ｭ譖ｸ縺翫≧縺輔∪", emoji: "荘", desc: "譛ｬ繧・0縺輔▽逋ｻ骭ｲ縺励◆繧茨ｼ・ },
+  { id: "reading_god", name: "繧医∩縺阪ｊ縺ｮ逾槭＆縺ｾ", emoji: "笨ｨ", desc: "譛ｬ繧・5縺輔▽逋ｻ骭ｲ縺励◆繧茨ｼ・ },
   
   // 2. Writing Review Milestones
-  { id: "writer", name: "作家デビュー", emoji: "✍️", desc: "はじめてかんそうをかいた！" },
-  { id: "critic", name: "大ひょうろん家", emoji: "🖋️", desc: "かんそうを5回書いた！" },
-  { id: "novelist", name: "しょうせつ家", emoji: "📖", desc: "かんそうを10回書いた！" },
+  { id: "writer", name: "縺九ｓ縺昴≧螳ｶ繝・ン繝･繝ｼ", emoji: "笨搾ｸ・, desc: "縺ｯ縺倥ａ縺ｦ諢滓Φ繧偵°縺・◆繧茨ｼ・ },
+  { id: "critic", name: "縺ｲ繧・≧縺句錐莠ｺ", emoji: "統", desc: "諢滓Φ繧・蝗槭°縺・◆繧茨ｼ・ },
+  { id: "novelist", name: "縺翫・縺ｪ縺嶺ｽ懷ｮｶ", emoji: "幕・・, desc: "諢滓Φ繧・0蝗槭°縺・◆繧茨ｼ・ },
   
   // 3. Category/Genre Mastery
-  { id: "picture_book", name: "絵本マスター", emoji: "🎨", desc: "えほん・ずかんジャンルを登録した！" },
-  { id: "adventure", name: "ぼうけん家", emoji: "🧭", desc: "おはなし・ぼうけんジャンルを登録した！" },
-  { id: "animal", name: "動物ドクター", emoji: "🦁", desc: "どうぶつジャンルを登録した！" },
-  { id: "science_fan", name: "かがくはかせ", emoji: "🧪", desc: "科学ジャンルを登録した！" },
-  { id: "other_fan", name: "ものしりはかせ", emoji: "💡", desc: "その他ジャンルの本を登録した！" },
-  { id: "all_genres", name: "全ジャンルよんだ！", emoji: "🎖️", desc: "4つ以上のちがうジャンルの本を読んだ！" },
+  { id: "picture_book", name: "縺医⊇繧薙・繧ｹ繧ｿ繝ｼ", emoji: "耳", desc: "縺医⊇繧薙・縺壹°繧薙ｒ隱ｭ繧薙□繧茨ｼ・ },
+  { id: "adventure", name: "縺ｼ縺・￠繧鍋視", emoji: "ｧｭ", desc: "縺翫・縺ｪ縺励・縺ｼ縺・￠繧薙ｒ隱ｭ繧薙□繧茨ｼ・ },
+  { id: "animal", name: "縺・″繧ゅ・繝峨け繧ｿ繝ｼ", emoji: "ｦ・, desc: "縺ｩ縺・・縺､繝ｻ縺・″繧ゅ・繧定ｪｭ繧薙□繧茨ｼ・ },
+  { id: "science_fan", name: "縺九′縺上・縺九○", emoji: "溌", desc: "縺九′縺上・縺励ｃ縺九＞繧定ｪｭ繧薙□繧茨ｼ・ },
+  { id: "other_fan", name: "繧ゅ・縺励ｊ縺ｯ縺九○", emoji: "庁", desc: "縺昴・莉悶ず繝｣繝ｳ繝ｫ縺ｮ譛ｬ繧定ｪｭ繧薙□繧茨ｼ・ },
+  { id: "all_genres", name: "蜈ｨ繧ｸ繝｣繝ｳ繝ｫ繧医ｓ縺・・, emoji: "遵", desc: "4縺､莉･荳翫・繧ｸ繝｣繝ｳ繝ｫ繧定ｪｭ繧薙□繧茨ｼ・ },
   
   // 4. Reading Streak Habits
-  { id: "streak_3", name: "3日連続よんだ！", emoji: "🔥", desc: "3日連続で読書を記録した！" },
-  { id: "streak_5", name: "5日連続よんだ！", emoji: "⚡", desc: "5日連続で読書を記録した！やるね！" },
-  { id: "streak_7", name: "1週間よみきった！", emoji: "🌈", desc: "7日連続で読書を記録した！神レベル！" },
+  { id: "streak_3", name: "3譌･騾｣邯壹ｈ繧薙□・・, emoji: "櫨", desc: "3譌･騾｣邯壹〒隱ｭ譖ｸ繧定ｨ倬鹸縺励◆繧茨ｼ・ },
+  { id: "streak_5", name: "5譌･騾｣邯壹ｈ繧薙□・・, emoji: "笞｡", desc: "5譌･騾｣邯壹〒隱ｭ譖ｸ繧定ｨ倬鹸縺励◆繧茨ｼ・ },
+  { id: "streak_7", name: "1騾ｱ髢薙ｈ縺ｿ縺阪▲縺滂ｼ・, emoji: "決", desc: "7譌･騾｣邯壹〒隱ｭ譖ｸ繧定ｨ倬鹸縺励◆繧茨ｼ・ },
   
   // 5. Coin Rewards
-  { id: "coin_rich", name: "コイン持ち", emoji: "💰", desc: "コインを50枚ためた！" },
-  { id: "coin_millionaire", name: "コイン大金持ち", emoji: "💎", desc: "コインを100枚ためた！" },
+  { id: "coin_rich", name: "繧ｳ繧､繝ｳ謖√■", emoji: "腸", desc: "繧ｳ繧､繝ｳ繧・0譫壹◆繧√◆繧茨ｼ・ },
+  { id: "coin_millionaire", name: "螟ｧ縺九・謖√■", emoji: "虫", desc: "繧ｳ繧､繝ｳ繧・00譫壹◆繧√◆繧茨ｼ・ },
   
   // 6. Mascot Customization & Room Makeovers
-  { id: "fashion_beginner", name: "オシャレ入門", emoji: "🎩", desc: "ショップでアイテムを1つ手に入れた！" },
-  { id: "fashion_model", name: "オシャレの達人", emoji: "🧥", desc: "ショップでアイテムを5つ手に入れた！" },
-  { id: "fashion_king", name: "きせかえ大王", emoji: "👑", desc: "ショップでアイテムを10つ手に入れた！" },
-  { id: "room_decorator", name: "お部屋デザイナー", emoji: "⛺", desc: "お部屋（背景）をはじめてもようがえした！" },
+  { id: "fashion_beginner", name: "繧ｪ繧ｷ繝｣繝ｬ蜈･髢", emoji: "自", desc: "繧ｷ繝ｧ繝・・縺ｧ繧｢繧､繝・Β繧・縺､謇九↓蜈･繧後◆繧茨ｼ・ },
+  { id: "fashion_model", name: "繧ｪ繧ｷ繝｣繝ｬ縺ｮ驕比ｺｺ", emoji: "ｧ･", desc: "繧ｷ繝ｧ繝・・縺ｧ繧｢繧､繝・Β繧・縺､謇九↓蜈･繧後◆繧茨ｼ・ },
+  { id: "fashion_king", name: "縺阪○縺九∴螟ｧ縺翫≧", emoji: "荘", desc: "繧ｷ繝ｧ繝・・縺ｧ繧｢繧､繝・Β繧・0縺､謇九↓蜈･繧後◆繧茨ｼ・ },
+  { id: "room_decorator", name: "縺企Κ螻九ョ繧ｶ繧､繝翫・", emoji: "笵ｺ", desc: "縺企Κ螻九・縺阪○縺九∴繧偵・縺倥ａ縺ｦ縺翫％縺ｪ縺｣縺溘ｈ・・ },
   
   // 7. Reading Level Milestones
-  { id: "level_5", name: "レベル5になったよ！", emoji: "🏆", desc: "よんどくレベルが5になった！" },
-  { id: "level_10", name: "レベル10大まほう使い", emoji: "🧙", desc: "よんどくレベルが10になった！すごすぎる！" },
+  { id: "level_5", name: "繝ｬ繝吶Ν5縺ｫ縺ｪ縺｣縺溘ｈ", emoji: "醇", desc: "繧医ｓ縺ｩ縺上Ξ繝吶Ν縺・縺ｫ縺ｪ縺｣縺滂ｼ・ },
+  { id: "level_10", name: "繝ｬ繝吶Ν10螟ｧ縺ｾ縺ｻ縺・▽縺九＞", emoji: "ｧ・, desc: "繧医ｓ縺ｩ縺上Ξ繝吶Ν縺・0縺ｫ縺ｪ縺｣縺滂ｼ√☆縺斐☆縺弱ｋ・・ },
   
   // 8. Wishlist Discoveries
-  { id: "wishlist_fan", name: "よみたい探求者", emoji: "🔍", desc: "おすすめ本を5さつよみたいリストに入れた！" },
-  { id: "wishlist_fulfilled", name: "夢がかなった！", emoji: "🎁", desc: "親に買ってもらった本リストから2さつ消去された！" }
+  { id: "wishlist_fan", name: "繧医∩縺溘＞謗｢豎り・, emoji: "剥", desc: "縺翫☆縺吶ａ譛ｬ繧・縺輔▽繧医∩縺溘＞繝ｪ繧ｹ繝医↓蜈･繧後◆繧茨ｼ・ },
+  { id: "wishlist_fulfilled", name: "螟｢縺後°縺ｪ縺｣縺滂ｼ・, emoji: "氏", desc: "隕ｪ縺ｫ雋ｷ縺｣縺ｦ繧ゅｉ縺｣縺滓悽繝ｪ繧ｹ繝医°繧・縺輔▽豸亥悉縺輔ｌ縺滂ｼ・ }
 ];
-
 // Cute Encouraging Speeches for "よんだーくん" Default Mode
 const LOCAL_AI_TEMPLATES = {
   happy: [
-    "わあ！『{title}』をよんでワクワクしたんだね！「{snippet}」ってかいてくれたところ、よんだーくんも大すきだよ！この本をよんで、とってもハッピーなきもちになれたの、ほんとうにすてきなことだね！🌟",
-    "すてきなかんそうありがとう！『{title}』はすっごくおもしろい本だよね！「{snippet}」っていうところ、よんだーくんも読みたくなっちゃった！きみのキラキラした目が目に浮かぶよ！👀✨",
-    "おもしろい本に出会えてよかったね！『{title}』をよんで、「{snippet}」ってきづけるなんて、きみはもうりっぱな読書のプロだよ！つぎの本もわくわくしちゃうね！🎈"
+    "繧上≠・√施title}縲上ｒ繧医ｓ縺ｧ繝ｯ繧ｯ繝ｯ繧ｯ縺励◆繧薙□縺ｭ・√鶏snippet}縲阪▲縺ｦ縺九＞縺ｦ縺上ｌ縺溘→縺薙ｍ縲√ｈ繧薙□繝ｼ縺上ｓ繧ょ､ｧ縺吶″縺繧茨ｼ√％縺ｮ譛ｬ繧偵ｈ繧薙〒縲√→縺｣縺ｦ繧ゅワ繝・ヴ繝ｼ縺ｪ縺阪ｂ縺｡縺ｫ縺ｪ繧後◆縺ｮ縲√⊇繧薙→縺・↓縺吶※縺阪↑縺薙→縺縺ｭ・Å沍ｸ",
+    "縺吶※縺阪↑縺九ｓ縺昴≧縺ゅｊ縺後→・√施title}縲上・縺吶▲縺斐￥縺翫ｂ縺励ｍ縺・悽縺繧医・・√鶏snippet}縲阪▲縺ｦ縺ゅｋ縺ｨ縺薙ｍ縲√ｈ繧薙□繝ｼ縺上ｓ繧りｪｭ縺ｿ縺溘￥縺ｪ縺｣縺｡繧・▲縺滂ｼ√″縺ｿ縺ｮ繧ｭ繝ｩ繧ｭ繝ｩ縺励◆逶ｮ縺檎岼縺ｫ豬ｮ縺九・繧茨ｼÅ汨笨ｨ",
+    "縺翫ｂ縺励ｍ縺・悽縺ｫ蜃ｺ莨壹∴縺ｦ繧医°縺｣縺溘・・√施title}縲上ｒ繧医ｓ縺ｧ縲√鶏snippet}縲阪▲縺ｦ縺阪▼縺代ｋ縺ｪ繧薙※縲√″縺ｿ縺ｯ繧ゅ≧繧翫▲縺ｱ縺ｪ隱ｭ譖ｸ縺ｮ繝励Ο縺繧茨ｼ√▽縺弱・譛ｬ繧ゅｏ縺上ｏ縺上＠縺｡繧・≧縺ｭ・Å沁・
   ],
   sad: [
-    "『{title}』をよんで、すこしせつないきもちになったんだね。本のなかのことばやできごとに、しっかりきもちをよりそわせることができたの、とってもやさしい心のしょう拠だよ！やさしいきみになれて素晴らしい！🌈",
-    "かなしいおはなしだったんだね。でも、そのかなしさを「{snippet}」って自分のことばで書けるなんて、ほんとうにすごい表現力だよ！本は、いろんなきもちを教えてくれるね。よんだーくんがギュッとしてあげる！🤗"
+    "縲施title}縲上ｒ繧医ｓ縺ｧ縲√☆縺薙＠縺帙▽縺ｪ縺・″繧ゅ■縺ｫ縺ｪ縺｣縺溘ｓ縺縺ｭ縲よ悽縺ｮ縺ｪ縺九・縺薙→縺ｰ繧・〒縺阪＃縺ｨ縺ｫ縲√＠縺｣縺九ｊ縺阪ｂ縺｡繧偵ｈ繧翫◎繧上○繧九％縺ｨ縺後〒縺阪◆縺ｮ縲√→縺｣縺ｦ繧ゅｄ縺輔＠縺・ｪｭ譖ｸ螳ｶ縺輔ｓ縺繧茨ｼ√ｄ縺輔＠縺・″縺ｿ縺ｫ縺ｪ繧後※邏譎ｴ繧峨＠縺・ｼÅ沍ｸ",
+    "縺九↑縺励＞縺翫・縺ｪ縺励□縺｣縺溘ｓ縺縺ｭ縲ゅ〒繧ゅ√◎縺ｮ縺九↑縺励＆繧偵鶏snippet}縲阪▲縺ｦ縺阪∩縺ｮ縺薙→縺ｰ縺ｧ譖ｸ縺代ｋ縺ｪ繧薙※縲√⊇繧薙→縺・↓縺吶＃縺・｡ｨ迴ｾ蜉帙□繧茨ｼ∵悽縺ｯ縲√＞繧阪ｓ縺ｪ縺阪ｂ縺｡繧呈蕗縺医※縺上ｌ繧九ゅｈ繧薙□繝ｼ縺上ｓ縺後ぐ繝･繝・→縺励※縺ゅ￡繧具ｼÅ汾ｾ"
   ],
   thrill: [
-    "うわあ！『{title}』はすっごくどきどきするおはなしだったんだね！「{snippet}」のところが、ハラハラして目がはなせなかったのかな？大ぼうけんをしたみたいでカッコいいぞ！🧭",
-    "どきどき大こうふん！『{title}』をよんで、「{snippet}」って感じたんだね！きみも主人公といっしょに、ハラハラをのりこえたんだ！すっごくつよいパワーを感じるよ！⚡️"
+    "繧上≠・√施title}縲上・縺吶▲縺斐￥縺ｩ縺阪←縺阪☆繧九♀縺ｯ縺ｪ縺励□縺｣縺溘ｓ縺縺ｭ・√鶏snippet}縲阪・縺ｨ縺薙ｍ縺後√ワ繝ｩ繝上Λ縺励※逶ｮ縺後・縺ｪ縺帙↑縺九▲縺溘・縺九↑・溷､ｧ縺ｼ縺・￠繧薙ｒ縺励◆縺ｿ縺溘＞縺ｧ繧ｫ繝・さ縺・＞縺橸ｼÅ洫ｭ",
+    "縺ｩ縺阪←縺榊､ｧ縺薙≧縺ｵ繧難ｼ√施title}縲上ｒ繧医ｓ縺ｧ縲√鶏snippet}縲阪▲縺ｦ諢溘§縺溘ｓ縺縺ｭ・√″縺ｿ繧ゆｸｻ莠ｺ蜈ｬ縺ｨ荳邱偵↓縲√ワ繝ｩ繝上Λ繧偵・繧翫％縺医◆繧薙□・√☆縺｣縺斐￥縺､繧医＞繝代Ρ繝ｼ繧呈─縺倥ｋ繧茨ｼ≫圍"
   ],
   hard: [
-    "すこしむずかしい本にチャレンジしたんだね！えらいなあ！むずかしいことばや、ながいおはなしをさいごまでよんだだけで、よんどくパワーが100倍アップだよ！つぎはもっとかんたんに読めるようになるよ！💪",
-    "よくさいごまでがんばってよんだね！えらい！『{title}』で「{snippet}」って感じたのは、きみがたくさん頭をつかって考えたからだよ！よんだーくんはきみのことが大すきだし、大そんけいしちゃう！🌟"
+    "縺吶％縺励・縺壹°縺励＞譛ｬ縺ｫ繝√Ε繝ｬ繝ｳ繧ｸ縺励◆繧薙□縺ｭ・√∴繧峨＞縺ｪ縺ゑｼ√・縺壹°縺励＞縺薙→縺ｰ繧・↑縺後＞縺翫・縺ｪ縺励ｒ縺輔＞縺斐∪縺ｧ繧医ｓ縺縺縺代〒縲√ｈ繧薙←縺上ヱ繝ｯ繝ｼ縺・00蛟阪い繝・・縺繧茨ｼ√▽縺弱・繧ゅ▲縺ｨ縺九ｓ縺溘ｓ縺ｫ隱ｭ繧√ｋ繧医≧縺ｫ縺ｪ繧九ｈ・Å汳ｪ",
+    "繧医￥縺輔＞縺斐∪縺ｧ縺後ｓ縺ｰ縺｣縺ｦ繧医ｓ縺縺ｭ・√∴繧峨＞・√施title}縲上〒縲鶏snippet}縲阪▲縺ｦ諢溘§縺溘・縺ｯ縲√″縺ｿ縺後◆縺上＆繧馴ｭ繧偵▽縺九▲縺ｦ閠・∴縺溘°繧峨□繧茨ｼ√ｈ繧薙□繝ｼ縺上ｓ縺ｯ縺阪∩縺ｮ縺薙→縺悟､ｧ縺吶″縺縺励∝､ｧ縺昴ｓ縺代＞縺励■繧・≧繧茨ｼÅ沍・
   ],
   surprise: [
-    "へええ！『{title}』をよんでびっくりしたんだね！どんな大はっけんがあったのかな？「{snippet}」のところ、よんだーくんもびっくりしちゃった！あたらしいことを知るって、わくわくするね！🎓",
-    "びっくりぎょうてん！『{title}』で「{snippet}」ってところ、びっくりしちゃうよね！本をよむと、いろんな「へえ〜！」に出会えるね。きみのあたまのなかに、新しい引き出しが増えたよ！🗝️"
+    "縺ｸ縺医∴・√施title}縲上ｒ繧医ｓ縺ｧ縺ｳ縺｣縺上ｊ縺励◆繧薙□縺ｭ・√←繧薙↑螟ｧ縺ｯ縺｣縺代ｓ縺後≠縺｣縺溘・縺九↑・溘鶏snippet}縲阪・縺ｨ縺薙ｍ縲√ｈ繧薙□繝ｼ縺上ｓ繧ゅ・縺｣縺上ｊ縺励■繧・▲縺滂ｼ√≠縺溘ｉ縺励＞縺薙→繧堤衍繧九▲縺ｦ縲√ｏ縺上ｏ縺上☆繧九・・Å沁・,
+    "縺ｳ縺｣縺上ｊ縺弱ｇ縺・※繧難ｼ√施title}縲上〒縲鶏snippet}縲阪▲縺ｦ縺ｨ縺薙ｍ縲√・縺｣縺上ｊ縺励■繧・≧繧医・・∵悽繧偵ｈ繧縺ｨ縲√＞繧阪ｓ縺ｪ縲後∈縺医懶ｼ√阪↓蜃ｺ莨壹∴繧九ゅ″縺ｿ縺ｮ縺ゅ◆縺ｾ縺ｮ縺ｪ縺九↓縲∵眠縺励＞蠑輔″蜃ｺ縺励′蠅励∴縺溘ｈ・Å沐・
   ],
   default: [
-    "『{title}』をよんでくれてありがとう！いっしょうけんめい感想をかいてくれたの、よんだーくんはとってもうれしいよ！きみの読書はいつでも大せいこう！つぎもいっしょによもうね！📖",
-    "わあ、読んだんだね！『{title}』はとってもすてきな本だよ。きみが「{snippet}」って書いてくれたから、よんだーくんもその本が大好きになっちゃった！またおはなししようね！🌸"
+    "縲施title}縲上ｒ繧医ｓ縺ｧ縺上ｌ縺ｦ縺ゅｊ縺後→縺・ｼ√＞縺｣縺励ｇ縺・￠繧薙ａ縺・─諠ｳ繧偵°縺・※縺上ｌ縺溘・縲√ｈ繧薙□繝ｼ縺上ｓ縺ｯ縺ｨ縺｣縺ｦ繧ゅ≧繧後＠縺・ｈ・√″縺ｿ縺ｮ隱ｭ譖ｸ縺ｯ縺・▽縺ｧ繧ょ､ｧ縺帙＞縺薙≧・√▽縺弱ｂ荳邱偵↓隱ｭ繧阪≧縺ｭ・Å沒・,
+    "繧上≠縲∬ｪｭ繧薙□繧薙□縺ｭ・√施title}縲上・縺ｨ縺｣縺ｦ繧ゅ☆縺ｦ縺阪↑譛ｬ縺繧医ゅ″縺ｿ縺後鶏snippet}縲阪▲縺ｦ譖ｸ縺・※縺上ｌ縺溘°繧峨√ｈ繧薙□繝ｼ縺上ｓ繧ゅ◎縺ｮ譛ｬ縺悟､ｧ螂ｽ縺阪↓縺ｪ縺｣縺｡繧・▲縺滂ｼ√∪縺溘♀縺ｯ縺ｪ縺励＠繧医≧縺ｭ・Å沍ｸ"
   ]
 };
-
 // Active Scanner Instance
 let html5QrcodeScanner = null;
 let scannedIsbnTemp = null;
@@ -1531,7 +1528,7 @@ function showAISpeechModal(book, xpReward, coinReward, isLevelUp, newLevel, unlo
   const modal = document.getElementById("info-modal");
   if (!modal) return;
   
-  document.getElementById("info-modal-title").textContent = "よんだーくんからのこえかけ";
+  document.getElementById("info-modal-title").textContent = "繧医ｓ縺繝ｼ縺上ｓ縺九ｉ縺ｮ縺薙∴";
   
   // Custom dialog HTML
   let badgeHtml = "";
@@ -1539,40 +1536,37 @@ function showAISpeechModal(book, xpReward, coinReward, isLevelUp, newLevel, unlo
     unlockedBadges.forEach(badgeId => {
       const b = BADGES.find(x => x.id === badgeId);
       if (b) {
-        badgeHtml += `
+        badgeHtml += 
           <div style="background-color: var(--color-secondary-light); border: 2px solid var(--color-secondary); border-radius: 12px; padding: 12px; margin-top: 12px; text-align: center; animation: float 3s ease-in-out infinite;">
-            <span style="font-size: 32px;">${b.emoji}</span>
-            <h4 style="color:var(--color-text-dark); font-weight:900; margin: 4px 0;">バッジ解放！「${b.name}」</h4>
-            <p style="font-size: 11px; color:var(--color-text-light);">${b.desc}</p>
+            <span style="font-size: 32px;">\</span>
+            <h4 style="color:var(--color-text-dark); font-weight:900; margin: 4px 0;">繝舌ャ繧ｸ縲圭縲・/h4>
+            <p style="font-size: 11px; color:var(--color-text-light);">\</p>
           </div>
-        `;
+        ;
       }
     });
   }
-
+  
   let levelUpHtml = "";
   if (isLevelUp) {
-    levelUpHtml = `
-      <div style="background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); border-radius: 12px; padding: 12px; margin-top: 12px; text-align: center; color: white; box-shadow: var(--shadow-md);">
-        <span style="font-size: 32px;">🆙</span>
-        <h4 style="font-weight:900; margin: 4px 0;">レベルアップ！</h4>
-        <p style="font-size: 12px;">読書レベルが <strong>レベル ${newLevel}</strong> になったよ！</p>
-        <span style="font-size: 11px; opacity:0.9;">ボーナスコイン ＋10🟡 をもらったよ！</span>
+    levelUpHtml = 
+      <div style="background-color: var(--color-success-light); border: 2px solid var(--color-success); border-radius: 12px; padding: 12px; margin-top: 12px; text-align: center;">
+        <span style="font-size: 32px;">脂</span>
+        <h4 style="color:var(--color-success); font-weight:900; margin: 4px 0;">繝ｬ繝吶Ν繧｢繝・・・・/h4>
+        <p style="font-size: 11px; color:var(--color-text-dark);">繝ｬ繝吶Ν \ 縺ｫ縺ｪ縺｣縺溘ｈ・√♀繧√〒縺ｨ縺・ｼÅ沍・/p>
       </div>
-    `;
-    // Level up reward coins!
-    state.coins += 10;
-    saveState();
-    updateUI();
+    ;
   }
-
-  const bodyHtml = `
-    <div style="display:flex; flex-direction:column; gap:16px;">
+  
+  const contentHtml = 
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      
+      <!-- Scanned Book Info -->
       <div style="display:flex; align-items:center; gap:12px; background-color: var(--color-primary-light); padding:10px; border-radius:12px; border:1.5px solid var(--color-border);">
-        <img src="${book.cover}" alt="cover" style="width: 48px; height: 68px; object-fit:cover; border-radius:6px; box-shadow:var(--shadow-sm); display: ${book.cover ? 'block' : 'none'};">
+        <img src="\" alt="cover" style="width: 48px; height: 68px; object-fit:cover; border-radius:6px; box-shadow:var(--shadow-sm); display: \;">
         <div>
-          <div style="font-weight:900; font-size:14px; color:var(--color-text-dark);">${shortenTitle(book.title, 24)}</div>
-          <span style="font-size:11px; color:var(--color-text-light);">${book.author}</span>
+          <div style="font-weight:900; font-size:14px; color:var(--color-text-dark);">\</div>
+          <span style="font-size:11px; color:var(--color-text-light);">\</span>
         </div>
       </div>
       
@@ -1582,364 +1576,117 @@ function showAISpeechModal(book, xpReward, coinReward, isLevelUp, newLevel, unlo
           <!-- Small dynamic mascot avatar -->
         </div>
         <div style="background-color: white; border: 2px solid var(--color-primary); border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.5; color: var(--color-text-dark); position: relative; flex:1; box-shadow: var(--shadow-sm);">
-          ${book.aiSpeech}
+          \
         </div>
       </div>
       
       <!-- Rewards box -->
       <div style="display:flex; justify-content:space-around; align-items:center; background-color:#fcfcfc; border:2px dashed var(--color-border); border-radius:12px; padding:12px; margin-top:8px;">
         <div style="text-align:center;">
-          <div style="font-size:20px; font-weight:900; color:var(--color-primary);">+${xpReward}</div>
-          <div style="font-size:10px; color:var(--color-text-light);">よんどくパワー(XP)</div>
+          <div style="font-size:20px; font-weight:900; color:var(--color-primary);">+\</div>
+          <div style="font-size:10px; color:var(--color-text-light);">繧医ｓ縺ｩ縺上ヱ繝ｯ繝ｼ(XP)</div>
         </div>
         <div style="width:2px; height:24px; background-color:var(--color-border);"></div>
         <div style="text-align:center;">
-          <div style="font-size:20px; font-weight:900; color:#ffaa00;">+${coinReward}🟡</div>
-          <div style="font-size:10px; color:var(--color-text-light);">よんだコイン</div>
+          <div style="font-size:20px; font-weight:900; color:#ffaa00;">+\泯</div>
+          <div style="font-size:10px; color:var(--color-text-light);">繧医ｓ縺繧ｳ繧､繝ｳ</div>
         </div>
       </div>
       
-      ${levelUpHtml}
-      ${badgeHtml}
+      \
+      \
+      
+      <button class="btn btn-primary" id="btn-modal-ok" style="margin-top:8px;">OK 噫</button>
     </div>
-  `;
+  ;
   
-  document.getElementById("info-modal-body").innerHTML = bodyHtml;
-  
-  // Render little avatar in popup
+  document.getElementById("info-modal-body").innerHTML = contentHtml;
   drawMascot("modal-speech-mascot-container");
   
-  modal.classList.add("active");
+  modal.style.display = "flex";
   
-  const closeBtn = modal.querySelector(".modal-close-btn");
-  const closeAction = () => {
-    modal.classList.remove("active");
-    closeBtn.removeEventListener("click", closeAction);
-    updateUI();
-  };
-  closeBtn.addEventListener("click", closeAction);
+  if (isLevelUp) {
+    triggerConfetti();
+  }
+  
+  const okBtn = document.getElementById("btn-modal-ok");
+  if (okBtn) {
+    okBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  }
 }
 
-// Show Book Details from Book Shelf
 function showBookDetailModal(book) {
   const modal = document.getElementById("info-modal");
   if (!modal) return;
   
-  document.getElementById("info-modal-title").textContent = "よんだきろく";
+  document.getElementById("info-modal-title").textContent = "譛ｬ譽壹・縺阪ｍ縺・;
   
-  // Custom cover or placeholder
-  let coverHtml = "";
-  if (book.cover) {
-    coverHtml = `<img class="modal-detail-cover" src="${book.cover}" alt="cover">`;
-  } else {
-    coverHtml = `
-      <div class="modal-detail-cover" style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); color: white; display: flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding: 20px;">
-        <span style="font-size:13px; opacity:0.8;">${book.categoryName}</span>
-        <h4 style="font-size:13px; font-weight:900; margin-top:8px;">${shortenTitle(book.title, 30)}</h4>
-        <span style="font-size:36px; margin-top:12px;">📖</span>
-      </div>
-    `;
-  }
+  const feelingEmojis = {
+    happy: "・ 縺翫ｂ縺励ｍ縺・,
+    thrill: "笞｡・・縺ｩ縺阪←縺・,
+    sad: "个 縺九↑縺励＞",
+    hard: "､・繧縺壹°縺励＞",
+    surprise: "亟 縺ｳ縺｣縺上ｊ"
+  };
   
-  const bodyHtml = `
-    <div style="display:flex; flex-direction:column; align-items:stretch;">
-      ${coverHtml}
-      <h3 class="modal-detail-title">${book.title}</h3>
-      <p class="modal-detail-author">${book.author}</p>
-      
-      <div style="display:flex; gap:8px; align-items:center; margin-bottom: 12px; justify-content:center;">
-        <span style="background-color: var(--color-primary-light); border:1.5px solid var(--color-primary); color:var(--color-primary); padding:2px 10px; border-radius:12px; font-size:11px; font-weight:900;">
-          ${book.feelingEmoji} ${book.feelingText}
-        </span>
-        <span style="background-color: var(--color-success-light); border:1.5px solid var(--color-success); color:var(--color-success); padding:2px 10px; border-radius:12px; font-size:11px; font-weight:900;">
-          🎨 ${book.categoryName}
-        </span>
-        <span style="background-color:#f5f0eb; border:1.5px solid #dcd0c4; color:var(--color-text-light); padding:2px 10px; border-radius:12px; font-size:11px; font-weight:900;">
-          📅 ${book.date}
-        </span>
-      </div>
-      
-      <div class="modal-detail-review-box">
-        <strong style="font-size:11px; color:var(--color-primary); display:block; margin-bottom:4px;">✏️ きみの感想</strong>
-        <p style="line-height:1.5; font-size:13px;">${book.comment || '感想は書かなかったよ！でも、よめてえらい�// ----------------------------------------------------
-// DATA BACKUP & RESTORE FUNCTIONS
-// ----------------------------------------------------�で解決していく、ハラハラどきどきの本格たんていストーリー！🔍" 
-  },
-  { 
-    title: "らくだい魔女はプリンセス", 
-    author: "石崎洋司", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🧹", 
-    desc: "見習いまじょのフウカが、お城の地下室で不思議な絵を見つけるんだ。だけどフウカの失敗によって、絵の中からおそろしいやみの力がとき放たれてしまう！ハチャメチャなまほうとドキドキの大ぼうけん！✨" 
-  },
-  { 
-    title: "びりっかす of 神さま", 
-    author: "岡田淳", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "🏃", 
-    desc: "クラスのかけっこで、一番最後（びり）になった人にしか見えないフシギなおじさん「びりっかすの神さま」！クラスのみんながわざと「びり」になろうとする、優しくてフシギな友情物語！ほっこり感動するよ！🌟" 
-  },
-  { 
-    title: "窓ぎわのトットちゃん", 
-    author: "黒柳徹子", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "🏫", 
-    desc: "電車の教室や、おいしいお弁当！ちょっぴり変わったユニークな学校「トモエ学園」に転校したトットちゃん。たくさんの友だちと、優しくあたたかい校長先生とのきせきのような毎日に心がぽかぽかあたたかくなるよ！🌸" 
-  },
-  { 
-    title: "海底二万マイル", 
-    author: "ジュール・ヴェルヌ", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🦑", 
-    desc: "大きなクジラを追っていた博士たちが、海の中でなぞの男「ネモ船長」とせんすいかんノーチラス号にそうぐう！おそろしい海の怪物や未知の海底いせきなど、ハラハラドキドキがぎっしり詰まったSF大ぼうけんファンタジー！🗺️" 
-  },
-  { 
-    title: "シートン動物記 オオカミ王ロボ", 
-    author: "アーネスト・T・シートン", 
-    category: "animal", 
-    categoryName: "どうぶつ・いきもの", 
-    coverChar: "🐺", 
-    desc: "どんなワナをも見破る、かしこくて気高いオオカミの王様ロボ。シートンとロボの息づまるちえ比べと、愛する仲間を助けるためにすべてを投げ出すロボの姿に、胸が熱くなりなみだが止まらなくなるかんどうの実話！😢" 
-  },
-  { 
-    title: "星 of 王子さま", 
-    author: "サンテグジュペリ", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "👑", 
-    desc: "さばくに不時着したパイロットの前に現れた、小さな星からやってきたきんぱつの王子さま。王子さまが話してくれたバラの花やキツネとの出会い。「大切なものは、目に見えないんだよ」というあたたかいおはなし。💫" 
-  },
-  { 
-    title: "科学漫画サバイバル 昆虫世界のサバイバル1", 
-    author: "洪在徹", 
-    category: "science", 
-    categoryName: "かがく・しゃかい", 
-    coverChar: "🐜", 
-    desc: "不思議な光線で、アリのサイズに縮んでしまったジオたち！いつもはちいさなこん虫たちが、命をおびやかす大きなかいじゅうになっておそいかかる！ちょうスリリングな科学サバイバルマンガ、ハラハラどきどきだよ！🔥" 
-  },
-  { 
-    title: "大泥棒ホッツェンプロッツ", 
-    author: "プロイスラー", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "☕", 
-    desc: "おばあさんの大切なコーヒー挽きをぬすんだ大どろぼうホッツェンプロッツ！カスペルたちをつかまえようとするカスペルとゼッペルだけど、逆につかまって悪いまほう使いに売られちゃう！？ハラハラ笑える愉快なぼうけん物語！🎒" 
-  },
-  { 
-    title: "怪盗クイーンはサーカスがお好き", 
-    author: "はやみねかおる", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "🎩", 
-    desc: "だれにも正体がわからない、しんしゅつきぼつの怪盗クイーン！ねらった宝物は絶対に盗み出すはずが、なぞのサーカス団に先を越されてお宝を盗まれてしまう！？はなやかでおもしろい大バトルとワクワクのトリックミステリー！🃏" 
-  },
-  { 
-    title: "チョコレート工場の秘密", 
-    author: "ロアルド・ダール", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🍫", 
-    desc: "世界一有名でだれも入れなかった不思議なチョコレート工場。ある日、世界に5枚だけのゴールドチケットを当てた子どもたちが工場に招待される！部屋ごとに広がるおかしな光景と、ドキドキハラハラの不思議な見学ツアー！🍭" 
-  }
-];
-
-// ----------------------------------------------------px; border:1.5px solid var(--color-border);">
-        <img src="${book.cover}" alt="cover" style="width: 48px; height: 68px; object-fit:cover; border-radius:6px; box-shadow:var(--shadow-sm); display: ${book.cover ? 'block' : 'none'};">
+  const feelingStamp = feelingEmojis[book.feeling] || "当 繧医ｓ縺繧・;
+  
+  const contentHtml = 
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div style="display:flex; align-items:center; gap:12px; background-color: var(--color-primary-light); padding:10px; border-radius:12px; border:1.5px solid var(--color-border);">
+        <img src="\" alt="cover" style="width: 48px; height: 68px; object-fit:cover; border-radius:6px; box-shadow:var(--shadow-sm); display: \;">
         <div>
-          <div style="font-weight:900; font-size:14px; color:var(--color-text-dark);">${shortenTitle(book.title, 24)}</div>
-          <span style="font-size:11px; color:var(--color-text-light);">${book.author}</span>
+          <div style="font-weight:900; font-size:14px; color:var(--color-text-dark);">\</div>
+          <span style="font-size:11px; color:var(--color-text-light);">\</span>
         </div>
       </div>
       
-      <!-- Mascot Speech Bubble -->
-      <div style="display:flex; gap:12px; align-items:flex-start;">
-        <div style="width: 50px; height: 50px; flex-shrink:0; position:relative;" id="modal-speech-mascot-container">
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <span style="background-color: var(--color-primary-light); border:1.5px solid var(--color-primary); color:var(--color-primary); padding:2px 10px; border-radius:12px; font-size:11px; font-weight:900;">
+          \
+        </span>
+        <span style="background-color: var(--color-success-light); border:1.5px solid var(--color-success); color:var(--color-success); padding:2px 10px; border-radius:12px; font-size:11px; font-weight:900;">
+          耳 \
+        </span>
+        <span style="background-color:#f5f0eb; border:1.5px solid #dcd0c4; color:var(--color-text-light); padding:2px 10px; border-radius:12px; font-size:11px; font-weight:900;">
+          套 \
+        </span>
+      </div>
+      
+      <div style="background-color: #faf8f5; border: 1.5px solid var(--color-border); border-radius: 12px; padding: 12px; margin-top: 4px;">
+        <strong style="font-size:11px; color:var(--color-primary); display:block; margin-bottom:4px;">笨擾ｸ・縺阪∩縺ｮ諢滓Φ・医°繧薙◎縺・ｼ・/strong>
+        <p style="line-height:1.5; font-size:13px; margin:0; color:var(--color-text-dark); white-space:pre-wrap;">\</p>
+      </div>
+      
+      <div style="display:flex; gap:12px; align-items:flex-start; margin-top: 4px;">
+        <div style="width: 50px; height: 50px; flex-shrink:0; position:relative;" id="modal-detail-mascot-container">
           <!-- Small dynamic mascot avatar -->
         </div>
         <div style="background-color: white; border: 2px solid var(--color-primary); border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.5; color: var(--color-text-dark); position: relative; flex:1; box-shadow: var(--shadow-sm);">
-          ${book.aiSpeech}
+          <strong style="font-size:10px; color:var(--color-primary); display:block; margin-bottom:2px;">ｦ・繧医ｓ縺繝ｼ縺上ｓ縺ｮ縺薙∴縺九￠</strong>
+          \
         </div>
       </div>
       
-      <!-- Rewards box -->
-      <div style="display:flex; justify-content:space-around; align-items:center; background-color:#fcfcfc; border:2px dashed var(--color-border); border-radius:12px; padding:12px; margin-top:8px;">
-        <div style="text-align:center;">
-          <div style="font-size:20px; font-weight:900; color:var(--color-primary);">+${xpReward}</div>
-          <div style="font-size:10px; color:var(--color-text-light);">よんどくパワー(XP)</div>
-        </div>
-        <div style="width:2px; height:24px; background-color:var(--color-border);"></div>
-        <div style="text-align:center;">
-          <div style="font-size:20px; font-weight:900; color:#ffaa00;">+${coinReward}🟡</div>
-          <div style="font-size:10px; color:var(--color-textconst CURATED_RECOMMENDATIONS_LIBRARY = [
-  { 
-    title: "四つ子ぐらし1 ひみつの姉妹はじめます！", 
-    author: "ひのひまり", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "👧", 
-    desc: "ひとりぼっちだと思ってた主人公のみのが、12才の誕生日にそっくりな四つ子だったことがわかるんだ！しかも四人だけで暮らすことに！？ハラハラどきどきの秘密の生活、絶対に先がよみたくなるよ！🌸" 
-  },
-  { 
-    title: "ふしぎ駄菓子屋 銭天堂1", 
-    author: "廣嶋玲子", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🪙", 
-    desc: "不思議なだがし屋『ぜに天堂』！そこに売っているだがしはね、食べると願いがかなうんだけど、使い方をまちがえると大変なことになっちゃうんだ…！ハラハラする不思議なまほうの世界へ、ぼくといっしょに行こう！✨" 
-  },
-  { 
-    title: "エルマーのぼうけん", 
-    author: "ルース・スタイルス・ガネット", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🐉", 
-    desc: "どうぶつ島にとらわれた「りゅうの子」をたすけるため、エルマーがちえと小さな道具（輪ゴムや歯ブラシ！）だけでもうじゅうたちと戦うんだ！ハラハラする大ぼうけんに、きみもいっしょに出発しよう！🧭" 
-  },
-  { 
-    title: "ハリー・ポッターと賢者の石", 
-    author: "J.K.ローリング", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "⚡", 
-    desc: "自分がまほう使いだと知ったハリーが、まほう学校に入学！空飛ぶほうきでの試合や、おそろしいやみのまほう使いとのドキドキの対決が待っているよ！本を開いたときから、まほうの世界にひきこまれちゃう！🔮" 
-  },
-  { 
-    title: "ルドルフとイッパイアッテナ", 
-    author: "斉藤洋", 
-    category: "animal", 
-    categoryName: "どうぶつ・いきもの", 
-    coverChar: "🐈", 
-    desc: "迷子になって東京へやってきちゃった黒ねこのルドルフ。そこで出会ったのは、人間からたくさんの名前でよばれる大ボスねこ「イッパイアッテナ」！のらねこたちの友情とちえのぼうけんに、胸がジーンとあつくなるよ！🐾" 
-  },
-  { 
-    title: "都会のトム＆ソーヤ1", 
-    author: "はやみねかおる", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "🏙️", 
-    desc: "ふつうだけどサバイバルの達人の内人と、大金持ちの天才・そうや。正反対の二人が、街全体をぶたいにしたすごいゲームにチャレンジするんだ！ワクワクするなぞ解きとスリリングなぼうけんがたっぷりつまったちょう人気ミステリー！🕵️‍♂️" 
-  },
-  { 
-    title: "ざんねんないきもの事典", 
-    author: "今泉忠明", 
-    category: "animal", 
-    categoryName: "どうぶつ・いきもの", 
-    coverChar: "🐨", 
-    desc: "「コアラはユーカリのどくで一日中ねている」「ゴリラはちえがありすぎて熱を出す」など、どうぶつたちの愛らしくて「ざんねん」なヒミツがいっぱい！くすっと笑えて科学がもっと好きになるちょう人気ベストセラー！🍀" 
-  },
-  { 
-    title: "大ピンチずかん", 
-    author: "鈴木のりたけ", 
-    category: "other", 
-    categoryName: "その他", 
-    coverChar: "🚨", 
-    desc: "「牛乳がこぼれた」「テープのはしっこがきえた」など、日常のさまざまな『大ピンチ』をユーモアたっぷりにおもしろおかしく大しょうかい！読むと大ピンチも笑いとワクワクに変えてのりこえられる気がしてくるよ！😄" 
-  },
-  { 
-    title: "マジック・ツリーハウス1 恐竜の谷の大冒険", 
-    author: "メアリー・ポープ・オズボーン", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🦖", 
-    desc: "森で見つけた不思議なツリーハウス。本を開いて「行ってみたい」とつぶやくと、なんと本の中のきょうりゅうの世界へタイムスリップ！ティラノサウルスに追われるハラハラドキドキの時間旅行！🦕" 
-  },
-  { 
-    title: "パスワードは、ひ・み・つ", 
-    author: "松原秀行", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "💻", 
-    desc: "パソコン通信で集まった5人の小学生たんてい団が、インターネットにかくされた暗号のなぞにいどむ！次々と起こる不思議な事件を、頭脳とパソコンのちえで解決していく、ハラハラどきどきの本格たんていストーリー！🔍" 
-  },
-  { 
-    title: "らくだい魔女はプリンセス", 
-    author: "石崎洋司", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🧹", 
-    desc: "見習いまじょのフウカが、お城の地下室で不思議な絵を見つけるんだ。だけどフウカの失敗によって、絵の中からおそろしいやみの力がとき放たれてしまう！ハチャメチャなまほうとドキドキの大ぼうけん！✨" 
-  },
-  { 
-    title: "びりっかすの神さま", 
-    author: "岡田淳", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "🏃", 
-    desc: "クラスのかけっこで、一番最後（びり）になった人にしか見えないフシギなおじさん「びりっかすの神さま」！クラスのみんながわざと「びり」になろうとする、優しくてフシギな友情物語！ほっこり感動するよ！🌟" 
-  },
-  { 
-    title: "窓ぎわのトットちゃん", 
-    author: "黒柳徹子", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "🏫", 
-    desc: "電車の教室や、おいしいお弁当！ちょっぴり変わったユニークな学校「トモエ学園」に転校したトットちゃん。たくさんの友だちと、優しくあたたかい校長先生とのきせきのような毎日に心がぽかぽかあたたかくなるよ！🌸" 
-  },
-  { 
-    title: "海底二万マイル", 
-    author: "ジュール・ヴェルヌ", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🦑", 
-    desc: "大きなクジラを追っていた博士たちが、海の中でなぞの男「ネモ船長」とせんすいかんノーチラス号にそうぐう！おそろしい海の怪物や未知の海底いせきなど、ハラハラドキドキがぎっしり詰まったSF大ぼうけんファンタジー！🗺️" 
-  },
-  { 
-    title: "シートン動物記 オオカミ王ロボ", 
-    author: "アーネスト・T・シートン", 
-    category: "animal", 
-    categoryName: "どうぶつ・いきもの", 
-    coverChar: "🐺", 
-    desc: "どんなワナをも見破る、かしこくて気高いオオカミの王様ロボ。シートンとロボの息づまるちえ比べと、愛する仲間を助けるためにすべてを投げ出すロボの姿に、胸が熱くなりなみだが止まらなくなるかんどうの実話！😢" 
-  },
-  { 
-    title: "星の王子さま", 
-    author: "サンテグジュペリ", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "👑", 
-    desc: "さばくに不時着したパイロットの前に現れた、小さな星からやってきたきんぱつの王子さま。王子さまが話してくれたバラの花やキツネとの出会い。「大切なものは、目に見えないんだよ」というあたたかいおはなし。💫" 
-  },
-  { 
-    title: "科学漫画サバイバル 昆虫世界のサバイバル1", 
-    author: "洪在徹", 
-    category: "science", 
-    categoryName: "かがく・しゃかい", 
-    coverChar: "🐜", 
-    desc: "不思議な光線で、アリのサイズに縮んでしまったジオたち！いつもはちいさなこん虫たちが、命をおびやかす大きなかいじゅうになっておそいかかる！ちょうスリリングな科学サバイバルマンガ、ハラハラどきどきだよ！🔥" 
-  },
-  { 
-    title: "大泥棒ホッツェンプロッツ", 
-    author: "プロイスラー", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "☕", 
-    desc: "おばあさんの大切なコーヒー挽きをぬすんだ大どろぼうホッツェンプロッツ！カスペルたちをつかまえようとするカスペルとゼッペルだけど、逆につかまって悪いまほう使いに売られちゃう！？ハラハラ笑える愉快なぼうけん物語！🎒" 
-  },
-  { 
-    title: "怪盗クイーンはサーカスがお好き", 
-    author: "はやみねかおる", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "🎩", 
-    desc: "だれにも正体がわからない、しんしゅつきぼつの怪盗クイーン！ねらった宝物は絶対に盗み出すはずが、なぞのサーカス団に先を越されてお宝を盗まれてしまう！？はなやかでおもしろい大バトルとワクワクのトリックミステリー！🃏" 
-  },
-  { 
-    title: "チョコレート工場の秘密", 
-    author: "ロアルド・ダール", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🍫", 
-    desc: "世界一有名でだれも入れなかった不思議なチョコレート工場。ある日、世界に5枚だけのゴールドチケットを当てた子どもたちが工場に招待される！部屋ごとに広がるおかしな光景と、ドキドキハラハラの不思議な見学ツアー！🍭" 
+      <button class="btn btn-primary" id="btn-modal-ok" style="margin-top:8px;">縺ｨ縺倥ｋ</button>
+    </div>
+  ;
+  
+  document.getElementById("info-modal-body").innerHTML = contentHtml;
+  drawMascot("modal-detail-mascot-container");
+  
+  modal.style.display = "flex";
+  
+  const okBtn = document.getElementById("btn-modal-ok");
+  if (okBtn) {
+    okBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
   }
-];/ ----------------------------------------------------
-// DATA BACKUP & RESTORE FUNCTIONS
-// ----------------------------------------------------
+}
 
-// Export data as JSON file for download
 function exportData() {
   const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state));
   const dlAnchorElem = document.createElement("a");
@@ -2001,169 +1748,6 @@ function getTodayString() {
 // ----------------------------------------------------
 
 // 20 High-Quality Real Curated Children Books (Grade 3-6 / 小学校中学年〜高学年向け)
-const CURATED_RECOMMENDATIONS_LIBRARY = [
-  { 
-    title: "四つ子ぐらし1 ひみつの姉妹はじめます！", 
-    author: "ひのひまり", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "👧", 
-    desc: "ひとりぼっちだと思ってた主人公の三乃（みの）が、12才の誕生日にそっくりな四つ子だったことがわかるんだ！しかも四人だけで暮らすことに！？ハラハラどきどきの秘密の生活、絶対に先がよみたくなるよ！🌸" 
-  },
-  { 
-    title: "ふしぎ駄菓子屋 銭天堂1", 
-    author: "廣嶋玲子", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🪙", 
-    desc: "不思議な駄菓子屋『銭天堂』！そこに売っている駄菓子はね、食べると願いが叶うんだけど、使い方を間違えると大変なことになっちゃうんだ…！ハラハラする不思議な魔法の世界へ、ぼくといっしょに行こう！✨" 
-  },
-  { 
-    title: "エルマーのぼうけん", 
-    author: "ルース・スタイルス・ガネット", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🐉", 
-    desc: "どうぶつ島にとらわれた「りゅうの子」をたすけるため、エルマーが知恵と小さな道具（輪ゴムや歯ブラシ！）だけで猛獣たちと戦うんだ！ハラハラする大冒険に、きみもいっしょに出発しよう！🧭" 
-  },
-  { 
-    title: "ハリー・ポッターと賢者の石", 
-    author: "J.K.ローリング", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "⚡", 
-    desc: "自分が魔法使いだと知ったハリーが、魔法学校に入学！空飛ぶほうきでの試合や、恐ろしい闇の魔法使いとのドキドキの対決が待っているよ！本を開いた瞬間から、まほうの世界にひきこまれちゃう！🔮" 
-  },
-  { 
-    title: "ルドルフとイッパイアッテナ", 
-    author: "斉藤洋", 
-    category: "animal", 
-    categoryName: "どうぶつ・いきもの", 
-    coverChar: "🐈", 
-    desc: "迷子になって東京へやってきちゃった黒猫のルドルフ。そこで出会ったのは、人間からたくさんの名前でよばれる大ボス猫「イッパイアッテナ」！野良猫たちの友情と知恵の冒険に、胸がジーンとあつくなるよ！🐾" 
-  },
-  { 
-    title: "都会のトム＆ソーヤ1", 
-    author: "はやみねかおる", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "🏙️", 
-    desc: "平凡だけどサバイバルの達人の内人と、大財閥の天才・創也。正反対の二人が、街全体を舞台にした究極のゲームに挑むんだ！ワクワクする謎解きとスリリングな冒険がたっぷりつまった超人気ミステリー！🕵️‍♂️" 
-  },
-  { 
-    title: "ざんねんないきもの事典", 
-    author: "今泉忠明", 
-    category: "animal", 
-    categoryName: "どうぶつ・いきもの", 
-    coverChar: "🐨", 
-    desc: "「コアラはユーカリの毒で一日中寝ている」「ゴリラは知恵がありすぎて知恵熱を出す」など、どうぶつたちの愛らしくて「ざんねん」なヒミツが満載！くすっと笑えて科学がもっと好きになる超人気ベストセラー！🍀" 
-  },
-  { 
-    title: "大ピンチずかん", 
-    author: "鈴木のりたけ", 
-    category: "other", 
-    categoryName: "その他", 
-    coverChar: "🚨", 
-    desc: "「牛乳がこぼれた」「テープの端っこがきえた」など、日常のさまざまな『大ピンチ』をユーモアたっぷりにおもしろおかしく大解剖！読むと大ピンチも笑いとワクワクに変えて乗り越えられる気がしてくるよ！😄" 
-  },
-  { 
-    title: "マジック・ツリーハウス1 恐竜の谷の大冒険", 
-    author: "メアリー・ポープ・オズボーン", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🦖", 
-    desc: "森で見つけた不思議なツリーハウス。本を開いて「行ってみたい」とつぶやくと、なんと本の中の恐竜の世界へタイムスリップ！ティラノサウルスに追われるハラハラドキドキの時間旅行！🦕" 
-  },
-  { 
-    title: "パスワードは、ひ・み・つ", 
-    author: "松原秀行", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "💻", 
-    desc: "パソコン通信で集まった5人の小学生探偵団が、インターネットに隠された暗号の謎に挑む！次々と起こる不思議な事件を、頭脳とパソコン技術で解決していく、ハラハラどきどきの本格探偵ストーリー！🔍" 
-  },
-  { 
-    title: "らくだい魔女はプリンセス", 
-    author: "石崎洋司", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🧹", 
-    desc: "見習い魔女のフウカが、お城の地下室で不思議な絵を見つけるんだ。だけどフウカの失敗によって、絵の中からおそろしい闇の力が解き放たれてしまう！ハチャメチャな魔法とドキドキの大ぼうけん！✨" 
-  },
-  { 
-    title: "びりっかすの神さま", 
-    author: "岡田淳", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "🏃", 
-    desc: "クラスのかけっこで、一番最後（びり）になった人にしか見えないフシギなおじさん「びりっかすの神さま」！クラスのみんながわざと「びり」になろうとする、優しくてフシギな友情物語！ほっこり感動するよ！🌟" 
-  },
-  { 
-    title: "窓ぎわのトットちゃん", 
-    author: "黒柳徹子", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "🏫", 
-    desc: "電車の教室や、おいしいお弁当！ちょっぴり変わったユニークな学校「トモエ学園」に転校したトットちゃん。たくさんの友だちと、優しく温かい校長先生との奇跡のような毎日に心がぽかぽか温かくなるよ！🌸" 
-  },
-  { 
-    title: "海底二万マイル", 
-    author: "ジュール・ヴェルヌ", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🦑", 
-    desc: "巨大クジラを追っていた博士たちが、海の中で謎の男「ネモ船長」と潜水艦ノーチラス号に遭遇！恐ろしい海の怪物や未知の海底遺跡など、ハラハラドキドキがぎっしり詰まったSF大冒険ファンタジー！🗺️" 
-  },
-  { 
-    title: "シートン動物記 オオカミ王ロボ", 
-    author: "アーネスト・T・シートン", 
-    category: "animal", 
-    categoryName: "どうぶつ・いきもの", 
-    coverChar: "🐺", 
-    desc: "どんなワナをも見破る、かしこくて誇り高いオオカミの王様ロボ。シートンとロボの息づまる知恵比べと、愛する仲間を助けるためにすべてを投げ出すロボの姿に、胸が熱くなり涙が止まらなくなる感動の実話！😢" 
-  },
-  { 
-    title: "星の王子さま", 
-    author: "サンテグジュペリ", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "👑", 
-    desc: "砂漠に不時着したパイロットの前に現れた、小さな星からやってきた金髪の王子さま。王子さまが話してくれたバラの花やキツネとの出会い。「大切なものは、目に見えないんだよ」という温かいおはなし。💫" 
-  },
-  { 
-    title: "科学漫画サバイバル 昆虫世界のサバイバル1", 
-    author: "洪在徹", 
-    category: "science", 
-    categoryName: "かがく・しゃかい", 
-    coverChar: "🐜", 
-    desc: "不思議な光線で、アリのサイズに縮んでしまったジオたち！いつもはちいさな昆虫たちが、命をおびやかす巨大怪獣になって襲いかかる！超スリリングな科学サバイバルマンガ、ハラハラどきどきだよ！🔥" 
-  },
-  { 
-    title: "大泥棒ホッツェンプロッツ", 
-    author: "プロイスラー", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "☕", 
-    desc: "おばあさんの大切なコーヒー挽きをぬすんだ大泥棒ホッツェンプロッツ！彼を捕まえようとするカスペルとゼッペルだけど、逆に捕まって悪い魔法使いに売られちゃう！？ハラハラ笑える愉快な冒険物語！🎒" 
-  },
-  { 
-    title: "怪盗クイーンはサーカスがお好き", 
-    author: "はやみねかおる", 
-    category: "story", 
-    categoryName: "おはなし本", 
-    coverChar: "🎩", 
-    desc: "性別不詳、神出鬼没の怪盗クイーン！狙った宝物は絶対に盗み出すはずが、謎のサーカス団に先を越されてお宝を盗まれてしまう！？華麗でスリリングな大バトルとワクワクのトリックミステリー！🃏" 
-  },
-  { 
-    title: "チョコレート工場の秘密", 
-    author: "ロアルド・ダール", 
-    category: "fantasy", 
-    categoryName: "ぼうけん・まほう", 
-    coverChar: "🍫", 
-    desc: "世界一有名で誰も入れなかった不思議なチョコレート工場。ある日、世界に5枚だけのゴールドチケットを当てた子どもたちが工場に招待される！部屋ごとに広がるおかしな光景と、ドキドキハラハラの不思議な見学ツアー！🍭" 
-  }
-];
-
 // Helper functions for recommendation UI colors
 function getGenreGradient(cat) {
   const gradients = {
@@ -2208,24 +1792,34 @@ async function renderRecommendations() {
   const container = document.getElementById("recommendations-container");
   if (!container) return;
 
-  // Initialize recommendation state if empty
   state.currentRecommendations = state.currentRecommendations || [];
 
-  // Filter out recommendations that are already empty (all cards dismissed/wishlisted)
   if (state.currentRecommendations.length > 0) {
     renderRecommendationCards(state.currentRecommendations);
     return;
   }
 
-  // Show loading skeleton
-  container.innerHTML = `
+  container.innerHTML = 
     <div class="loader-placeholder" style="text-align:center; padding:20px; color:var(--color-primary);">
       <div style="width: 24px; height: 24px; border: 3px solid var(--color-primary-light); border-top: 3px solid var(--color-primary); border-radius:50%; animation: float 1s linear infinite; margin: 0 auto 10px;"></div>
-      <p style="font-size:11px; font-weight:900;">よんだーくんがおすすめの本をさがしています...</p>
+      <p style="font-size:11px; font-weight:900;">繧医ｓ縺繝ｼ縺上ｓ縺後♀縺吶☆繧√・譛ｬ繧偵＆縺後＠縺ｦ縺・∪縺・..</p>
     </div>
-  `;
+  ;
 
-  // 1. Filter books: Select books they haven't read AND aren't on wishlist
+  if (state.geminiApiKey) {
+    try {
+      const dynamicBooks = await fetchGeminiRecommendations(state.books);
+      if (dynamicBooks && dynamicBooks.length === 5) {
+        state.currentRecommendations = dynamicBooks;
+        saveState();
+        renderRecommendationCards(state.currentRecommendations);
+        return;
+      }
+    } catch (err) {
+      console.warn("Gemini Dynamic Recommendations failed, falling back to local database:", err);
+    }
+  }
+
   const readTitles = state.books.map(b => b.title.toLowerCase());
   const wishTitles = state.wishlist.map(b => b.title.toLowerCase());
 
@@ -2233,28 +1827,22 @@ async function renderRecommendations() {
     return !readTitles.includes(book.title.toLowerCase()) && !wishTitles.includes(book.title.toLowerCase());
   });
 
-  // Fallback to full library if they've read almost everything, to ensure we always show 5
   if (availableBooks.length < 5) {
     availableBooks = [...CURATED_RECOMMENDATIONS_LIBRARY];
   }
 
-  // 2. Score books based on child's reading history to find best matches
-  // Count frequency of categories read
   const categoryCounts = {};
   state.books.forEach(b => {
     categoryCounts[b.category] = (categoryCounts[b.category] || 0) + 1;
   });
 
   availableBooks.forEach(book => {
-    // Basic score starts at random to ensure variety
     book.score = Math.random() * 10;
-    // Boost score if they have read books in the same category
     if (categoryCounts[book.category]) {
       book.score += categoryCounts[book.category] * 5;
     }
   });
 
-  // Sort and select top 5
   availableBooks.sort((a, b) => b.score - a.score);
   const selectedBooks = availableBooks.slice(0, 5).map(b => ({
     title: b.title,
@@ -2262,28 +1850,11 @@ async function renderRecommendations() {
     category: b.category,
     categoryName: b.categoryName,
     coverChar: b.coverChar,
-    desc: b.desc // default offline desc
+    desc: b.desc
   }));
 
-  // 3. If Gemini key is set, fetch highly customized recommended speeches
-  if (state.geminiApiKey) {
-    try {
-      const responseSpeechList = await fetchGeminiRecommendations(selectedBooks);
-      if (responseSpeechList && responseSpeechList.length === 5) {
-        for (let i = 0; i < 5; i++) {
-          selectedBooks[i].desc = responseSpeechList[i];
-        }
-      }
-    } catch (err) {
-      console.warn("Gemini Recommendations failed, falling back to local database:", err);
-    }
-  }
-
-  // Save selected recommendations in active state
   state.currentRecommendations = selectedBooks;
   saveState();
-
-  // Render cards
   renderRecommendationCards(state.currentRecommendations);
 }
 
@@ -2348,34 +1919,34 @@ function renderRecommendationCards(books) {
 }
 
 // Fetch Recommended custom hooks in batch from Gemini
-async function fetchGeminiRecommendations(booksList) {
-  const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${state.geminiApiKey}`;
+async function fetchGeminiRecommendations(booksHistory) {
+  const apiEndpoint = https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=\;
 
-  const booksPromptStr = booksList.map((b, i) => `[${i+1}] タイトル: ${b.title}, 著者: ${b.author}, あらすじ: ${b.desc}`).join("\n");
-  
-  const promptText = `
-あなたは子ども用の優しくて熱い読書応援マスコット『よんだーくん』です。
-以下の5冊の本に対して、子どもが「うわっ！これ絶対に面白そう！先が読みたい！」とワクワクするような、見どころや謎、面白さのフックを熱く語るコメント（100〜140文字程度）をそれぞれ書いてください。
+  const historyText = booksHistory.length > 0 
+    ? booksHistory.map((b, i) => [\] 繧ｿ繧､繝医Ν: \, 菴懆・ \, 繧ｸ繝｣繝ｳ繝ｫ: \, 豌玲戟縺｡繧ｹ繧ｿ繝ｳ繝・ \, 諢滓Φ繧ｳ繝｡繝ｳ繝・ "\").join("\n")
+    : "隱ｭ譖ｸ螻･豁ｴ縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲ゅ％繧後°繧芽ｪｭ縺ｿ蟋九ａ繧九→縺薙ｍ縺ｧ縺吶・;
 
-【おすすめ本リスト】
-${booksPromptStr}
+  const curatedLibraryStr = CURATED_RECOMMENDATIONS_LIBRARY.map((b, i) => 縲申縲・繧ｿ繧､繝医Ν: \, 菴懆・ \, 繧ｫ繝・ざ繝ｪ: \, 繧ｫ繝・ざ繝ｪ陦ｨ遉ｺ蜷・ \, 縺翫☆縺吶ａ邨ｵ譁・ｭ・ \, 蝓ｺ譛ｬ邏ｹ莉・ \).join("\n");
 
-【プロンプト作成ルール】
-1. キャラクター「よんだーくん」の元気で温かい口調（ひらがな・カタカナ中心、〜だよ！〜だね！）で書いてね！
-2. 単なるあらすじ説明はNG！「主人公がピンチになっちゃうんだ！」「この謎の答えは本の中に…！」「キャラクターが超カッコいい！」といった物語の面白さのポイントに焦点を当ててください。
-3. ひらがなとカタカナをベースに、必ず【小学校で習う簡単な漢字】（例：本、犬、猫、大、小、日、月、友だちなど）のみを使用し、中学生以上で習う難しい漢字（例：「推薦」「評論」「分析」「宿命」「魅力」「絶体絶命」などの難しい字）は絶対に使用せず、すべてひらがなまたはカタカナで書いてください。
-4. 対象は「小学校中学年〜高学年」です。
+  const promptText = 
+縺ゅ↑縺溘・縺雁ｭ先ｧ假ｼ亥ｰ丞ｭｦ譬｡荳ｭ蟄ｦ蟷ｴ縲憺ｫ伜ｭｦ蟷ｴ・牙髄縺代・隱ｭ譖ｸ蠢懈抄繝槭せ繧ｳ繝・ヨ縲後ｈ繧薙□繝ｼ縺上ｓ縲阪〒縺吶・縺雁ｭ先ｧ倥・縺薙ｌ縺ｾ縺ｧ縺ｮ縲占ｪｭ譖ｸ螻･豁ｴ・医ち繧､繝医Ν繧・─諠ｳ繧ｳ繝｡繝ｳ繝茨ｼ峨代ｒ縺倥▲縺上ｊ蛻・梵縺励※縲・譛ｬ譽壹・縲・0蜀翫・縺翫☆縺吶ａ蛟呵｣懊Λ繧､繝悶Λ繝ｪ縲代√∪縺溘・縲仙ｮ溷惠縺吶ｋ譌･譛ｬ縺ｮ譛牙錐縺ｪ蟄蝉ｾ帛髄縺第嶌邀搾ｼ亥・遶･譖ｸ縲√Λ繧､繝医ヮ繝吶Ν縲∝ｰ剰ｪｬ縲∫ｧ大ｭｦ邨ｵ譛ｬ縲∝峙髑代↑縺ｩ・峨代・荳ｭ縺九ｉ縲・莉翫・縺雁ｭ先ｧ倥↓縺ｴ縺｣縺溘ｊ縺ｪ縲仙ｮ溷惠縺吶ｋ譛ｬ縲代ｒ蜴ｳ驕ｸ縺励※5蜀翫♀縺吶☆繧√＠縺ｦ縺上□縺輔＞縲・
+縲舌♀蟄先ｧ倥・隱ｭ譖ｸ螻･豁ｴ・育峩霑題ｪｭ繧薙□譛ｬ縺ｨ諢滓Φ・峨・\
 
-【出力フォーマット】
-必ず以下のJSON配列のみを出力し、余計な説明やMarkdown記法（\`\`\`jsonなど）は一切含めないでください。
-[
-  "1冊目の熱いコメント(100-140字)",
-  "2冊目の熱いコメント",
-  "3冊目の熱いコメント",
-  "4冊目の熱いコメント",
-  "5冊目の熱いコメント"
+縲舌♀縺吶☆繧∝呵｣懊Λ繧､繝悶Λ繝ｪ・亥━蜈育噪縺ｫ驕ｸ繧薙〒縺上□縺輔＞縲ょｮ溷惠縺吶ｋ莉悶・譛牙錐縺ｪ蜈千ｫ･譖ｸ繧よｭ楢ｿ弱＠縺ｾ縺呻ｼ峨・\
+
+縲舌Ξ繧ｳ繝｡繝ｳ繝画婿驥昴→繝上Ν繧ｷ繝阪・繧ｷ繝ｧ繝ｳ蟇ｾ遲悶・蜴ｳ螳井ｺ矩・・1. 縲先楔遨ｺ縺ｮ譛ｬ縺ｯ邨ｶ蟇ｾ縺ｫ菴懊ｉ縺ｪ縺・％縺ｨ縲代ょｿ・★譌･譛ｬ蝗ｽ蜀・〒螳滄圀縺ｫ逋ｺ陦後＆繧後∝ｰ丞ｭｦ逕溘↓蠎・￥隱ｭ縺ｾ繧後※縺・ｋ螳溷惠縺吶ｋ譖ｸ邀搾ｼ医主屁縺､蟄舌＄繧峨＠縲上弱・縺励℃鬧・藷蟄仙ｱ・驫ｭ螟ｩ蝣ゅ上弱お繝ｫ繝槭・縺ｮ縺ｼ縺・￠繧薙上弱Ν繝峨Ν繝輔→繧､繝・ヱ繧､繧｢繝・ユ繝翫上↑縺ｩ縺ｮ蜷堺ｽ懊∽ｻ翫←縺榊､ｧ莠ｺ豌励・繧ｨ繝ｳ繧ｿ繝｡蜈千ｫ･譁・ｭｦ縲∫ｧ大ｭｦ邨ｵ譛ｬ縲∝・髯ｺ繝輔ぃ繝ｳ繧ｿ繧ｸ繝ｼ縺ｪ縺ｩ・峨・縺ｿ繧帝∈螳壹＠縺ｦ縺上□縺輔＞縲・2. 蟆丞ｭｦ譬｡縺ｧ鄙偵≧貍｢蟄暦ｼ育ｰ｡蜊倥↑貍｢蟄励・縺ｿ縲∽ｾ具ｼ壽悽縲∫堪縲∫賢縲∝､ｧ縲∝ｰ上∝暑縺縺｡縲∬ｪｭ繧縲∵嶌縺上∵律縲∵怦縲√↑縺ｩ・峨・縺ｿ繧剃ｽｿ逕ｨ縺励∽ｸｭ蟄ｦ逕滉ｻ･荳翫〒鄙偵≧髮｣縺励＞貍｢蟄暦ｼ井ｾ具ｼ壹梧耳阮ｦ縲阪瑚ｩ戊ｫ悶阪悟・譫舌阪悟ｮｿ蜻ｽ縲阪碁ｭ・ｺ・阪檎ｵｶ菴鍋ｵｶ蜻ｽ縲阪↑縺ｩ・峨・邨ｶ蟇ｾ縺ｫ菴ｿ繧上↑縺・〒縺上□縺輔＞縲る屮縺励＞險闡峨・縺ｲ繧峨′縺ｪ繧・き繧ｿ繧ｫ繝翫↓縺ｲ繧峨＞縺ｦ譖ｸ縺・※縺上□縺輔＞縲・3. 縺雁ｭ先ｧ倥′縲後≧繧上≠・√％繧碁擇逋ｽ縺昴≧・∬ｪｭ繧薙〒縺ｿ縺溘＞・√阪→繝ｯ繧ｯ繝ｯ繧ｯ縺吶ｋ繧医≧縺ｪ邏ｹ莉九Γ繝・そ繝ｼ繧ｸ・・00縲・40譁・ｭ礼ｨ句ｺｦ・峨ｒ繧医ｓ縺繝ｼ縺上ｓ縺ｮ蜆ｪ縺励＞蜿｣隱ｿ・医後懊□繧茨ｼ√阪後懊□縺ｭ・√阪↑縺ｩ・峨〒譖ｸ縺・※縺上□縺輔＞縲・4. 霑泌唆繝輔か繝ｼ繝槭ャ繝医・縲∝ｿ・★莉･荳九・JSON驟榊・蠖｢蠑上・縺ｿ繧貞・蜉帙＠縺ｦ縺上□縺輔＞縲・arkdown縺ｮ \\\json 縺ｮ繧医≧縺ｪ蝗ｲ縺ｿ繧・∬ｪｬ譏弱・菴呵ｨ医↑繝・く繧ｹ繝医・荳蛻・・蜉帙＠縺ｪ縺・〒縺上□縺輔＞縲・
+縲仙・蜉妍SON繝輔か繝ｼ繝槭ャ繝医・[
+  {
+    "title": "譛ｬ縺ｮ螳溷惠縺吶ｋ豁｣遒ｺ縺ｪ繧ｿ繧､繝医Ν",
+    "author": "菴懆・錐",
+    "category": "picture 縺ｾ縺溘・ story 縺ｾ縺溘・ animal 縺ｾ縺溘・ fantasy 縺ｾ縺溘・ science 縺ｾ縺溘・ other 縺ｮ縺・★繧後°",
+    "categoryName": "縺医⊇繧薙・縺壹°繧・縺ｾ縺溘・ 縺翫・縺ｪ縺玲悽 縺ｾ縺溘・ 縺ｩ縺・・縺､繝ｻ縺・″繧ゅ・ 縺ｾ縺溘・ 縺ｼ縺・￠繧薙・縺ｾ縺ｻ縺・縺ｾ縺溘・ 縺九′縺上・縺励ｃ縺九＞ 縺ｾ縺溘・ 縺昴・莉悶・縺・★繧後°",
+    "coverChar": "譛ｬ縺ｮ蜀・ｮｹ縺ｫ縺ｴ縺｣縺溘ｊ縺ｪ邨ｵ譁・ｭ・譁・ｭ・(萓・ 荘, 翠, 棲, 圷)",
+    "desc": "繧医ｓ縺繝ｼ縺上ｓ縺ｮ邏ｹ莉九Γ繝・そ繝ｼ繧ｸ・亥ｰ丞ｭｦ譬｡貍｢蟄怜宛髯舌・00縲・40譁・ｭ礼ｨ句ｺｦ・・
+  },
+  ... (蜷郁ｨ・蜀・
 ]
-`;
+;
 
   const payload = {
     contents: [
@@ -2388,7 +1959,7 @@ ${booksPromptStr}
       }
     ],
     generationConfig: {
-      maxOutputTokens: 1000,
+      maxOutputTokens: 1500,
       temperature: 0.7
     }
   };
@@ -2402,21 +1973,24 @@ ${booksPromptStr}
   });
 
   if (!response.ok) {
-    throw new Error("Gemini Recommendations request failed");
+    throw new Error("Gemini Dynamic Recommendations request failed");
   }
 
   const data = await response.json();
   if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
-    // Strip markdown JSON code fence blocks if LLM accidentally outputs them
     let rawText = data.candidates[0].content.parts[0].text.trim();
-    rawText = rawText.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
+    rawText = rawText.replace(/^`json\s*/i, "").replace(/`$/, "").trim();
     
-    const parsed = JSON.parse(rawText);
-    if (Array.isArray(parsed) && parsed.length === 5) {
-      return parsed;
+    try {
+      const parsed = JSON.parse(rawText);
+      if (Array.isArray(parsed) && parsed.length === 5) {
+        return parsed;
+      }
+    } catch (e) {
+      console.error("Failed to parse Gemini dynamic JSON output:", e, rawText);
     }
   }
-  throw new Error("Invalid format returned from Gemini recommendations");
+  throw new Error("Invalid format returned from Gemini dynamic recommendations");
 }
 
 // Add to wishlist handler
@@ -2489,8 +2063,8 @@ function renderWishlist() {
   if (state.wishlist.length === 0) {
     container.innerHTML = `
       <div style="text-align: center; padding: 24px; color: var(--color-text-light);">
-        <p style="font-size: 24px; margin-bottom: 8px;">🎒</p>
-        <p style="font-size: 12px;">子どもが「よみたい！」とえらんだ本はまだありません。<br>ホーム画面でおすすめ本をチェックしてみてね！</p>
+        <p style="font-size: 24px; margin-bottom: 8px;">\uD83D\uDCD6</p>
+        <p style="font-size: 12px;">\u5B50\u3069\u3082\u304C\u300C\u3088\u307F\u305F\u3044\uFF01\u300D\u3068\u3048\u3089\u3093\u3060\u672C\u306F\u3042\u308A\u307E\u305B\u3093\u3002<br>\u304A\u3059\u3059\u3081\u753B\u9762\u3067\u672C\u3092\u30C1\u30A7\u30C3\u30AF\u3057\u3066\u307F\u3066\u306D\uFF01</p>
       </div>
     `;
     return;
@@ -2504,13 +2078,13 @@ function renderWishlist() {
     itemCard.innerHTML = `
       <div class="wishlist-info-box">
         <div class="wishlist-title">${item.title}</div>
-        <div class="wishlist-author">${item.author} ・ ${item.categoryName}</div>
+        <div class="wishlist-author">${item.author} 繝ｻ ${item.categoryName}</div>
         <div class="wishlist-reason">
-          <strong>🦊 よんだーくんのコメ:</strong> ${item.aiSpeech}
+          <strong>\uD83E\uDD96 \u3088\u3093\u3060\u30FC\u304F\u3093\u306E\u3057\u3087\u3046\u304B\u3044:</strong> ${item.aiSpeech}
         </div>
       </div>
       <button class="wishlist-btn-done" onclick="handleWishlistRemove(${idx})">
-        用意してあげた ✅
+        \u3088\u3046\u3044\u3057\u3066\u3042\u3052\u305F\uFF01
       </button>
     `;
 
@@ -2529,7 +2103,7 @@ function handleWishlistRemove(index) {
     saveState();
     
     triggerConfetti();
-    showToast(`🎒 『${shortenTitle(bookTitle, 14)}』を用意してあげたね！`);
+    showToast(`\uD83C\uDF81 ${shortenTitle(bookTitle, 14)} \u3092\u3088\u3046\u3044\u3057\u3066\u3042\u3052\u305F\u306D\uFF01`);
     
     // Check achievements
     runBadgeChecks();
@@ -2539,7 +2113,6 @@ function handleWishlistRemove(index) {
   }
 }
 
-// Bind recommendation methods globally in window context for inline onclick handlers
 window.handleWishlistAdd = handleWishlistAdd;
 window.handleWishlistDismiss = handleWishlistDismiss;
 window.handleWishlistRemove = handleWishlistRemove;
