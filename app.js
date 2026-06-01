@@ -2200,8 +2200,7 @@ ${curatedLibraryStr}
     ],
     generationConfig: {
       maxOutputTokens: 4096,
-      temperature: 0.7,
-      responseMimeType: "application/json"
+      temperature: 0.7
     }
   };
 
@@ -2219,7 +2218,8 @@ ${curatedLibraryStr}
 
   const data = await response.json();
   if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
-    const rawText = data.candidates[0].content.parts[0].text.trim();
+    let rawText = data.candidates[0].content.parts[0].text.trim();
+    rawText = rawText.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
     
     try {
       const parsed = JSON.parse(rawText);
