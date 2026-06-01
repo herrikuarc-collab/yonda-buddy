@@ -334,8 +334,7 @@ h2 {
   position: relative;
   flex: 1;
   box-shadow: var(--shadow-sm);
-  max-height: 150px;
-  overflow-y: auto;
+  max-height: none;
 }
 
 .buddy-speech-bubble::before {
