@@ -1185,12 +1185,16 @@ async function saveBookReview() {
   showLoading(true, "よんだーくんがお話しを考えています...");
   
   let aiSpeech = "";
+  let aiSpeechSource = "local";
   try {
     aiSpeech = await generateAISpeech(newBook);
+    aiSpeechSource = "gemini";
+    console.log("✅ Gemini speech generation succeeded");
   } catch (err) {
-    console.error("AI error:", err);
+    console.error("AI error (using local fallback):", err);
     aiSpeech = generateFallbackSpeech(newBook);
   }
+  newBook.aiSpeechSource = aiSpeechSource;
   
   newBook.aiSpeech = aiSpeech;
   state.books.push(newBook);
@@ -1792,6 +1796,7 @@ function showAISpeechModal(book, xpReward, coinReward, isLevelUp, newLevel, unlo
         </div>
         <div style="background-color: white; border: 2px solid var(--color-primary); border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.5; color: var(--color-text-dark); position: relative; flex:1; box-shadow: var(--shadow-sm);">
           ${book.aiSpeech}
+          <div style="font-size:9px; color:var(--color-text-light); margin-top:6px; text-align:right;">${book.aiSpeechSource === 'gemini' ? '✨ Gemini AI' : '📝 テンプレ'}</div>
         </div>
       </div>
       
