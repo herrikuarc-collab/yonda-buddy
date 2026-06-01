@@ -1271,10 +1271,7 @@ async function generateAISpeech(book) {
     ],
     generationConfig: {
       maxOutputTokens: 1024,
-      temperature: 0.7,
-      thinkingConfig: {
-        thinkingBudget: 0
-      }
+      temperature: 0.7
     }
   };
 
@@ -2201,9 +2198,7 @@ ${curatedLibraryStr}
     generationConfig: {
       maxOutputTokens: 4096,
       temperature: 0.7,
-      thinkingConfig: {
-        thinkingBudget: 0
-      }
+      responseMimeType: "application/json"
     }
   };
 
@@ -2221,8 +2216,7 @@ ${curatedLibraryStr}
 
   const data = await response.json();
   if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
-    let rawText = data.candidates[0].content.parts[0].text.trim();
-    rawText = rawText.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
+    const rawText = data.candidates[0].content.parts[0].text.trim();
     
     try {
       const parsed = JSON.parse(rawText);
