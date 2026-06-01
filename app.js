@@ -20,114 +20,114 @@ let state = {
 // Mascot Accessories Database (Expanded to 28 parts in Head, Eyes, Clothes, Hand, and Room categories)
 const SHOP_ITEMS = [
   // HEAD ACCESSORIES (hat slot)
-  { id: "hat", name: "鬲疲ｳ輔・縺ｼ縺・＠", emoji: "自", price: 10, type: "head" },
-  { id: "crown", name: "縺阪ｉ縺阪ｉ邇九°繧・, emoji: "荘", price: 30, type: "head" },
-  { id: "apple", name: "繧翫ｓ縺斐・縺ｼ縺・＠", emoji: "克", price: 12, type: "head" },
-  { id: "cat_ears", name: "縺ｭ縺薙∩縺ｿ", emoji: "棲", price: 20, type: "head" },
-  { id: "pirate_hat", name: "縺九＞縺槭￥縺ｮ縺ｼ縺・＠", emoji: "抄窶坂丐・・, price: 18, type: "head" },
-  { id: "chef_hat", name: "繧ｳ繝・け縺輔ｓ縺ｮ縺ｼ縺・＠", emoji: "捉窶昨沚ｳ", price: 15, type: "head" },
-  { id: "straw_hat", name: "繧縺弱ｏ繧峨⊂縺・＠", emoji: "葬", price: 8, type: "head" },
-  { id: "ninja_band", name: "縺ｫ繧薙§繧・・繝上メ繝槭く", emoji: "･ｷ", price: 25, type: "head" },
+  { id: "hat", name: "魔法のぼうし", emoji: "🎩", price: 10, type: "head" },
+  { id: "crown", name: "きらきら王かん", emoji: "👑", price: 30, type: "head" },
+  { id: "apple", name: "りんごのぼうし", emoji: "🍎", price: 12, type: "head" },
+  { id: "cat_ears", name: "ねこみみ", emoji: "🐱", price: 20, type: "head" },
+  { id: "pirate_hat", name: "かいぞくのぼうし", emoji: "🏴‍☠️", price: 18, type: "head" },
+  { id: "chef_hat", name: "コックさんのぼうし", emoji: "👨‍🍳", price: 15, type: "head" },
+  { id: "straw_hat", name: "むぎわらぼうし", emoji: "👒", price: 8, type: "head" },
+  { id: "ninja_band", name: "にんじゃのハチマキ", emoji: "🥷", price: 25, type: "head" },
   
   // FACE ACCESSORIES (eyes slot)
-  { id: "glasses", name: "繧ｵ繝ｳ繧ｰ繝ｩ繧ｹ", emoji: "文・・, price: 15, type: "eyes" },
-  { id: "pink_glasses", name: "縺ｾ繧九ａ縺後・", emoji: "蒼", price: 10, type: "eyes" },
-  { id: "stars_eyes", name: "縺頑弌縺輔∪縺ｮ逶ｮ", emoji: "､ｩ", price: 22, type: "eyes" },
-  { id: "monocle", name: "縺九◆繧縺阪ａ縺後・", emoji: "ｧ・, price: 18, type: "eyes" },
+  { id: "glasses", name: "サングラス", emoji: "🕶️", price: 15, type: "eyes" },
+  { id: "pink_glasses", name: "まるめがね", emoji: "👓", price: 10, type: "eyes" },
+  { id: "stars_eyes", name: "お星さまの目", emoji: "🤩", price: 22, type: "eyes" },
+  { id: "monocle", name: "かたむきめがね", emoji: "🧐", price: 18, type: "eyes" },
   
   // BODY ACCESSORIES (clothes slot)
-  { id: "ribbon", name: "縺九ｏ縺・＞繝ｪ繝懊Φ", emoji: "死", price: 8, type: "clothes" },
-  { id: "cape", name: "鬲疲ｳ輔・繝槭Φ繝・, emoji: "ｧ･", price: 20, type: "clothes" },
-  { id: "tie", name: "襍､縺・ロ繧ｯ繧ｿ繧､", emoji: "藻", price: 12, type: "clothes" },
-  { id: "scarf", name: "繧ゅ％繧ゅ％繝槭ヵ繝ｩ繝ｼ", emoji: "ｧ｣", price: 14, type: "clothes" },
-  { id: "armor", name: "蜍・・・繧医ｍ縺・, emoji: "孱・・, price: 35, type: "clothes" },
+  { id: "ribbon", name: "かわいいリボン", emoji: "🎀", price: 8, type: "clothes" },
+  { id: "cape", name: "魔法のマント", emoji: "🧥", price: 20, type: "clothes" },
+  { id: "tie", name: "赤いネクタイ", emoji: "👔", price: 12, type: "clothes" },
+  { id: "scarf", name: "もこもこマフラー", emoji: "🧣", price: 14, type: "clothes" },
+  { id: "armor", name: "勇者のよろい", emoji: "🛡️", price: 35, type: "clothes" },
   
   // HAND ACCESSORIES (hand slot)
-  { id: "wand", name: "鬲疲ｳ輔・縺､縺・, emoji: "ｪ・, price: 15, type: "hand" },
-  { id: "sword", name: "縺翫ｂ縺｡繧・・縺代ｓ", emoji: "笞費ｸ・, price: 22, type: "hand" },
-  { id: "book_hold", name: "縺｡縺・＆縺ｪ譛ｬ", emoji: "祷", price: 10, type: "hand" },
-  { id: "lantern", name: "繝斐き繝斐き繝ｩ繝ｳ繧ｿ繝ｳ", emoji: "尚", price: 18, type: "hand" },
-  { id: "balloon", name: "襍､縺・・縺・○繧・, emoji: "肢", price: 8, type: "hand" },
+  { id: "wand", name: "魔法のつえ", emoji: "🪄", price: 15, type: "hand" },
+  { id: "sword", name: "おもちゃのけん", emoji: "⚔️", price: 22, type: "hand" },
+  { id: "book_hold", name: "ちいさな本", emoji: "📘", price: 10, type: "hand" },
+  { id: "lantern", name: "ピカピカランタン", emoji: "🏮", price: 18, type: "hand" },
+  { id: "balloon", name: "赤いふうせん", emoji: "🎈", price: 8, type: "hand" },
   
   // ROOM ACCESSORIES (room slot)
-  { id: "room_forest", name: "譽ｮ譫励・縺企Κ螻・, emoji: "鹸", price: 15, type: "room" },
-  { id: "room_space", name: "螳・ｮ吶・縺企Κ螻・, emoji: "血", price: 25, type: "room" },
-  { id: "room_castle", name: "縺雁沁縺ｮ縺企Κ螻・, emoji: "床", price: 35, type: "room" },
-  { id: "room_sea", name: "豬ｷ縺ｮ縺ｪ縺九・縺企Κ螻・, emoji: "穴", price: 20, type: "room" },
-  { id: "room_sweet", name: "縺翫°縺励・縺企Κ螻・, emoji: "根", price: 25, type: "room" },
-  { id: "room_camp", name: "繧ｭ繝｣繝ｳ繝励・縺企Κ螻・, emoji: "笵ｺ", price: 18, type: "room" },
-  { id: "room_sakura", name: "縺輔￥繧峨・縺企Κ螻・, emoji: "減", price: 22, type: "room" }
+  { id: "room_forest", name: "森林のお部屋", emoji: "🌲", price: 15, type: "room" },
+  { id: "room_space", name: "宇宙のお部屋", emoji: "🌌", price: 25, type: "room" },
+  { id: "room_castle", name: "お城のお部屋", emoji: "🏰", price: 35, type: "room" },
+  { id: "room_sea", name: "海のなかのお部屋", emoji: "🌊", price: 20, type: "room" },
+  { id: "room_sweet", name: "おかしのお部屋", emoji: "🍪", price: 25, type: "room" },
+  { id: "room_camp", name: "キャンプのお部屋", emoji: "⛺", price: 18, type: "room" },
+  { id: "room_sakura", name: "さくらのお部屋", emoji: "🌸", price: 22, type: "room" }
 ];
 // Badge Database (Expanded to 27 achievements covering reading metrics, text reviews, streaks, shop accessories, level milestones, wishlist interactions)
 const BADGES = [
   // 1. Reading Volumes Milestones
-  { id: "first_step", name: "縺ｯ縺倥ａ縺ｦ縺ｮ荳豁ｩ", emoji: "験", desc: "縺ｯ縺倥ａ縺ｦ譛ｬ繧堤匳骭ｲ縺励◆繧茨ｼ・ },
-  { id: "reader_pro", name: "繧医∩縺阪ｊ蜷堺ｺｺ", emoji: "当", desc: "譛ｬ繧・縺輔▽逋ｻ骭ｲ縺励◆繧茨ｼ・ },
-  { id: "reading_king", name: "隱ｭ譖ｸ縺翫≧縺輔∪", emoji: "荘", desc: "譛ｬ繧・0縺輔▽逋ｻ骭ｲ縺励◆繧茨ｼ・ },
-  { id: "reading_god", name: "繧医∩縺阪ｊ縺ｮ逾槭＆縺ｾ", emoji: "笨ｨ", desc: "譛ｬ繧・5縺輔▽逋ｻ骭ｲ縺励◆繧茨ｼ・ },
+  { id: "first_step", name: "はじめての一歩", emoji: "🌱", desc: "はじめて本を登録したよ！" },
+  { id: "reader_pro", name: "よみきり名人", emoji: "📖", desc: "本を5さつ登録したよ！" },
+  { id: "reading_king", name: "読書おうさま", emoji: "👑", desc: "本を10さつ登録したよ！" },
+  { id: "reading_god", name: "よみきりの神さま", emoji: "✨", desc: "本を25さつ登録したよ！" },
   
   // 2. Writing Review Milestones
-  { id: "writer", name: "縺九ｓ縺昴≧螳ｶ繝・ン繝･繝ｼ", emoji: "笨搾ｸ・, desc: "縺ｯ縺倥ａ縺ｦ諢滓Φ繧偵°縺・◆繧茨ｼ・ },
-  { id: "critic", name: "縺ｲ繧・≧縺句錐莠ｺ", emoji: "統", desc: "諢滓Φ繧・蝗槭°縺・◆繧茨ｼ・ },
-  { id: "novelist", name: "縺翫・縺ｪ縺嶺ｽ懷ｮｶ", emoji: "幕・・, desc: "諢滓Φ繧・0蝗槭°縺・◆繧茨ｼ・ },
+  { id: "writer", name: "かんそう家デビュー", emoji: "✍️", desc: "はじめて感想をかいたよ！" },
+  { id: "critic", name: "ひょうか名人", emoji: "📝", desc: "感想を5回かいたよ！" },
+  { id: "novelist", name: "おはなし作家", emoji: "🖋️", desc: "感想を10回かいたよ！" },
   
   // 3. Category/Genre Mastery
-  { id: "picture_book", name: "縺医⊇繧薙・繧ｹ繧ｿ繝ｼ", emoji: "耳", desc: "縺医⊇繧薙・縺壹°繧薙ｒ隱ｭ繧薙□繧茨ｼ・ },
-  { id: "adventure", name: "縺ｼ縺・￠繧鍋視", emoji: "ｧｭ", desc: "縺翫・縺ｪ縺励・縺ｼ縺・￠繧薙ｒ隱ｭ繧薙□繧茨ｼ・ },
-  { id: "animal", name: "縺・″繧ゅ・繝峨け繧ｿ繝ｼ", emoji: "ｦ・, desc: "縺ｩ縺・・縺､繝ｻ縺・″繧ゅ・繧定ｪｭ繧薙□繧茨ｼ・ },
-  { id: "science_fan", name: "縺九′縺上・縺九○", emoji: "溌", desc: "縺九′縺上・縺励ｃ縺九＞繧定ｪｭ繧薙□繧茨ｼ・ },
-  { id: "other_fan", name: "繧ゅ・縺励ｊ縺ｯ縺九○", emoji: "庁", desc: "縺昴・莉悶ず繝｣繝ｳ繝ｫ縺ｮ譛ｬ繧定ｪｭ繧薙□繧茨ｼ・ },
-  { id: "all_genres", name: "蜈ｨ繧ｸ繝｣繝ｳ繝ｫ繧医ｓ縺・・, emoji: "遵", desc: "4縺､莉･荳翫・繧ｸ繝｣繝ｳ繝ｫ繧定ｪｭ繧薙□繧茨ｼ・ },
+  { id: "picture_book", name: "えほんマスター", emoji: "🎨", desc: "えほん・ずかんを読んだよ！" },
+  { id: "adventure", name: "ぼうけん王", emoji: "🧭", desc: "おはなし・ぼうけんを読んだよ！" },
+  { id: "animal", name: "いきものドクター", emoji: "🦁", desc: "どうぶつ・いきものを読んだよ！" },
+  { id: "science_fan", name: "かがくはかせ", emoji: "🔬", desc: "かがく・しゃかいを読んだよ！" },
+  { id: "other_fan", name: "ものしりはかせ", emoji: "💡", desc: "その他ジャンルの本を読んだよ！" },
+  { id: "all_genres", name: "全ジャンルよんだ！", emoji: "🏅", desc: "4つ以上のジャンルを読んだよ！" },
   
   // 4. Reading Streak Habits
-  { id: "streak_3", name: "3譌･騾｣邯壹ｈ繧薙□・・, emoji: "櫨", desc: "3譌･騾｣邯壹〒隱ｭ譖ｸ繧定ｨ倬鹸縺励◆繧茨ｼ・ },
-  { id: "streak_5", name: "5譌･騾｣邯壹ｈ繧薙□・・, emoji: "笞｡", desc: "5譌･騾｣邯壹〒隱ｭ譖ｸ繧定ｨ倬鹸縺励◆繧茨ｼ・ },
-  { id: "streak_7", name: "1騾ｱ髢薙ｈ縺ｿ縺阪▲縺滂ｼ・, emoji: "決", desc: "7譌･騾｣邯壹〒隱ｭ譖ｸ繧定ｨ倬鹸縺励◆繧茨ｼ・ },
+  { id: "streak_3", name: "3日連続よんだ！", emoji: "🔥", desc: "3日連続で読書を記録したよ！" },
+  { id: "streak_5", name: "5日連続よんだ！", emoji: "⚡", desc: "5日連続で読書を記録したよ！" },
+  { id: "streak_7", name: "1週間よみきった！", emoji: "🌈", desc: "7日連続で読書を記録したよ！" },
   
   // 5. Coin Rewards
-  { id: "coin_rich", name: "繧ｳ繧､繝ｳ謖√■", emoji: "腸", desc: "繧ｳ繧､繝ｳ繧・0譫壹◆繧√◆繧茨ｼ・ },
-  { id: "coin_millionaire", name: "螟ｧ縺九・謖√■", emoji: "虫", desc: "繧ｳ繧､繝ｳ繧・00譫壹◆繧√◆繧茨ｼ・ },
+  { id: "coin_rich", name: "コイン持ち", emoji: "💰", desc: "コインを50枚ためたよ！" },
+  { id: "coin_millionaire", name: "大かね持ち", emoji: "💎", desc: "コインを100枚ためたよ！" },
   
   // 6. Mascot Customization & Room Makeovers
-  { id: "fashion_beginner", name: "繧ｪ繧ｷ繝｣繝ｬ蜈･髢", emoji: "自", desc: "繧ｷ繝ｧ繝・・縺ｧ繧｢繧､繝・Β繧・縺､謇九↓蜈･繧後◆繧茨ｼ・ },
-  { id: "fashion_model", name: "繧ｪ繧ｷ繝｣繝ｬ縺ｮ驕比ｺｺ", emoji: "ｧ･", desc: "繧ｷ繝ｧ繝・・縺ｧ繧｢繧､繝・Β繧・縺､謇九↓蜈･繧後◆繧茨ｼ・ },
-  { id: "fashion_king", name: "縺阪○縺九∴螟ｧ縺翫≧", emoji: "荘", desc: "繧ｷ繝ｧ繝・・縺ｧ繧｢繧､繝・Β繧・0縺､謇九↓蜈･繧後◆繧茨ｼ・ },
-  { id: "room_decorator", name: "縺企Κ螻九ョ繧ｶ繧､繝翫・", emoji: "笵ｺ", desc: "縺企Κ螻九・縺阪○縺九∴繧偵・縺倥ａ縺ｦ縺翫％縺ｪ縺｣縺溘ｈ・・ },
+  { id: "fashion_beginner", name: "オシャレ入門", emoji: "🎩", desc: "ショップでアイテムを1つ手に入れたよ！" },
+  { id: "fashion_model", name: "オシャレの達人", emoji: "🧥", desc: "ショップでアイテムを5つ手に入れたよ！" },
+  { id: "fashion_king", name: "きせかえ大おう", emoji: "👑", desc: "ショップでアイテムを10つ手に入れたよ！" },
+  { id: "room_decorator", name: "お部屋デザイナー", emoji: "⛺", desc: "お部屋のきせかえをはじめておこなったよ！" },
   
   // 7. Reading Level Milestones
-  { id: "level_5", name: "繝ｬ繝吶Ν5縺ｫ縺ｪ縺｣縺溘ｈ", emoji: "醇", desc: "繧医ｓ縺ｩ縺上Ξ繝吶Ν縺・縺ｫ縺ｪ縺｣縺滂ｼ・ },
-  { id: "level_10", name: "繝ｬ繝吶Ν10螟ｧ縺ｾ縺ｻ縺・▽縺九＞", emoji: "ｧ・, desc: "繧医ｓ縺ｩ縺上Ξ繝吶Ν縺・0縺ｫ縺ｪ縺｣縺滂ｼ√☆縺斐☆縺弱ｋ・・ },
+  { id: "level_5", name: "レベル5になったよ", emoji: "🏆", desc: "よんどくレベルが5になった！" },
+  { id: "level_10", name: "レベル10大まほうつかい", emoji: "🧁", desc: "よんどくレベルが10になった！すごすぎる！" },
   
   // 8. Wishlist Discoveries
-  { id: "wishlist_fan", name: "繧医∩縺溘＞謗｢豎り・, emoji: "剥", desc: "縺翫☆縺吶ａ譛ｬ繧・縺輔▽繧医∩縺溘＞繝ｪ繧ｹ繝医↓蜈･繧後◆繧茨ｼ・ },
-  { id: "wishlist_fulfilled", name: "螟｢縺後°縺ｪ縺｣縺滂ｼ・, emoji: "氏", desc: "隕ｪ縺ｫ雋ｷ縺｣縺ｦ繧ゅｉ縺｣縺滓悽繝ｪ繧ｹ繝医°繧・縺輔▽豸亥悉縺輔ｌ縺滂ｼ・ }
+  { id: "wishlist_fan", name: "よみたい探求者", emoji: "🔍", desc: "おすすめ本を5さつよみたいリストに入れたよ！" },
+  { id: "wishlist_fulfilled", name: "夢がかなった！", emoji: "🎁", desc: "親に買ってもらった本リストから2さつ消去された！" }
 ];
 // Cute Encouraging Speeches for "よんだーくん" Default Mode
 const LOCAL_AI_TEMPLATES = {
   happy: [
-    "繧上≠・√施title}縲上ｒ繧医ｓ縺ｧ繝ｯ繧ｯ繝ｯ繧ｯ縺励◆繧薙□縺ｭ・√鶏snippet}縲阪▲縺ｦ縺九＞縺ｦ縺上ｌ縺溘→縺薙ｍ縲√ｈ繧薙□繝ｼ縺上ｓ繧ょ､ｧ縺吶″縺繧茨ｼ√％縺ｮ譛ｬ繧偵ｈ繧薙〒縲√→縺｣縺ｦ繧ゅワ繝・ヴ繝ｼ縺ｪ縺阪ｂ縺｡縺ｫ縺ｪ繧後◆縺ｮ縲√⊇繧薙→縺・↓縺吶※縺阪↑縺薙→縺縺ｭ・Å沍ｸ",
-    "縺吶※縺阪↑縺九ｓ縺昴≧縺ゅｊ縺後→・√施title}縲上・縺吶▲縺斐￥縺翫ｂ縺励ｍ縺・悽縺繧医・・√鶏snippet}縲阪▲縺ｦ縺ゅｋ縺ｨ縺薙ｍ縲√ｈ繧薙□繝ｼ縺上ｓ繧りｪｭ縺ｿ縺溘￥縺ｪ縺｣縺｡繧・▲縺滂ｼ√″縺ｿ縺ｮ繧ｭ繝ｩ繧ｭ繝ｩ縺励◆逶ｮ縺檎岼縺ｫ豬ｮ縺九・繧茨ｼÅ汨笨ｨ",
-    "縺翫ｂ縺励ｍ縺・悽縺ｫ蜃ｺ莨壹∴縺ｦ繧医°縺｣縺溘・・√施title}縲上ｒ繧医ｓ縺ｧ縲√鶏snippet}縲阪▲縺ｦ縺阪▼縺代ｋ縺ｪ繧薙※縲√″縺ｿ縺ｯ繧ゅ≧繧翫▲縺ｱ縺ｪ隱ｭ譖ｸ縺ｮ繝励Ο縺繧茨ｼ√▽縺弱・譛ｬ繧ゅｏ縺上ｏ縺上＠縺｡繧・≧縺ｭ・Å沁・
+    "わあ！『{title}』をよんでワクワクしたんだね！「{snippet}」ってかいてくれたところ、よんだーくんも大すきだよ！この本をよんで、とってもハッピーなきもちになれたの、ほんとうにすてきなことだね！🌸",
+    "すてきなかんそうありがと！『{title}』はすっごくおもしろい本だよね！「{snippet}」ってあるところ、よんだーくんも読みたくなっちゃった！きみのキラキラした目が目に浮かぶよ！👀✨",
+    "おもしろい本に出会えてよかったね！『{title}』をよんで、「{snippet}」ってきづけるなんて、きみはもうりっぱな読書のプロだよ！つぎの本もわくわくしちゃうね！🎁"
   ],
   sad: [
-    "縲施title}縲上ｒ繧医ｓ縺ｧ縲√☆縺薙＠縺帙▽縺ｪ縺・″繧ゅ■縺ｫ縺ｪ縺｣縺溘ｓ縺縺ｭ縲よ悽縺ｮ縺ｪ縺九・縺薙→縺ｰ繧・〒縺阪＃縺ｨ縺ｫ縲√＠縺｣縺九ｊ縺阪ｂ縺｡繧偵ｈ繧翫◎繧上○繧九％縺ｨ縺後〒縺阪◆縺ｮ縲√→縺｣縺ｦ繧ゅｄ縺輔＠縺・ｪｭ譖ｸ螳ｶ縺輔ｓ縺繧茨ｼ√ｄ縺輔＠縺・″縺ｿ縺ｫ縺ｪ繧後※邏譎ｴ繧峨＠縺・ｼÅ沍ｸ",
-    "縺九↑縺励＞縺翫・縺ｪ縺励□縺｣縺溘ｓ縺縺ｭ縲ゅ〒繧ゅ√◎縺ｮ縺九↑縺励＆繧偵鶏snippet}縲阪▲縺ｦ縺阪∩縺ｮ縺薙→縺ｰ縺ｧ譖ｸ縺代ｋ縺ｪ繧薙※縲√⊇繧薙→縺・↓縺吶＃縺・｡ｨ迴ｾ蜉帙□繧茨ｼ∵悽縺ｯ縲√＞繧阪ｓ縺ｪ縺阪ｂ縺｡繧呈蕗縺医※縺上ｌ繧九ゅｈ繧薙□繝ｼ縺上ｓ縺後ぐ繝･繝・→縺励※縺ゅ￡繧具ｼÅ汾ｾ"
+    "『{title}』をよんで、すこしせつないきもちになったんだね。本のなかのことばやできごとに、しっかりきもちをよりそわせることができたの、とってもやさしい読書家さんだよ！やさしいきみになれて素晴らしい！🌸",
+    "かなしいおはなしだったんだね。でも、そのかなしさを「{snippet}」ってきみのことばで書けるなんて、ほんとうにすごい表現力だよ！本は、いろんなきもちを教えてくれる。よんだーくんがギュッとしてあげる！🐾"
   ],
   thrill: [
-    "繧上≠・√施title}縲上・縺吶▲縺斐￥縺ｩ縺阪←縺阪☆繧九♀縺ｯ縺ｪ縺励□縺｣縺溘ｓ縺縺ｭ・√鶏snippet}縲阪・縺ｨ縺薙ｍ縺後√ワ繝ｩ繝上Λ縺励※逶ｮ縺後・縺ｪ縺帙↑縺九▲縺溘・縺九↑・溷､ｧ縺ｼ縺・￠繧薙ｒ縺励◆縺ｿ縺溘＞縺ｧ繧ｫ繝・さ縺・＞縺橸ｼÅ洫ｭ",
-    "縺ｩ縺阪←縺榊､ｧ縺薙≧縺ｵ繧難ｼ√施title}縲上ｒ繧医ｓ縺ｧ縲√鶏snippet}縲阪▲縺ｦ諢溘§縺溘ｓ縺縺ｭ・√″縺ｿ繧ゆｸｻ莠ｺ蜈ｬ縺ｨ荳邱偵↓縲√ワ繝ｩ繝上Λ繧偵・繧翫％縺医◆繧薙□・√☆縺｣縺斐￥縺､繧医＞繝代Ρ繝ｼ繧呈─縺倥ｋ繧茨ｼ≫圍"
+    "わあ！『{title}』はすっごくどきどきするおはなしだったんだね！「{snippet}」のところが、ハラハラして目がはなせなかったのかな？大ぼうけんをしたみたいでカッコいいぞ！🧭",
+    "どきどき大こうふん！『{title}』をよんで、「{snippet}」って感じたんだね！きみも主人公と一緒に、ハラハラをのりこえたんだ！すっごくつよいパワーを感じるよ！⚡"
   ],
   hard: [
-    "縺吶％縺励・縺壹°縺励＞譛ｬ縺ｫ繝√Ε繝ｬ繝ｳ繧ｸ縺励◆繧薙□縺ｭ・√∴繧峨＞縺ｪ縺ゑｼ√・縺壹°縺励＞縺薙→縺ｰ繧・↑縺後＞縺翫・縺ｪ縺励ｒ縺輔＞縺斐∪縺ｧ繧医ｓ縺縺縺代〒縲√ｈ繧薙←縺上ヱ繝ｯ繝ｼ縺・00蛟阪い繝・・縺繧茨ｼ√▽縺弱・繧ゅ▲縺ｨ縺九ｓ縺溘ｓ縺ｫ隱ｭ繧√ｋ繧医≧縺ｫ縺ｪ繧九ｈ・Å汳ｪ",
-    "繧医￥縺輔＞縺斐∪縺ｧ縺後ｓ縺ｰ縺｣縺ｦ繧医ｓ縺縺ｭ・√∴繧峨＞・√施title}縲上〒縲鶏snippet}縲阪▲縺ｦ諢溘§縺溘・縺ｯ縲√″縺ｿ縺後◆縺上＆繧馴ｭ繧偵▽縺九▲縺ｦ閠・∴縺溘°繧峨□繧茨ｼ√ｈ繧薙□繝ｼ縺上ｓ縺ｯ縺阪∩縺ｮ縺薙→縺悟､ｧ縺吶″縺縺励∝､ｧ縺昴ｓ縺代＞縺励■繧・≧繧茨ｼÅ沍・
+    "すこしむずかしい本にチャレンジしたんだね！えらいなあ！むずかしいことばやながいおはなしをさいごまでよんだだけで、よんどくパワーが100倍アップだよ！つぎはもっとかんたんに読めるようになるよ！💪",
+    "よくさいごまでがんばってよんだね！えらい！『{title}』で「{snippet}」って感じたのは、きみがたくさん頭をつかって考えたからだよ！よんだーくんはきみのことが大すきだし、大そんけいしちゃうよ！🌟"
   ],
   surprise: [
-    "縺ｸ縺医∴・√施title}縲上ｒ繧医ｓ縺ｧ縺ｳ縺｣縺上ｊ縺励◆繧薙□縺ｭ・√←繧薙↑螟ｧ縺ｯ縺｣縺代ｓ縺後≠縺｣縺溘・縺九↑・溘鶏snippet}縲阪・縺ｨ縺薙ｍ縲√ｈ繧薙□繝ｼ縺上ｓ繧ゅ・縺｣縺上ｊ縺励■繧・▲縺滂ｼ√≠縺溘ｉ縺励＞縺薙→繧堤衍繧九▲縺ｦ縲√ｏ縺上ｏ縺上☆繧九・・Å沁・,
-    "縺ｳ縺｣縺上ｊ縺弱ｇ縺・※繧難ｼ√施title}縲上〒縲鶏snippet}縲阪▲縺ｦ縺ｨ縺薙ｍ縲√・縺｣縺上ｊ縺励■繧・≧繧医・・∵悽繧偵ｈ繧縺ｨ縲√＞繧阪ｓ縺ｪ縲後∈縺医懶ｼ√阪↓蜃ｺ莨壹∴繧九ゅ″縺ｿ縺ｮ縺ゅ◆縺ｾ縺ｮ縺ｪ縺九↓縲∵眠縺励＞蠑輔″蜃ｺ縺励′蠅励∴縺溘ｈ・Å沐・
+    "へええ！『{title}』をよんでびっくりしたんだね！どんな大はっけんがあったのかな？「{snippet}」のところ、よんだーくんもびっくりしちゃった！あたらしいことを知るって、わくわくするね！🎁",
+    "びっくりぎょうてん！『{title}』で「{snippet}」ってところ、びっくりしちゃうよね！本をよむと、いろんな「へえ〜！」に出会える。きみのあたまのなかに、新しい引き出しが増えたよ！🔑"
   ],
   default: [
-    "縲施title}縲上ｒ繧医ｓ縺ｧ縺上ｌ縺ｦ縺ゅｊ縺後→縺・ｼ√＞縺｣縺励ｇ縺・￠繧薙ａ縺・─諠ｳ繧偵°縺・※縺上ｌ縺溘・縲√ｈ繧薙□繝ｼ縺上ｓ縺ｯ縺ｨ縺｣縺ｦ繧ゅ≧繧後＠縺・ｈ・√″縺ｿ縺ｮ隱ｭ譖ｸ縺ｯ縺・▽縺ｧ繧ょ､ｧ縺帙＞縺薙≧・√▽縺弱ｂ荳邱偵↓隱ｭ繧阪≧縺ｭ・Å沒・,
-    "繧上≠縲∬ｪｭ繧薙□繧薙□縺ｭ・√施title}縲上・縺ｨ縺｣縺ｦ繧ゅ☆縺ｦ縺阪↑譛ｬ縺繧医ゅ″縺ｿ縺後鶏snippet}縲阪▲縺ｦ譖ｸ縺・※縺上ｌ縺溘°繧峨√ｈ繧薙□繝ｼ縺上ｓ繧ゅ◎縺ｮ譛ｬ縺悟､ｧ螂ｽ縺阪↓縺ｪ縺｣縺｡繧・▲縺滂ｼ√∪縺溘♀縺ｯ縺ｪ縺励＠繧医≧縺ｭ・Å沍ｸ"
+    "『{title}』をよんでくれてありがとう！いっしょうけんめい感想をかいてくれたの、よんだーくんはとってもうれしいよ！きみの読書はいつでも大せいこう！つぎも一緒に読もうね！📁",
+    "わあ、読んだんだね！『{title}』はとってもすてきな本だよ。きみが「{snippet}」って書いてくれたから、よんだーくんもその本が大好きになっちゃった！またおはなししようね！🌸"
   ]
 };
 // Active Scanner Instance
@@ -1528,7 +1528,7 @@ function showAISpeechModal(book, xpReward, coinReward, isLevelUp, newLevel, unlo
   const modal = document.getElementById("info-modal");
   if (!modal) return;
   
-  document.getElementById("info-modal-title").textContent = "繧医ｓ縺繝ｼ縺上ｓ縺九ｉ縺ｮ縺薙∴";
+  document.getElementById("info-modal-title").textContent = "よんだーくんからのこえ";
   
   // Custom dialog HTML
   let badgeHtml = "";
@@ -1536,37 +1536,37 @@ function showAISpeechModal(book, xpReward, coinReward, isLevelUp, newLevel, unlo
     unlockedBadges.forEach(badgeId => {
       const b = BADGES.find(x => x.id === badgeId);
       if (b) {
-        badgeHtml += 
+        badgeHtml += `
           <div style="background-color: var(--color-secondary-light); border: 2px solid var(--color-secondary); border-radius: 12px; padding: 12px; margin-top: 12px; text-align: center; animation: float 3s ease-in-out infinite;">
-            <span style="font-size: 32px;">\</span>
-            <h4 style="color:var(--color-text-dark); font-weight:900; margin: 4px 0;">繝舌ャ繧ｸ縲圭縲・/h4>
-            <p style="font-size: 11px; color:var(--color-text-light);">\</p>
+            <span style="font-size: 32px;">${b.emoji}</span>
+            <h4 style="color:var(--color-text-dark); font-weight:900; margin: 4px 0;">バッジ「${b.name}」</h4>
+            <p style="font-size: 11px; color:var(--color-text-light);">${b.desc}</p>
           </div>
-        ;
+        `;
       }
     });
   }
   
   let levelUpHtml = "";
   if (isLevelUp) {
-    levelUpHtml = 
+    levelUpHtml = `
       <div style="background-color: var(--color-success-light); border: 2px solid var(--color-success); border-radius: 12px; padding: 12px; margin-top: 12px; text-align: center;">
-        <span style="font-size: 32px;">脂</span>
-        <h4 style="color:var(--color-success); font-weight:900; margin: 4px 0;">繝ｬ繝吶Ν繧｢繝・・・・/h4>
-        <p style="font-size: 11px; color:var(--color-text-dark);">繝ｬ繝吶Ν \ 縺ｫ縺ｪ縺｣縺溘ｈ・√♀繧√〒縺ｨ縺・ｼÅ沍・/p>
+        <span style="font-size: 32px;">🎉</span>
+        <h4 style="color:var(--color-success); font-weight:900; margin: 4px 0;">レベルアップ！</h4>
+        <p style="font-size: 11px; color:var(--color-text-dark);">レベル ${newLevel} になったよ！おめでとう！🌟</p>
       </div>
-    ;
+    `;
   }
   
-  const contentHtml = 
+  const contentHtml = `
     <div style="display:flex; flex-direction:column; gap:14px;">
       
       <!-- Scanned Book Info -->
       <div style="display:flex; align-items:center; gap:12px; background-color: var(--color-primary-light); padding:10px; border-radius:12px; border:1.5px solid var(--color-border);">
-        <img src="\" alt="cover" style="width: 48px; height: 68px; object-fit:cover; border-radius:6px; box-shadow:var(--shadow-sm); display: \;">
+        <img src="${book.cover}" alt="cover" style="width: 48px; height: 68px; object-fit:cover; border-radius:6px; box-shadow:var(--shadow-sm); display: ${book.cover ? 'block' : 'none'};">
         <div>
-          <div style="font-weight:900; font-size:14px; color:var(--color-text-dark);">\</div>
-          <span style="font-size:11px; color:var(--color-text-light);">\</span>
+          <div style="font-weight:900; font-size:14px; color:var(--color-text-dark);">${shortenTitle(book.title, 24)}</div>
+          <span style="font-size:11px; color:var(--color-text-light);">${book.author}</span>
         </div>
       </div>
       
@@ -1576,29 +1576,29 @@ function showAISpeechModal(book, xpReward, coinReward, isLevelUp, newLevel, unlo
           <!-- Small dynamic mascot avatar -->
         </div>
         <div style="background-color: white; border: 2px solid var(--color-primary); border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.5; color: var(--color-text-dark); position: relative; flex:1; box-shadow: var(--shadow-sm);">
-          \
+          ${book.aiSpeech}
         </div>
       </div>
       
       <!-- Rewards box -->
       <div style="display:flex; justify-content:space-around; align-items:center; background-color:#fcfcfc; border:2px dashed var(--color-border); border-radius:12px; padding:12px; margin-top:8px;">
         <div style="text-align:center;">
-          <div style="font-size:20px; font-weight:900; color:var(--color-primary);">+\</div>
-          <div style="font-size:10px; color:var(--color-text-light);">繧医ｓ縺ｩ縺上ヱ繝ｯ繝ｼ(XP)</div>
+          <div style="font-size:20px; font-weight:900; color:var(--color-primary);">+${xpReward}</div>
+          <div style="font-size:10px; color:var(--color-text-light);">よんどくパワー(XP)</div>
         </div>
         <div style="width:2px; height:24px; background-color:var(--color-border);"></div>
         <div style="text-align:center;">
-          <div style="font-size:20px; font-weight:900; color:#ffaa00;">+\泯</div>
-          <div style="font-size:10px; color:var(--color-text-light);">繧医ｓ縺繧ｳ繧､繝ｳ</div>
+          <div style="font-size:20px; font-weight:900; color:#ffaa00;">+${coinReward}🟡</div>
+          <div style="font-size:10px; color:var(--color-text-light);">よんだコイン</div>
         </div>
       </div>
       
-      \
-      \
+      ${levelUpHtml}
+      ${badgeHtml}
       
-      <button class="btn btn-primary" id="btn-modal-ok" style="margin-top:8px;">OK 噫</button>
+      <button class="btn btn-primary" id="btn-modal-ok" style="margin-top:8px;">OK 🚀</button>
     </div>
-  ;
+  `;
   
   document.getElementById("info-modal-body").innerHTML = contentHtml;
   drawMascot("modal-speech-mascot-container");
@@ -1621,43 +1621,43 @@ function showBookDetailModal(book) {
   const modal = document.getElementById("info-modal");
   if (!modal) return;
   
-  document.getElementById("info-modal-title").textContent = "譛ｬ譽壹・縺阪ｍ縺・;
+  document.getElementById("info-modal-title").textContent = "本棚のきろく";
   
   const feelingEmojis = {
-    happy: "・ 縺翫ｂ縺励ｍ縺・,
-    thrill: "笞｡・・縺ｩ縺阪←縺・,
-    sad: "个 縺九↑縺励＞",
-    hard: "､・繧縺壹°縺励＞",
-    surprise: "亟 縺ｳ縺｣縺上ｊ"
+    happy: "😄 おもしろい",
+    thrill: "⚡️ どきどき",
+    sad: "😢 かなしい",
+    hard: "🤔 むずかしい",
+    surprise: "😲 びっくり"
   };
   
-  const feelingStamp = feelingEmojis[book.feeling] || "当 繧医ｓ縺繧・;
+  const feelingStamp = feelingEmojis[book.feeling] || "📖 よんだよ";
   
-  const contentHtml = 
+  const contentHtml = `
     <div style="display:flex; flex-direction:column; gap:14px;">
       <div style="display:flex; align-items:center; gap:12px; background-color: var(--color-primary-light); padding:10px; border-radius:12px; border:1.5px solid var(--color-border);">
-        <img src="\" alt="cover" style="width: 48px; height: 68px; object-fit:cover; border-radius:6px; box-shadow:var(--shadow-sm); display: \;">
+        <img src="${book.cover}" alt="cover" style="width: 48px; height: 68px; object-fit:cover; border-radius:6px; box-shadow:var(--shadow-sm); display: ${book.cover ? 'block' : 'none'};">
         <div>
-          <div style="font-weight:900; font-size:14px; color:var(--color-text-dark);">\</div>
-          <span style="font-size:11px; color:var(--color-text-light);">\</span>
+          <div style="font-weight:900; font-size:14px; color:var(--color-text-dark);">${book.title}</div>
+          <span style="font-size:11px; color:var(--color-text-light);">${book.author || "さくしゃ不明"}</span>
         </div>
       </div>
       
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
         <span style="background-color: var(--color-primary-light); border:1.5px solid var(--color-primary); color:var(--color-primary); padding:2px 10px; border-radius:12px; font-size:11px; font-weight:900;">
-          \
+          ${feelingStamp}
         </span>
         <span style="background-color: var(--color-success-light); border:1.5px solid var(--color-success); color:var(--color-success); padding:2px 10px; border-radius:12px; font-size:11px; font-weight:900;">
-          耳 \
+          🎨 ${book.categoryName || "えほん"}
         </span>
         <span style="background-color:#f5f0eb; border:1.5px solid #dcd0c4; color:var(--color-text-light); padding:2px 10px; border-radius:12px; font-size:11px; font-weight:900;">
-          套 \
+          📅 ${book.date || "読んだ日"}
         </span>
       </div>
       
       <div style="background-color: #faf8f5; border: 1.5px solid var(--color-border); border-radius: 12px; padding: 12px; margin-top: 4px;">
-        <strong style="font-size:11px; color:var(--color-primary); display:block; margin-bottom:4px;">笨擾ｸ・縺阪∩縺ｮ諢滓Φ・医°繧薙◎縺・ｼ・/strong>
-        <p style="line-height:1.5; font-size:13px; margin:0; color:var(--color-text-dark); white-space:pre-wrap;">\</p>
+        <strong style="font-size:11px; color:var(--color-primary); display:block; margin-bottom:4px;">✏️ きみの感想（かんそう）</strong>
+        <p style="line-height:1.5; font-size:13px; margin:0; color:var(--color-text-dark); white-space:pre-wrap;">${book.comment || "かんそうは書かなかったよ。つぎは書いてみよう！"}</p>
       </div>
       
       <div style="display:flex; gap:12px; align-items:flex-start; margin-top: 4px;">
@@ -1665,14 +1665,14 @@ function showBookDetailModal(book) {
           <!-- Small dynamic mascot avatar -->
         </div>
         <div style="background-color: white; border: 2px solid var(--color-primary); border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.5; color: var(--color-text-dark); position: relative; flex:1; box-shadow: var(--shadow-sm);">
-          <strong style="font-size:10px; color:var(--color-primary); display:block; margin-bottom:2px;">ｦ・繧医ｓ縺繝ｼ縺上ｓ縺ｮ縺薙∴縺九￠</strong>
-          \
+          <strong style="font-size:10px; color:var(--color-primary); display:block; margin-bottom:2px;">🦖 よんだーくんのこえかけ</strong>
+          ${book.aiSpeech || "よくがんばって読んだね！すごいぞ！"}
         </div>
       </div>
       
-      <button class="btn btn-primary" id="btn-modal-ok" style="margin-top:8px;">縺ｨ縺倥ｋ</button>
+      <button class="btn btn-primary" id="btn-modal-ok" style="margin-top:8px;">とじる</button>
     </div>
-  ;
+  `;
   
   document.getElementById("info-modal-body").innerHTML = contentHtml;
   drawMascot("modal-detail-mascot-container");
@@ -1799,12 +1799,12 @@ async function renderRecommendations() {
     return;
   }
 
-  container.innerHTML = 
+  container.innerHTML = `
     <div class="loader-placeholder" style="text-align:center; padding:20px; color:var(--color-primary);">
       <div style="width: 24px; height: 24px; border: 3px solid var(--color-primary-light); border-top: 3px solid var(--color-primary); border-radius:50%; animation: float 1s linear infinite; margin: 0 auto 10px;"></div>
-      <p style="font-size:11px; font-weight:900;">繧医ｓ縺繝ｼ縺上ｓ縺後♀縺吶☆繧√・譛ｬ繧偵＆縺後＠縺ｦ縺・∪縺・..</p>
+      <p style="font-size:11px; font-weight:900;">よんだーくんがおすすめの本をさがしています...</p>
     </div>
-  ;
+  `;
 
   if (state.geminiApiKey) {
     try {
@@ -1858,6 +1858,7 @@ async function renderRecommendations() {
   renderRecommendationCards(state.currentRecommendations);
 }
 
+// Fetch Recommended custom hooks in batch from Gemini
 // Render cards list from state
 function renderRecommendationCards(books) {
   const container = document.getElementById("recommendations-container");
@@ -1868,7 +1869,7 @@ function renderRecommendationCards(books) {
       <div style="background-color: var(--color-success-light); border: 2px dashed var(--color-success); border-radius: var(--radius-md); padding: 20px; text-align: center; color: var(--color-text-dark);">
         <span style="font-size: 32px;">🎉</span>
         <h4 style="font-weight: 900; margin: 8px 0 4px;">きょうのおすすめはぜんぶチェックしたよ！</h4>
-        <p style="font-size: 11px; color: var(--color-text-light);">またあした、あたらしい本をえらぶからおたのしみにね！📖</p>
+        <p style="font-size: 11px; color: var(--color-text-light);">またあした、あたらしい本をえらぶからおたのしみにね！📁</p>
       </div>
     `;
     return;
@@ -1876,6 +1877,8 @@ function renderRecommendationCards(books) {
 
   container.innerHTML = "";
   books.forEach((book, idx) => {
+    if (!book) return;
+
     const card = document.createElement("div");
     card.className = "recommendation-card";
     card.id = `rec-card-${idx}`;
@@ -1886,67 +1889,73 @@ function renderRecommendationCards(books) {
           ${book.coverChar || '📖'}
         </div>
         <div class="rec-book-info">
-          <div class="rec-book-title">${book.title}</div>
-          <div class="rec-book-author">${book.author}</div>
-          <span class="rec-book-genre" style="background-color: ${getGenreBgColor(book.category)}; color: ${getGenreTextColor(book.category)};">
-            ${book.categoryName || 'よみもの'}
-          </span>
+          <div class="rec-book-title">${shortenTitle(book.title, 20)}</div>
+          <div class="rec-book-author">${book.author || 'さくしゃ不明'} ・ ${book.categoryName}</div>
         </div>
       </div>
-      <!-- よんだーくんのおすすめコメント -->
-      <div class="rec-speech-container">
-        <div class="rec-mini-avatar">🦊</div>
-        <div class="rec-speech-text">${book.desc}</div>
+      
+      <div class="rec-mascot-bubble-wrapper">
+        <div class="rec-mascot-avatar" id="rec-mascot-avatar-${idx}"></div>
+        <div class="rec-speech-bubble">
+          ${book.desc}
+        </div>
       </div>
-      <!-- 操作ボタン -->
-      <div class="rec-btn-group">
-        <button class="btn btn-primary rec-btn-want" onclick="handleWishlistAdd('${escapeJs(book.title)}', '${escapeJs(book.author)}', '${escapeJs(book.category)}', '${escapeJs(book.categoryName)}', '${escapeJs(book.coverChar)}', '${escapeJs(book.desc)}', ${idx})">
-          <i data-lucide="heart" style="width:14px; height:14px; fill:white;"></i> よみたい！
+      
+      <div class="rec-actions-row">
+        <button class="btn btn-outline btn-sm" onclick="handleWishlistDismiss(${idx})">
+          🗑️ ほかの本をみる
         </button>
-        <button class="btn btn-outline rec-btn-dismiss" onclick="handleWishlistDismiss(${idx})">
-          👋 べつの本
+        <button class="btn btn-primary btn-sm" onclick="handleWishlistAdd('${escapeJs(book.title)}', '${escapeJs(book.author)}', '${book.category}', '${book.categoryName}', '${book.coverChar}', '${escapeJs(book.desc)}', ${idx})">
+          ❤️ よみたい！
         </button>
       </div>
     `;
 
     container.appendChild(card);
+    drawMascot(`rec-mascot-avatar-${idx}`);
   });
-
-  // Re-run lucide icons loading
-  if (typeof lucide !== 'undefined') {
-    lucide.createIcons();
-  }
 }
 
-// Fetch Recommended custom hooks in batch from Gemini
 async function fetchGeminiRecommendations(booksHistory) {
-  const apiEndpoint = https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=\;
+  const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${state.geminiApiKey}`;
 
   const historyText = booksHistory.length > 0 
-    ? booksHistory.map((b, i) => [\] 繧ｿ繧､繝医Ν: \, 菴懆・ \, 繧ｸ繝｣繝ｳ繝ｫ: \, 豌玲戟縺｡繧ｹ繧ｿ繝ｳ繝・ \, 諢滓Φ繧ｳ繝｡繝ｳ繝・ "\").join("\n")
-    : "隱ｭ譖ｸ螻･豁ｴ縺ｯ縺ゅｊ縺ｾ縺帙ｓ縲ゅ％繧後°繧芽ｪｭ縺ｿ蟋九ａ繧九→縺薙ｍ縺ｧ縺吶・;
+    ? booksHistory.map((b, i) => `[${i+1}] タイトル: ${b.title}, 作者: ${b.author || "不明"}, ジャンル: ${b.categoryName}, 気持ちスタンプ: ${b.feeling}, 感想コメント: "${b.comment || "特になし"}"`).join("\n")
+    : "読書履歴はありません。これから読み始めるところです。";
 
-  const curatedLibraryStr = CURATED_RECOMMENDATIONS_LIBRARY.map((b, i) => 縲申縲・繧ｿ繧､繝医Ν: \, 菴懆・ \, 繧ｫ繝・ざ繝ｪ: \, 繧ｫ繝・ざ繝ｪ陦ｨ遉ｺ蜷・ \, 縺翫☆縺吶ａ邨ｵ譁・ｭ・ \, 蝓ｺ譛ｬ邏ｹ莉・ \).join("\n");
+  const curatedLibraryStr = CURATED_RECOMMENDATIONS_LIBRARY.map((b, i) => `【${i+1}】 タイトル: ${b.title}, 作者: ${b.author}, カテゴリ: ${b.category}, カテゴリ表示名: ${b.categoryName}, おすすめ絵文字: ${b.coverChar}, 基本紹介: ${b.desc}`).join("\n");
 
-  const promptText = 
-縺ゅ↑縺溘・縺雁ｭ先ｧ假ｼ亥ｰ丞ｭｦ譬｡荳ｭ蟄ｦ蟷ｴ縲憺ｫ伜ｭｦ蟷ｴ・牙髄縺代・隱ｭ譖ｸ蠢懈抄繝槭せ繧ｳ繝・ヨ縲後ｈ繧薙□繝ｼ縺上ｓ縲阪〒縺吶・縺雁ｭ先ｧ倥・縺薙ｌ縺ｾ縺ｧ縺ｮ縲占ｪｭ譖ｸ螻･豁ｴ・医ち繧､繝医Ν繧・─諠ｳ繧ｳ繝｡繝ｳ繝茨ｼ峨代ｒ縺倥▲縺上ｊ蛻・梵縺励※縲・譛ｬ譽壹・縲・0蜀翫・縺翫☆縺吶ａ蛟呵｣懊Λ繧､繝悶Λ繝ｪ縲代√∪縺溘・縲仙ｮ溷惠縺吶ｋ譌･譛ｬ縺ｮ譛牙錐縺ｪ蟄蝉ｾ帛髄縺第嶌邀搾ｼ亥・遶･譖ｸ縲√Λ繧､繝医ヮ繝吶Ν縲∝ｰ剰ｪｬ縲∫ｧ大ｭｦ邨ｵ譛ｬ縲∝峙髑代↑縺ｩ・峨代・荳ｭ縺九ｉ縲・莉翫・縺雁ｭ先ｧ倥↓縺ｴ縺｣縺溘ｊ縺ｪ縲仙ｮ溷惠縺吶ｋ譛ｬ縲代ｒ蜴ｳ驕ｸ縺励※5蜀翫♀縺吶☆繧√＠縺ｦ縺上□縺輔＞縲・
-縲舌♀蟄先ｧ倥・隱ｭ譖ｸ螻･豁ｴ・育峩霑題ｪｭ繧薙□譛ｬ縺ｨ諢滓Φ・峨・\
+  const promptText = `
+あなたはお子様（小学校中学年〜高学年）向けの読書応援マスコット「よんだーくん」です。
+お子様のこれまでの【読書履歴（タイトルや感想コメント）】をじっくり分析して、
+本棚の【20冊のおすすめ候補ライブラリ】、または【実在する日本の有名な子供向け書籍（児童書、ライトノベル、小説、科学絵本、図鑑など）】の中から、
+今のお子様にぴったりな【実在する本】を厳選して5冊おすすめしてください。
 
-縲舌♀縺吶☆繧∝呵｣懊Λ繧､繝悶Λ繝ｪ・亥━蜈育噪縺ｫ驕ｸ繧薙〒縺上□縺輔＞縲ょｮ溷惠縺吶ｋ莉悶・譛牙錐縺ｪ蜈千ｫ･譖ｸ繧よｭ楢ｿ弱＠縺ｾ縺呻ｼ峨・\
+【お子様の読書履歴（直近読んだ本と感想）】
+${historyText}
 
-縲舌Ξ繧ｳ繝｡繝ｳ繝画婿驥昴→繝上Ν繧ｷ繝阪・繧ｷ繝ｧ繝ｳ蟇ｾ遲悶・蜴ｳ螳井ｺ矩・・1. 縲先楔遨ｺ縺ｮ譛ｬ縺ｯ邨ｶ蟇ｾ縺ｫ菴懊ｉ縺ｪ縺・％縺ｨ縲代ょｿ・★譌･譛ｬ蝗ｽ蜀・〒螳滄圀縺ｫ逋ｺ陦後＆繧後∝ｰ丞ｭｦ逕溘↓蠎・￥隱ｭ縺ｾ繧後※縺・ｋ螳溷惠縺吶ｋ譖ｸ邀搾ｼ医主屁縺､蟄舌＄繧峨＠縲上弱・縺励℃鬧・藷蟄仙ｱ・驫ｭ螟ｩ蝣ゅ上弱お繝ｫ繝槭・縺ｮ縺ｼ縺・￠繧薙上弱Ν繝峨Ν繝輔→繧､繝・ヱ繧､繧｢繝・ユ繝翫上↑縺ｩ縺ｮ蜷堺ｽ懊∽ｻ翫←縺榊､ｧ莠ｺ豌励・繧ｨ繝ｳ繧ｿ繝｡蜈千ｫ･譁・ｭｦ縲∫ｧ大ｭｦ邨ｵ譛ｬ縲∝・髯ｺ繝輔ぃ繝ｳ繧ｿ繧ｸ繝ｼ縺ｪ縺ｩ・峨・縺ｿ繧帝∈螳壹＠縺ｦ縺上□縺輔＞縲・2. 蟆丞ｭｦ譬｡縺ｧ鄙偵≧貍｢蟄暦ｼ育ｰ｡蜊倥↑貍｢蟄励・縺ｿ縲∽ｾ具ｼ壽悽縲∫堪縲∫賢縲∝､ｧ縲∝ｰ上∝暑縺縺｡縲∬ｪｭ繧縲∵嶌縺上∵律縲∵怦縲√↑縺ｩ・峨・縺ｿ繧剃ｽｿ逕ｨ縺励∽ｸｭ蟄ｦ逕滉ｻ･荳翫〒鄙偵≧髮｣縺励＞貍｢蟄暦ｼ井ｾ具ｼ壹梧耳阮ｦ縲阪瑚ｩ戊ｫ悶阪悟・譫舌阪悟ｮｿ蜻ｽ縲阪碁ｭ・ｺ・阪檎ｵｶ菴鍋ｵｶ蜻ｽ縲阪↑縺ｩ・峨・邨ｶ蟇ｾ縺ｫ菴ｿ繧上↑縺・〒縺上□縺輔＞縲る屮縺励＞險闡峨・縺ｲ繧峨′縺ｪ繧・き繧ｿ繧ｫ繝翫↓縺ｲ繧峨＞縺ｦ譖ｸ縺・※縺上□縺輔＞縲・3. 縺雁ｭ先ｧ倥′縲後≧繧上≠・√％繧碁擇逋ｽ縺昴≧・∬ｪｭ繧薙〒縺ｿ縺溘＞・√阪→繝ｯ繧ｯ繝ｯ繧ｯ縺吶ｋ繧医≧縺ｪ邏ｹ莉九Γ繝・そ繝ｼ繧ｸ・・00縲・40譁・ｭ礼ｨ句ｺｦ・峨ｒ繧医ｓ縺繝ｼ縺上ｓ縺ｮ蜆ｪ縺励＞蜿｣隱ｿ・医後懊□繧茨ｼ√阪後懊□縺ｭ・√阪↑縺ｩ・峨〒譖ｸ縺・※縺上□縺輔＞縲・4. 霑泌唆繝輔か繝ｼ繝槭ャ繝医・縲∝ｿ・★莉･荳九・JSON驟榊・蠖｢蠑上・縺ｿ繧貞・蜉帙＠縺ｦ縺上□縺輔＞縲・arkdown縺ｮ \\\json 縺ｮ繧医≧縺ｪ蝗ｲ縺ｿ繧・∬ｪｬ譏弱・菴呵ｨ医↑繝・く繧ｹ繝医・荳蛻・・蜉帙＠縺ｪ縺・〒縺上□縺輔＞縲・
-縲仙・蜉妍SON繝輔か繝ｼ繝槭ャ繝医・[
+【おすすめ候補ライブラリ（優先的に選んでください。実在する他の有名な児童書も歓迎します）】
+${curatedLibraryStr}
+
+【レコメンド方針とハルシネーション対策の厳守事項】
+1. 【架空の本は絶対に作らないこと】。必ず日本国内で実際に発行され、小学生に広く読まれている実在する書籍（『四つ子ぐらし』『ふしぎ駄菓子屋 銭天堂』『エルマーのぼうけん』『ルドルフとイッパイアッテナ』などの名作、今どき大人気のエンタメ児童文学、科学絵本、冒険ファンタジーなど）のみを選定してください。
+2. 小学校で習う漢字（簡単な漢字のみ、例：本、犬、猫、大、小、友だち、読む、書く、日、月、など）のみを使用し、中学生以上で習う難しい漢字（例：「推薦」「評論」「分析」「宿命」「魅了」「絶体絶命」など）は絶対に使わないでください。難しい言葉はひらがなやカタカナにひらいて書いてください。
+3. お子様が「うわあ！これ面白そう！読んでみたい！」とワクワクするような紹介メッセージ（100〜140文字程度）をよんだーくんの優しい口調（「〜だよ！」「〜だね！」など）で書いてください。
+4. 返却フォーマットは、必ず以下のJSON配列形式のみを出力してください。Markdownの \`\`\`json のような囲みや、説明の余計なテキストは一切出力しないでください。
+
+【出力JSONフォーマット】
+[
   {
-    "title": "譛ｬ縺ｮ螳溷惠縺吶ｋ豁｣遒ｺ縺ｪ繧ｿ繧､繝医Ν",
-    "author": "菴懆・錐",
-    "category": "picture 縺ｾ縺溘・ story 縺ｾ縺溘・ animal 縺ｾ縺溘・ fantasy 縺ｾ縺溘・ science 縺ｾ縺溘・ other 縺ｮ縺・★繧後°",
-    "categoryName": "縺医⊇繧薙・縺壹°繧・縺ｾ縺溘・ 縺翫・縺ｪ縺玲悽 縺ｾ縺溘・ 縺ｩ縺・・縺､繝ｻ縺・″繧ゅ・ 縺ｾ縺溘・ 縺ｼ縺・￠繧薙・縺ｾ縺ｻ縺・縺ｾ縺溘・ 縺九′縺上・縺励ｃ縺九＞ 縺ｾ縺溘・ 縺昴・莉悶・縺・★繧後°",
-    "coverChar": "譛ｬ縺ｮ蜀・ｮｹ縺ｫ縺ｴ縺｣縺溘ｊ縺ｪ邨ｵ譁・ｭ・譁・ｭ・(萓・ 荘, 翠, 棲, 圷)",
-    "desc": "繧医ｓ縺繝ｼ縺上ｓ縺ｮ邏ｹ莉九Γ繝・そ繝ｼ繧ｸ・亥ｰ丞ｭｦ譬｡貍｢蟄怜宛髯舌・00縲・40譁・ｭ礼ｨ句ｺｦ・・
+    "title": "本の実在する正確なタイトル",
+    "author": "作者名",
+    "category": "picture または story または animal または fantasy または science または other のいずれか",
+    "categoryName": "えほん・ずかん または おはなし本 または どうぶつ・いきもの または ぼうけん・まほう または かがく・しゃかい または その他のいずれか",
+    "coverChar": "本の内容にぴったりな絵文字1文字 (例: 👑, 🐉, 🐱, 🚨)",
+    "desc": "よんだーくんの紹介メッセージ（小学校漢字制限、100〜140文字程度）"
   },
-  ... (蜷郁ｨ・蜀・
+  ... (合計5冊)
 ]
-;
+`;
 
   const payload = {
     contents: [
@@ -1979,7 +1988,7 @@ async function fetchGeminiRecommendations(booksHistory) {
   const data = await response.json();
   if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
     let rawText = data.candidates[0].content.parts[0].text.trim();
-    rawText = rawText.replace(/^`json\s*/i, "").replace(/`$/, "").trim();
+    rawText = rawText.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
     
     try {
       const parsed = JSON.parse(rawText);
@@ -1991,30 +2000,6 @@ async function fetchGeminiRecommendations(booksHistory) {
     }
   }
   throw new Error("Invalid format returned from Gemini dynamic recommendations");
-}
-
-// Add to wishlist handler
-function handleWishlistAdd(title, author, category, categoryName, coverChar, aiSpeech, index) {
-  const item = {
-    id: "wish_" + Date.now() + "_" + index,
-    title: title,
-    author: author,
-    category: category,
-    categoryName: categoryName,
-    coverChar: coverChar,
-    aiSpeech: aiSpeech,
-    dateAdded: getTodayString()
-  };
-
-  state.wishlist.push(item);
-  showToast(`💖 『${shortenTitle(title, 14)}』をよみたいリストに入れたよ！`);
-  triggerConfetti();
-
-  // Check achievements (e.g. wishlist_fan)
-  runBadgeChecks();
-
-  // Smooth dismiss animation
-  animateCardDismiss(index);
 }
 
 // Dismiss card handler (べつの本)
