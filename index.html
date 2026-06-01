@@ -71,6 +71,20 @@
         </div>
       </section>
 
+      <!-- Recommended Books Section -->
+      <section class="card" id="recommendations-section">
+        <h2><i data-lucide="sparkles" style="color:var(--color-secondary);"></i>よんだーくんのおすすめ本</h2>
+        <p class="sub-title">きみの感想から、よんだーくんがワクワクする本をえらんだよ！</p>
+        
+        <div id="recommendations-container" style="display:flex; flex-direction:column; gap:16px; margin-top:12px;">
+          <!-- Loaded dynamically -->
+          <div class="loader-placeholder" style="text-align:center; padding:20px; color:var(--color-primary);">
+            <div style="width: 24px; height: 24px; border: 3px solid var(--color-primary-light); border-top: 3px solid var(--color-primary); border-radius:50%; animation: float 1s linear infinite; margin: 0 auto 10px;"></div>
+            <p style="font-size:11px; font-weight:900;">おすすめを考えています...</p>
+          </div>
+        </div>
+      </section>
+
       <!-- Stats Grid -->
       <section class="stats-row">
         <div class="stat-card">
@@ -295,6 +309,16 @@
     <main id="screen-setting" class="screen">
       <h2><i data-lucide="settings" style="color:var(--color-text-light);"></i>おうちの方へ（設定）</h2>
       <p class="sub-title">アプリの設定やデータのバックアップができます</p>
+
+      <!-- Children Wishlist Section for Parents -->
+      <section class="card" id="parent-wishlist-section">
+        <h3><i data-lucide="heart" style="color:var(--color-accent); fill:var(--color-accent); width:20px; height:20px; display:inline-block; vertical-align:middle; margin-right:4px;"></i> 子どもがよみたい本リスト</h3>
+        <p class="sub-title" style="margin-top:2px;">お子様が「よみたい！」と選んだ本の一覧です。本を用意してあげたときは、ボタンを押して消去してください。</p>
+        
+        <div id="parent-wishlist-container" style="display:flex; flex-direction:column; gap:12px; margin-top:12px;">
+          <!-- Loaded dynamically -->
+        </div>
+      </section>
 
       <!-- Gemini API Integration Setup -->
       <section class="card">

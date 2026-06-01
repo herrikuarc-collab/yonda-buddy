@@ -265,6 +265,41 @@ h2 {
   border-radius: var(--radius-md);
   padding: 16px;
   position: relative;
+  transition: background 0.5s ease, border-color 0.5s ease;
+}
+
+/* Custom Room Backgrounds */
+.buddy-container.bg-room_forest {
+  background: linear-gradient(135deg, #e2f4e8 0%, #bceccf 100%) !important;
+  border-color: #5cbf99 !important;
+}
+.buddy-container.bg-room_space {
+  background: linear-gradient(135deg, #130d24 0%, #2f2156 100%) !important;
+  border-color: #ffc93c !important;
+  color: white !important;
+}
+.buddy-container.bg-room_space .buddy-speech-bubble {
+  color: var(--color-text-dark) !important;
+}
+.buddy-container.bg-room_castle {
+  background: linear-gradient(135deg, #f0eae4 0%, #cac0b6 100%) !important;
+  border-color: #aa7150 !important;
+}
+.buddy-container.bg-room_sea {
+  background: linear-gradient(135deg, #def2fc 0%, #87d3f8 100%) !important;
+  border-color: #38bdf8 !important;
+}
+.buddy-container.bg-room_sweet {
+  background: linear-gradient(135deg, #fff0f1 0%, #fec8cd 100%) !important;
+  border-color: #ff758f !important;
+}
+.buddy-container.bg-room_camp {
+  background: linear-gradient(135deg, #ffeed5 0%, #fdb970 100%) !important;
+  border-color: #ff8a5c !important;
+}
+.buddy-container.bg-room_sakura {
+  background: linear-gradient(135deg, #fff5f6 0%, #ffd4da 100%) !important;
+  border-color: #ff758f !important;
 }
 
 .buddy-avatar-wrapper {
@@ -1014,3 +1049,204 @@ h2 {
   z-index: 9999;
   pointer-events: none;
 }
+
+/* Recommended Books Section & Cards */
+.recommendation-card {
+  background-color: var(--color-card-bg);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease, margin 0.3s ease, padding 0.3s ease, height 0.3s ease;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.recommendation-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.recommendation-card.dismissed {
+  opacity: 0;
+  transform: translateX(-120px) scale(0.85);
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-width: 0 !important;
+  box-shadow: none !important;
+}
+
+.rec-book-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.rec-book-cover {
+  width: 60px;
+  height: 85px;
+  border-radius: var(--radius-sm);
+  background-color: #f0e6df;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  object-fit: cover;
+  border: 2px solid var(--color-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+
+.rec-book-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.rec-book-title {
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--color-text-dark);
+  line-height: 1.3;
+}
+
+.rec-book-author {
+  font-size: 11px;
+  color: var(--color-text-light);
+  margin-top: 2px;
+}
+
+.rec-book-genre {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 9px;
+  font-weight: 900;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-top: 4px;
+}
+
+/* Recommended Speech Bubble (Mini-よんだーくん) */
+.rec-speech-container {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  background-color: var(--color-primary-light);
+  border-radius: 12px;
+  padding: 8px 10px;
+  border: 1px dashed var(--color-primary);
+}
+
+.rec-mini-avatar {
+  font-size: 20px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: float 3s ease-in-out infinite;
+}
+
+.rec-speech-text {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--color-text-dark);
+  font-weight: bold;
+}
+
+/* Button Group for Recommended Cards */
+.rec-btn-group {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.rec-btn-want {
+  background: linear-gradient(135deg, var(--color-accent), #ff4d6d);
+  color: white;
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+.rec-btn-want:hover {
+  box-shadow: 0 4px 10px rgba(255, 117, 143, 0.4);
+}
+
+.rec-btn-dismiss {
+  background-color: white;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-light);
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+/* Parents Wishlist Items List */
+.wishlist-item-card {
+  background-color: var(--color-card-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+}
+
+.wishlist-item-card:hover {
+  border-color: var(--color-accent);
+}
+
+.wishlist-info-box {
+  flex: 1;
+}
+
+.wishlist-title {
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--color-text-dark);
+}
+
+.wishlist-author {
+  font-size: 11px;
+  color: var(--color-text-light);
+}
+
+.wishlist-reason {
+  font-size: 10px;
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  border: 1px dashed var(--color-primary);
+  padding: 4px 8px;
+  border-radius: 8px;
+  margin-top: 6px;
+  line-height: 1.3;
+}
+
+.wishlist-btn-done {
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 11px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, var(--color-success), #48a682);
+  color: white;
+  border-radius: 8px;
+  font-weight: 900;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-bounce);
+}
+
+.wishlist-btn-done:active {
+  transform: scale(0.95);
+}
+

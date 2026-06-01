@@ -17,26 +17,91 @@ let state = {
   geminiApiKey: ""
 };
 
-// Mascot Accessories Database
+// Mascot Accessories Database (Expanded to 28 parts in Head, Eyes, Clothes, Hand, and Room categories)
 const SHOP_ITEMS = [
-  { id: "hat", name: "まほうのぼうし", emoji: "🎩", price: 10 },
-  { id: "glasses", name: "サングラス", emoji: "🕶️", price: 15 },
-  { id: "crown", name: "きらきら王冠", emoji: "👑", price: 30 },
-  { id: "ribbon", name: "かわいいリボン", emoji: "🎀", price: 8 },
-  { id: "apple", name: "りんごのぼうし", emoji: "🍎", price: 12 },
-  { id: "cat_ears", name: "ねこみみ", emoji: "🐱", price: 20 }
+  // HEAD ACCESSORIES (hat slot)
+  { id: "hat", name: "まほうのぼうし", emoji: "🎩", price: 10, type: "head" },
+  { id: "crown", name: "きらきら王冠", emoji: "👑", price: 30, type: "head" },
+  { id: "apple", name: "りんごのぼうし", emoji: "🍎", price: 12, type: "head" },
+  { id: "cat_ears", name: "ねこみみ", emoji: "🐱", price: 20, type: "head" },
+  { id: "pirate_hat", name: "かいぞくのぼうし", emoji: "🏴‍☠️", price: 18, type: "head" },
+  { id: "chef_hat", name: "コックさんのぼうし", emoji: "👨‍🍳", price: 15, type: "head" },
+  { id: "straw_hat", name: "むぎわら帽子", emoji: "👒", price: 8, type: "head" },
+  { id: "ninja_band", name: "にんじゃのハチマキ", emoji: "🥷", price: 25, type: "head" },
+  
+  // FACE ACCESSORIES (eyes slot)
+  { id: "glasses", name: "サングラス", emoji: "🕶️", price: 15, type: "eyes" },
+  { id: "pink_glasses", name: "まるメガネ", emoji: "👓", price: 10, type: "eyes" },
+  { id: "stars_eyes", name: "お星さまの目", emoji: "🤩", price: 22, type: "eyes" },
+  { id: "monocle", name: "かたむきめがね", emoji: "🧐", price: 18, type: "eyes" },
+  
+  // BODY ACCESSORIES (clothes slot)
+  { id: "ribbon", name: "かわいいリボン", emoji: "🎀", price: 8, type: "clothes" },
+  { id: "cape", name: "まほうのマント", emoji: "🧥", price: 20, type: "clothes" },
+  { id: "tie", name: "赤いネクタイ", emoji: "👔", price: 12, type: "clothes" },
+  { id: "scarf", name: "もこもこマフラー", emoji: "🧣", price: 14, type: "clothes" },
+  { id: "armor", name: "ゆうしゃのよろい", emoji: "🛡️", price: 35, type: "clothes" },
+  
+  // HAND ACCESSORIES (hand slot)
+  { id: "wand", name: "まほうのつえ", emoji: "🪄", price: 15, type: "hand" },
+  { id: "sword", name: "おもちゃの剣", emoji: "⚔️", price: 22, type: "hand" },
+  { id: "book_hold", name: "ちいさな本", emoji: "📘", price: 10, type: "hand" },
+  { id: "lantern", name: "ピカピカランタン", emoji: "🏮", price: 18, type: "hand" },
+  { id: "balloon", name: "赤いふうせん", emoji: "🎈", price: 8, type: "hand" },
+  
+  // ROOM ACCESSORIES (room slot)
+  { id: "room_forest", name: "しんりんのおへや", emoji: "🌲", price: 15, type: "room" },
+  { id: "room_space", name: "うちゅうのおへや", emoji: "🌌", price: 25, type: "room" },
+  { id: "room_castle", name: "おしろのおへや", emoji: "🏰", price: 35, type: "room" },
+  { id: "room_sea", name: "うみのなかのおへや", emoji: "🌊", price: 20, type: "room" },
+  { id: "room_sweet", name: "おかしのおへや", emoji: "🍪", price: 25, type: "room" },
+  { id: "room_camp", name: "キャンプのおへや", emoji: "⛺", price: 18, type: "room" },
+  { id: "room_sakura", name: "さくらのおへや", emoji: "🌸", price: 22, type: "room" }
 ];
 
-// Badge Database
+// Badge Database (Expanded to 27 achievements covering reading metrics, text reviews, streaks, shop accessories, level milestones, wishlist interactions)
 const BADGES = [
+  // 1. Reading Volumes Milestones
   { id: "first_step", name: "はじめての１歩", emoji: "🌟", desc: "はじめて本を登録した！" },
-  { id: "writer", name: "作家デビュー", emoji: "✍️", desc: "はじめてかんそうをかいた！" },
   { id: "reader_pro", name: "どくしょ名人", emoji: "📚", desc: "本を5さつ登録した！" },
   { id: "reading_king", name: "読書王", emoji: "👑", desc: "本を10さつ登録した！" },
-  { id: "adventure", name: "冒険家", emoji: "🧭", desc: "ぼうけんの本を登録した！" },
-  { id: "animal", name: "動物ドクター", emoji: "🦁", desc: "どうぶつの本を登録した！" },
-  { id: "picture_book", name: "絵本マスター", emoji: "🎨", desc: "絵本を登録した！" },
-  { id: "streak_3", name: "3日連続よんだ！", emoji: "🔥", desc: "3日連続で読書を記録した！" }
+  { id: "reading_god", name: "どくしょの神さま", emoji: "🧙‍♂️", desc: "本をなんと25さつ登録した！" },
+  
+  // 2. Writing Review Milestones
+  { id: "writer", name: "作家デビュー", emoji: "✍️", desc: "はじめてかんそうをかいた！" },
+  { id: "critic", name: "大ひょうろん家", emoji: "🖋️", desc: "かんそうを5回書いた！" },
+  { id: "novelist", name: "しょうせつ家", emoji: "📖", desc: "かんそうを10回書いた！" },
+  
+  // 3. Category/Genre Mastery
+  { id: "picture_book", name: "絵本マスター", emoji: "🎨", desc: "えほん・ずかんジャンルを登録した！" },
+  { id: "adventure", name: "冒険家", emoji: "🧭", desc: "おはなし・ぼうけんジャンルを登録した！" },
+  { id: "animal", name: "動物ドクター", emoji: "🦁", desc: "どうぶつジャンルを登録した！" },
+  { id: "science_fan", name: "かがくはかせ", emoji: "🧪", desc: "科学ジャンルを登録した！" },
+  { id: "other_fan", name: "ものしりはかせ", emoji: "💡", desc: "その他ジャンルの本を登録した！" },
+  { id: "all_genres", name: "全ジャンル読破", emoji: "🎖️", desc: "4つ以上のちがうジャンルの本を読んだ！" },
+  
+  // 4. Reading Streak Habits
+  { id: "streak_3", name: "3日連続よんだ！", emoji: "🔥", desc: "3日連続で読書を記録した！" },
+  { id: "streak_5", name: "5日連続よんだ！", emoji: "⚡", desc: "5日連続で読書を記録した！やるね！" },
+  { id: "streak_7", name: "1週間よみきった！", emoji: "🌈", desc: "7日連続で読書を記録した！神レベル！" },
+  
+  // 5. Coin Rewards
+  { id: "coin_rich", name: "コイン持ち", emoji: "💰", desc: "コインを50枚ためた！" },
+  { id: "coin_millionaire", name: "コイン大富豪", emoji: "💎", desc: "コインを100枚ためた！" },
+  
+  // 6. Mascot Customization & Room Makeovers
+  { id: "fashion_beginner", name: "オシャレ入門", emoji: "🎩", desc: "ショップでアイテムを1つ手に入れた！" },
+  { id: "fashion_model", name: "オシャレの達人", emoji: "🧥", desc: "ショップでアイテムを5つ手に入れた！" },
+  { id: "fashion_king", name: "きせかえ大王", emoji: "👑", desc: "ショップでアイテムを10つ手に入れた！" },
+  { id: "room_decorator", name: "お部屋デザイナー", emoji: "⛺", desc: "お部屋（背景）をはじめてもようがえした！" },
+  
+  // 7. Reading Level Milestones
+  { id: "level_5", name: "レベル5到達！", emoji: "🏆", desc: "よんどくレベルが5になった！" },
+  { id: "level_10", name: "レベル10大魔導士", emoji: "🧙", desc: "よんどくレベルが10になった！すごすぎる！" },
+  
+  // 8. Wishlist Discoveries
+  { id: "wishlist_fan", name: "よみたい探求者", emoji: "🔍", desc: "おすすめ本を5冊よみたいリストに入れた！" },
+  { id: "wishlist_fulfilled", name: "夢がかなった！", emoji: "🎁", desc: "親に買ってもらった本リストから2冊消去された！" }
 ];
 
 // Cute Encouraging Speeches for "よんだーくん" Default Mode
@@ -95,6 +160,7 @@ function loadState() {
       state = JSON.parse(savedState);
       // Migrate missing keys if any
       if (!state.books) state.books = [];
+      if (!state.wishlist) state.wishlist = [];
       if (state.coins === undefined) state.coins = 0;
       if (state.xp === undefined) state.xp = 0;
       if (state.level === undefined) state.level = 1;
@@ -110,6 +176,7 @@ function loadState() {
     state.coins = 0;
     state.xp = 0;
     state.level = 1;
+    state.wishlist = [];
     saveState();
   }
 }
@@ -149,8 +216,10 @@ function initNavigation() {
         } else if (targetScreen === "home") {
           updateUI();
           renderCalendar();
+          renderRecommendations();
         } else if (targetScreen === "setting") {
           document.getElementById("api-key-input").value = state.geminiApiKey || "";
+          renderWishlist();
         }
       }
     });
@@ -390,28 +459,82 @@ function drawMascot(targetId) {
   // Render Accessories on top of the avatar
   const wrapper = container.querySelector(".buddy-avatar-wrapper");
   
+  // Handle room backgrounds
+  const equippedRoom = state.equippedAccessories.find(accId => accId.startsWith("room_"));
+  const buddyContainer = container.closest(".buddy-container");
+  if (buddyContainer) {
+    // Reset background classes
+    buddyContainer.className = "buddy-container";
+    if (equippedRoom) {
+      buddyContainer.classList.add(`bg-${equippedRoom}`);
+    }
+  }
+
   state.equippedAccessories.forEach(accId => {
     const acc = SHOP_ITEMS.find(item => item.id === accId);
     if (!acc) return;
+    
+    // Room background types are handled above dynamically, so they are not rendered as overlays on top of the mascot body
+    if (acc.type === "room") return;
     
     const accEl = document.createElement("div");
     accEl.className = `buddy-accessory acc-${accId}`;
     accEl.textContent = acc.emoji;
     
     // Position accessories beautifully using custom inline styling
-    let styleText = "position: absolute; font-size: 34px; pointer-events: none; text-shadow: 1px 1px 0 #4a3e3d, -1px -1px 0 #4a3e3d;";
+    let styleText = "position: absolute; pointer-events: none; text-shadow: 1px 1px 0 #4a3e3d, -1px -1px 0 #4a3e3d;";
+    
+    // Head Category (Hats)
     if (accId === "hat") {
-      styleText += "top: -12px; left: 18px; transform: rotate(-5deg); z-index: 10;";
+      styleText += "font-size: 34px; top: -12px; left: 18px; transform: rotate(-5deg); z-index: 10;";
     } else if (accId === "crown") {
-      styleText += "top: -14px; left: 24px; font-size: 30px; z-index: 10; animation: float 3s ease-in-out infinite;";
-    } else if (accId === "glasses") {
-      styleText += "top: 26px; left: 21px; font-size: 34px; z-index: 8;";
-    } else if (accId === "ribbon") {
-      styleText += "top: 50px; left: 34px; font-size: 26px; z-index: 9;";
+      styleText += "font-size: 30px; top: -14px; left: 24px; z-index: 10; animation: float 3s ease-in-out infinite;";
     } else if (accId === "apple") {
-      styleText += "top: -10px; left: 26px; font-size: 30px; z-index: 10;";
+      styleText += "font-size: 30px; top: -10px; left: 26px; z-index: 10;";
     } else if (accId === "cat_ears") {
-      styleText += "top: -6px; left: 20px; font-size: 38px; z-index: 7;";
+      styleText += "font-size: 38px; top: -6px; left: 20px; z-index: 7;";
+    } else if (accId === "pirate_hat") {
+      styleText += "font-size: 36px; top: -14px; left: 16px; transform: rotate(-3deg); z-index: 10;";
+    } else if (accId === "chef_hat") {
+      styleText += "font-size: 34px; top: -18px; left: 22px; z-index: 10;";
+    } else if (accId === "straw_hat") {
+      styleText += "font-size: 36px; top: -10px; left: 16px; z-index: 10;";
+    } else if (accId === "ninja_band") {
+      styleText += "font-size: 30px; top: 12px; left: 20px; z-index: 11;";
+    } 
+    // Eyes Category (Glasses)
+    else if (accId === "glasses") {
+      styleText += "font-size: 34px; top: 26px; left: 21px; z-index: 8;";
+    } else if (accId === "pink_glasses") {
+      styleText += "font-size: 32px; top: 28px; left: 23px; z-index: 8;";
+    } else if (accId === "stars_eyes") {
+      styleText += "font-size: 32px; top: 26px; left: 22px; z-index: 8;";
+    } else if (accId === "monocle") {
+      styleText += "font-size: 28px; top: 28px; left: 45px; z-index: 8;";
+    } 
+    // Clothes Category (Clothing)
+    else if (accId === "ribbon") {
+      styleText += "font-size: 26px; top: 50px; left: 34px; z-index: 9;";
+    } else if (accId === "cape") {
+      styleText += "font-size: 40px; top: 40px; left: 18px; z-index: 6; opacity: 0.9;";
+    } else if (accId === "tie") {
+      styleText += "font-size: 24px; top: 52px; left: 38px; z-index: 9;";
+    } else if (accId === "scarf") {
+      styleText += "font-size: 34px; top: 46px; left: 22px; z-index: 9;";
+    } else if (accId === "armor") {
+      styleText += "font-size: 38px; top: 44px; left: 22px; z-index: 7;";
+    }
+    // Hand Category (Handheld Items)
+    else if (accId === "wand") {
+      styleText += "font-size: 28px; top: 42px; left: 4px; z-index: 9; transform: rotate(-25deg);";
+    } else if (accId === "sword") {
+      styleText += "font-size: 28px; top: 40px; left: 68px; z-index: 9; transform: rotate(15deg);";
+    } else if (accId === "book_hold") {
+      styleText += "font-size: 22px; top: 52px; left: 70px; z-index: 9;";
+    } else if (accId === "lantern") {
+      styleText += "font-size: 26px; top: 48px; left: 2px; z-index: 9; animation: float 2.5s ease-in-out infinite;";
+    } else if (accId === "balloon") {
+      styleText += "font-size: 30px; top: 10px; left: -14px; z-index: 5; animation: float 4s ease-in-out infinite;";
     }
     
     accEl.style.cssText = styleText;
@@ -993,56 +1116,65 @@ function shortenTitle(title, max) {
 // GAMIFICATION LOGIC (Badges, Shop, Calendar)
 // ----------------------------------------------------
 
-// Run Badge unlocking rules
+// Run Badge unlocking rules for all 27 badges
 function runBadgeChecks() {
   const unlockedThisTime = [];
   const currentBadgeIds = state.badges;
   
-  // 1. First step: 1 book
-  if (state.books.length >= 1 && !currentBadgeIds.includes("first_step")) {
-    unlockedThisTime.push("first_step");
-  }
+  // Helper to safely check and push
+  const checkAndUnlock = (badgeId) => {
+    if (!currentBadgeIds.includes(badgeId)) {
+      unlockedThisTime.push(badgeId);
+    }
+  };
+
+  // 1. Reading Volumes Milestones
+  if (state.books.length >= 1) checkAndUnlock("first_step");
+  if (state.books.length >= 5) checkAndUnlock("reader_pro");
+  if (state.books.length >= 10) checkAndUnlock("reading_king");
+  if (state.books.length >= 25) checkAndUnlock("reading_god");
+
+  // 2. Writing Review Milestones
+  const textReviews = state.books.filter(b => b.comment && b.comment.length >= 4);
+  if (textReviews.length >= 1) checkAndUnlock("writer");
+  if (textReviews.length >= 5) checkAndUnlock("critic");
+  if (textReviews.length >= 10) checkAndUnlock("novelist");
+
+  // 3. Category/Genre Mastery
+  if (state.books.some(b => b.category === "picture")) checkAndUnlock("picture_book");
+  if (state.books.some(b => b.category === "fantasy" || b.category === "story")) checkAndUnlock("adventure");
+  if (state.books.some(b => b.category === "animal")) checkAndUnlock("animal");
+  if (state.books.some(b => b.category === "science")) checkAndUnlock("science_fan");
+  if (state.books.some(b => b.category === "other")) checkAndUnlock("other_fan");
   
-  // 2. Writer: 1 book with custom text comment
-  const hasTextComment = state.books.some(b => b.comment && b.comment.length >= 4);
-  if (hasTextComment && !currentBadgeIds.includes("writer")) {
-    unlockedThisTime.push("writer");
-  }
+  const distinctCategories = [...new Set(state.books.map(b => b.category))].length;
+  if (distinctCategories >= 4) checkAndUnlock("all_genres");
+
+  // 4. Reading Streak Habits
+  if (checkConsecutiveDays(3)) checkAndUnlock("streak_3");
+  if (checkConsecutiveDays(5)) checkAndUnlock("streak_5");
+  if (checkConsecutiveDays(7)) checkAndUnlock("streak_7");
+
+  // 5. Coin Rewards
+  if (state.coins >= 50) checkAndUnlock("coin_rich");
+  if (state.coins >= 100) checkAndUnlock("coin_millionaire");
+
+  // 6. Mascot Customization & Room Makeovers
+  if (state.purchasedAccessories.length >= 1) checkAndUnlock("fashion_beginner");
+  if (state.purchasedAccessories.length >= 5) checkAndUnlock("fashion_model");
+  if (state.purchasedAccessories.length >= 10) checkAndUnlock("fashion_king");
   
-  // 3. Reader Pro: 5 books
-  if (state.books.length >= 5 && !currentBadgeIds.includes("reader_pro")) {
-    unlockedThisTime.push("reader_pro");
-  }
-  
-  // 4. Reading King: 10 books
-  if (state.books.length >= 10 && !currentBadgeIds.includes("reading_king")) {
-    unlockedThisTime.push("reading_king");
-  }
-  
-  // 5. Category-based: Adventure
-  const hasAdventure = state.books.some(b => b.category === "fantasy" || b.category === "story");
-  if (hasAdventure && !currentBadgeIds.includes("adventure")) {
-    unlockedThisTime.push("adventure");
-  }
-  
-  // 6. Category-based: Animal
-  const hasAnimal = state.books.some(b => b.category === "animal" || b.category === "science");
-  if (hasAnimal && !currentBadgeIds.includes("animal")) {
-    unlockedThisTime.push("animal");
-  }
-  
-  // 7. Category-based: Picture book
-  const hasPicture = state.books.some(b => b.category === "picture");
-  if (hasPicture && !currentBadgeIds.includes("picture_book")) {
-    unlockedThisTime.push("picture_book");
-  }
-  
-  // 8. Streak 3: 3 consecutive days
-  const has3Streak = checkConsecutiveDays(3);
-  if (has3Streak && !currentBadgeIds.includes("streak_3")) {
-    unlockedThisTime.push("streak_3");
-  }
-  
+  const hasEquippedRoom = state.equippedAccessories.some(accId => accId.startsWith("room_"));
+  if (hasEquippedRoom) checkAndUnlock("room_decorator");
+
+  // 7. Reading Level Milestones
+  if (state.level >= 5) checkAndUnlock("level_5");
+  if (state.level >= 10) checkAndUnlock("level_10");
+
+  // 8. Wishlist Discoveries
+  if (state.wishlist.length >= 5) checkAndUnlock("wishlist_fan");
+  if ((state.wishlistFulfilledCount || 0) >= 2) checkAndUnlock("wishlist_fulfilled");
+
   // Save newly unlocked badges
   if (unlockedThisTime.length > 0) {
     state.badges = [...state.badges, ...unlockedThisTime];
@@ -1135,22 +1267,38 @@ function handleShopAction(item) {
     state.equippedAccessories = state.equippedAccessories.filter(id => id !== item.id);
     showToast(`🎒 ${item.name}をはずしたよ`);
   } else if (isPurchased) {
-    // Equip accessory
-    // If equipping exclusive items on same spot, unequip others (e.g. hat / crown / apple are hats; glasses are face)
-    if (item.id === "hat" || item.id === "crown" || item.id === "apple") {
-      state.equippedAccessories = state.equippedAccessories.filter(id => id !== "hat" && id !== "crown" && id !== "apple");
+    // Equip accessory - Dynamic Slot Exclusivity
+    const itemDetails = SHOP_ITEMS.find(x => x.id === item.id);
+    if (itemDetails && itemDetails.type) {
+      const sameTypeIds = SHOP_ITEMS.filter(x => x.type === itemDetails.type).map(x => x.id);
+      state.equippedAccessories = state.equippedAccessories.filter(id => !sameTypeIds.includes(id));
     }
+    
     state.equippedAccessories.push(item.id);
     showToast(`✨ ${item.name}をそうびしたよ！`);
+    
+    // Check achievements (e.g. Room Decorator badge!)
+    runBadgeChecks();
   } else {
     // Purchase item
     if (state.coins >= item.price) {
       state.coins -= item.price;
       state.purchasedAccessories.push(item.id);
-      state.equippedAccessories.push(item.id); // Equip immediately upon purchase
+      
+      // Equip immediately upon purchase - Dynamic Slot Exclusivity
+      const itemDetails = SHOP_ITEMS.find(x => x.id === item.id);
+      if (itemDetails && itemDetails.type) {
+        const sameTypeIds = SHOP_ITEMS.filter(x => x.type === itemDetails.type).map(x => x.id);
+        state.equippedAccessories = state.equippedAccessories.filter(id => !sameTypeIds.includes(id));
+      }
+      
+      state.equippedAccessories.push(item.id);
       
       triggerConfetti();
       showToast(`🎉 ${item.name}をかったよ！おそろいだね！`);
+      
+      // Check achievements
+      runBadgeChecks();
     } else {
       showModalMessage("コインが足りないよ", `🟡 あと ${item.price - state.coins} コインで買えるよ。もっと本を読んでコインをためようね！`);
       return;
@@ -1618,3 +1766,553 @@ function getTodayString() {
   const dd = String(today.getDate()).padStart(2, '0');
   return `${yyyy}-${mm}-${dd}`;
 }
+
+// ----------------------------------------------------
+// BOOK RECOMMENDATION & WISHLIST ENGINE (New Feature)
+// ----------------------------------------------------
+
+// 20 High-Quality Real Curated Children Books (Grade 3-6 / 小学校中学年〜高学年向け)
+const CURATED_RECOMMENDATIONS_LIBRARY = [
+  { 
+    title: "四つ子ぐらし1 ひみつの姉妹はじめます！", 
+    author: "ひのひまり", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "👧", 
+    desc: "ひとりぼっちだと思ってた主人公の三乃（みの）が、12才の誕生日にそっくりな四つ子だったことがわかるんだ！しかも四人だけで暮らすことに！？ハラハラどきどきの秘密の生活、絶対に先がよみたくなるよ！🌸" 
+  },
+  { 
+    title: "ふしぎ駄菓子屋 銭天堂1", 
+    author: "廣嶋玲子", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🪙", 
+    desc: "不思議な駄菓子屋『銭天堂』！そこに売っている駄菓子はね、食べると願いが叶うんだけど、使い方を間違えると大変なことになっちゃうんだ…！ハラハラする不思議な魔法の世界へ、ぼくといっしょに行こう！✨" 
+  },
+  { 
+    title: "エルマーのぼうけん", 
+    author: "ルース・スタイルス・ガネット", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🐉", 
+    desc: "どうぶつ島にとらわれた「りゅうの子」をたすけるため、エルマーが知恵と小さな道具（輪ゴムや歯ブラシ！）だけで猛獣たちと戦うんだ！ハラハラする大冒険に、きみもいっしょに出発しよう！🧭" 
+  },
+  { 
+    title: "ハリー・ポッターと賢者の石", 
+    author: "J.K.ローリング", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "⚡", 
+    desc: "自分が魔法使いだと知ったハリーが、魔法学校に入学！空飛ぶほうきでの試合や、恐ろしい闇の魔法使いとのドキドキの対決が待っているよ！本を開いた瞬間から、まほうの世界にひきこまれちゃう！🔮" 
+  },
+  { 
+    title: "ルドルフとイッパイアッテナ", 
+    author: "斉藤洋", 
+    category: "animal", 
+    categoryName: "どうぶつ・いきもの", 
+    coverChar: "🐈", 
+    desc: "迷子になって東京へやってきちゃった黒猫のルドルフ。そこで出会ったのは、人間からたくさんの名前でよばれる大ボス猫「イッパイアッテナ」！野良猫たちの友情と知恵の冒険に、胸がジーンとあつくなるよ！🐾" 
+  },
+  { 
+    title: "都会のトム＆ソーヤ1", 
+    author: "はやみねかおる", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🏙️", 
+    desc: "平凡だけどサバイバルの達人の内人と、大財閥の天才・創也。正反対の二人が、街全体を舞台にした究極のゲームに挑むんだ！ワクワクする謎解きとスリリングな冒険がたっぷりつまった超人気ミステリー！🕵️‍♂️" 
+  },
+  { 
+    title: "ざんねんないきもの事典", 
+    author: "今泉忠明", 
+    category: "animal", 
+    categoryName: "どうぶつ・いきもの", 
+    coverChar: "🐨", 
+    desc: "「コアラはユーカリの毒で一日中寝ている」「ゴリラは知恵がありすぎて知恵熱を出す」など、どうぶつたちの愛らしくて「ざんねん」なヒミツが満載！くすっと笑えて科学がもっと好きになる超人気ベストセラー！🍀" 
+  },
+  { 
+    title: "大ピンチずかん", 
+    author: "鈴木のりたけ", 
+    category: "other", 
+    categoryName: "その他", 
+    coverChar: "🚨", 
+    desc: "「牛乳がこぼれた」「テープの端っこがきえた」など、日常のさまざまな『大ピンチ』をユーモアたっぷりにおもしろおかしく大解剖！読むと大ピンチも笑いとワクワクに変えて乗り越えられる気がしてくるよ！😄" 
+  },
+  { 
+    title: "マジック・ツリーハウス1 恐竜の谷の大冒険", 
+    author: "メアリー・ポープ・オズボーン", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🦖", 
+    desc: "森で見つけた不思議なツリーハウス。本を開いて「行ってみたい」とつぶやくと、なんと本の中の恐竜の世界へタイムスリップ！ティラノサウルスに追われるハラハラドキドキの時間旅行！🦕" 
+  },
+  { 
+    title: "パスワードは、ひ・み・つ", 
+    author: "松原秀行", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "💻", 
+    desc: "パソコン通信で集まった5人の小学生探偵団が、インターネットに隠された暗号の謎に挑む！次々と起こる不思議な事件を、頭脳とパソコン技術で解決していく、ハラハラどきどきの本格探偵ストーリー！🔍" 
+  },
+  { 
+    title: "らくだい魔女はプリンセス", 
+    author: "石崎洋司", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🧹", 
+    desc: "見習い魔女のフウカが、お城の地下室で不思議な絵を見つけるんだ。だけどフウカの失敗によって、絵の中からおそろしい闇の力が解き放たれてしまう！ハチャメチャな魔法とドキドキの大ぼうけん！✨" 
+  },
+  { 
+    title: "びりっかすの神さま", 
+    author: "岡田淳", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🏃", 
+    desc: "クラスのかけっこで、一番最後（びり）になった人にしか見えないフシギなおじさん「びりっかすの神さま」！クラスのみんながわざと「びり」になろうとする、優しくてフシギな友情物語！ほっこり感動するよ！🌟" 
+  },
+  { 
+    title: "窓ぎわのトットちゃん", 
+    author: "黒柳徹子", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🏫", 
+    desc: "電車の教室や、おいしいお弁当！ちょっぴり変わったユニークな学校「トモエ学園」に転校したトットちゃん。たくさんの友だちと、優しく温かい校長先生との奇跡のような毎日に心がぽかぽか温かくなるよ！🌸" 
+  },
+  { 
+    title: "海底二万マイル", 
+    author: "ジュール・ヴェルヌ", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🦑", 
+    desc: "巨大クジラを追っていた博士たちが、海の中で謎の男「ネモ船長」と潜水艦ノーチラス号に遭遇！恐ろしい海の怪物や未知の海底遺跡など、ハラハラドキドキがぎっしり詰まったSF大冒険ファンタジー！🗺️" 
+  },
+  { 
+    title: "シートン動物記 オオカミ王ロボ", 
+    author: "アーネスト・T・シートン", 
+    category: "animal", 
+    categoryName: "どうぶつ・いきもの", 
+    coverChar: "🐺", 
+    desc: "どんなワナをも見破る、かしこくて誇り高いオオカミの王様ロボ。シートンとロボの息づまる知恵比べと、愛する仲間を助けるためにすべてを投げ出すロボの姿に、胸が熱くなり涙が止まらなくなる感動の実話！😢" 
+  },
+  { 
+    title: "星の王子さま", 
+    author: "サンテグジュペリ", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "👑", 
+    desc: "砂漠に不時着したパイロットの前に現れた、小さな星からやってきた金髪の王子さま。王子さまが話してくれたバラの花やキツネとの出会い。「大切なものは、目に見えないんだよ」という温かいおはなし。💫" 
+  },
+  { 
+    title: "科学漫画サバイバル 昆虫世界のサバイバル1", 
+    author: "洪在徹", 
+    category: "science", 
+    categoryName: "かがく・しゃかい", 
+    coverChar: "🐜", 
+    desc: "不思議な光線で、アリのサイズに縮んでしまったジオたち！いつもはちいさな昆虫たちが、命をおびやかす巨大怪獣になって襲いかかる！超スリリングな科学サバイバルマンガ、ハラハラどきどきだよ！🔥" 
+  },
+  { 
+    title: "大泥棒ホッツェンプロッツ", 
+    author: "プロイスラー", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "☕", 
+    desc: "おばあさんの大切なコーヒー挽きをぬすんだ大泥棒ホッツェンプロッツ！彼を捕まえようとするカスペルとゼッペルだけど、逆に捕まって悪い魔法使いに売られちゃう！？ハラハラ笑える愉快な冒険物語！🎒" 
+  },
+  { 
+    title: "怪盗クイーンはサーカスがお好き", 
+    author: "はやみねかおる", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🎩", 
+    desc: "性別不詳、神出鬼没の怪盗クイーン！狙った宝物は絶対に盗み出すはずが、謎のサーカス団に先を越されてお宝を盗まれてしまう！？華麗でスリリングな大バトルとワクワクのトリックミステリー！🃏" 
+  },
+  { 
+    title: "チョコレート工場の秘密", 
+    author: "ロアルド・ダール", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🍫", 
+    desc: "世界一有名で誰も入れなかった不思議なチョコレート工場。ある日、世界に5枚だけのゴールドチケットを当てた子どもたちが工場に招待される！部屋ごとに広がるおかしな光景と、ドキドキハラハラの不思議な見学ツアー！🍭" 
+  }
+];
+
+// Helper functions for recommendation UI colors
+function getGenreGradient(cat) {
+  const gradients = {
+    fantasy: "linear-gradient(135deg, #ff758f, #ff8a5c)",
+    story: "linear-gradient(135deg, #ff8a5c, #ffc93c)",
+    animal: "linear-gradient(135deg, #5cbf99, #5cb3ff)",
+    science: "linear-gradient(135deg, #5cb3ff, #a3f7d4)",
+    other: "linear-gradient(135deg, #ffc93c, #ff758f)"
+  };
+  return gradients[cat] || "linear-gradient(135deg, #ff8a5c, #ffc93c)";
+}
+
+function getGenreBgColor(cat) {
+  const colors = {
+    fantasy: "var(--color-primary-light)",
+    story: "var(--color-secondary-light)",
+    animal: "var(--color-success-light)",
+    science: "var(--color-info-light)",
+    other: "#f5f0eb"
+  };
+  return colors[cat] || "#f5f0eb";
+}
+
+function getGenreTextColor(cat) {
+  const colors = {
+    fantasy: "var(--color-primary)",
+    story: "var(--color-primary-dark)",
+    animal: "var(--color-success)",
+    science: "var(--color-info)",
+    other: "var(--color-text-light)"
+  };
+  return colors[cat] || "var(--color-text-dark)";
+}
+
+function escapeJs(str) {
+  if (!str) return "";
+  return str.replace(/'/g, "\\'").replace(/"/g, '\\"');
+}
+
+// Generate / Render 5 Book Recommendations for the Child
+async function renderRecommendations() {
+  const container = document.getElementById("recommendations-container");
+  if (!container) return;
+
+  // Initialize recommendation state if empty
+  state.currentRecommendations = state.currentRecommendations || [];
+
+  // Filter out recommendations that are already empty (all cards dismissed/wishlisted)
+  if (state.currentRecommendations.length > 0) {
+    renderRecommendationCards(state.currentRecommendations);
+    return;
+  }
+
+  // Show loading skeleton
+  container.innerHTML = `
+    <div class="loader-placeholder" style="text-align:center; padding:20px; color:var(--color-primary);">
+      <div style="width: 24px; height: 24px; border: 3px solid var(--color-primary-light); border-top: 3px solid var(--color-primary); border-radius:50%; animation: float 1s linear infinite; margin: 0 auto 10px;"></div>
+      <p style="font-size:11px; font-weight:900;">よんだーくんがおすすめの本をさがしています...</p>
+    </div>
+  `;
+
+  // 1. Filter books: Select books they haven't read AND aren't on wishlist
+  const readTitles = state.books.map(b => b.title.toLowerCase());
+  const wishTitles = state.wishlist.map(b => b.title.toLowerCase());
+
+  let availableBooks = CURATED_RECOMMENDATIONS_LIBRARY.filter(book => {
+    return !readTitles.includes(book.title.toLowerCase()) && !wishTitles.includes(book.title.toLowerCase());
+  });
+
+  // Fallback to full library if they've read almost everything, to ensure we always show 5
+  if (availableBooks.length < 5) {
+    availableBooks = [...CURATED_RECOMMENDATIONS_LIBRARY];
+  }
+
+  // 2. Score books based on child's reading history to find best matches
+  // Count frequency of categories read
+  const categoryCounts = {};
+  state.books.forEach(b => {
+    categoryCounts[b.category] = (categoryCounts[b.category] || 0) + 1;
+  });
+
+  availableBooks.forEach(book => {
+    // Basic score starts at random to ensure variety
+    book.score = Math.random() * 10;
+    // Boost score if they have read books in the same category
+    if (categoryCounts[book.category]) {
+      book.score += categoryCounts[book.category] * 5;
+    }
+  });
+
+  // Sort and select top 5
+  availableBooks.sort((a, b) => b.score - a.score);
+  const selectedBooks = availableBooks.slice(0, 5).map(b => ({
+    title: b.title,
+    author: b.author,
+    category: b.category,
+    categoryName: b.categoryName,
+    coverChar: b.coverChar,
+    desc: b.desc // default offline desc
+  }));
+
+  // 3. If Gemini key is set, fetch highly customized recommended speeches
+  if (state.geminiApiKey) {
+    try {
+      const responseSpeechList = await fetchGeminiRecommendations(selectedBooks);
+      if (responseSpeechList && responseSpeechList.length === 5) {
+        for (let i = 0; i < 5; i++) {
+          selectedBooks[i].desc = responseSpeechList[i];
+        }
+      }
+    } catch (err) {
+      console.warn("Gemini Recommendations failed, falling back to local database:", err);
+    }
+  }
+
+  // Save selected recommendations in active state
+  state.currentRecommendations = selectedBooks;
+  saveState();
+
+  // Render cards
+  renderRecommendationCards(state.currentRecommendations);
+}
+
+// Render cards list from state
+function renderRecommendationCards(books) {
+  const container = document.getElementById("recommendations-container");
+  if (!container) return;
+
+  if (books.length === 0) {
+    container.innerHTML = `
+      <div style="background-color: var(--color-success-light); border: 2px dashed var(--color-success); border-radius: var(--radius-md); padding: 20px; text-align: center; color: var(--color-text-dark);">
+        <span style="font-size: 32px;">🎉</span>
+        <h4 style="font-weight: 900; margin: 8px 0 4px;">きょうのおすすめはぜんぶチェックしたよ！</h4>
+        <p style="font-size: 11px; color: var(--color-text-light);">またあした、あたらしい本をえらぶからおたのしみにね！📖</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = "";
+  books.forEach((book, idx) => {
+    const card = document.createElement("div");
+    card.className = "recommendation-card";
+    card.id = `rec-card-${idx}`;
+
+    card.innerHTML = `
+      <div class="rec-book-header">
+        <div class="rec-book-cover" style="background: ${getGenreGradient(book.category)}">
+          ${book.coverChar || '📖'}
+        </div>
+        <div class="rec-book-info">
+          <div class="rec-book-title">${book.title}</div>
+          <div class="rec-book-author">${book.author}</div>
+          <span class="rec-book-genre" style="background-color: ${getGenreBgColor(book.category)}; color: ${getGenreTextColor(book.category)};">
+            ${book.categoryName || 'よみもの'}
+          </span>
+        </div>
+      </div>
+      <!-- よんだーくんのおすすめコメント -->
+      <div class="rec-speech-container">
+        <div class="rec-mini-avatar">🦊</div>
+        <div class="rec-speech-text">${book.desc}</div>
+      </div>
+      <!-- 操作ボタン -->
+      <div class="rec-btn-group">
+        <button class="btn btn-primary rec-btn-want" onclick="handleWishlistAdd('${escapeJs(book.title)}', '${escapeJs(book.author)}', '${escapeJs(book.category)}', '${escapeJs(book.categoryName)}', '${escapeJs(book.coverChar)}', '${escapeJs(book.desc)}', ${idx})">
+          <i data-lucide="heart" style="width:14px; height:14px; fill:white;"></i> よみたい！
+        </button>
+        <button class="btn btn-outline rec-btn-dismiss" onclick="handleWishlistDismiss(${idx})">
+          👋 べつの本
+        </button>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+
+  // Re-run lucide icons loading
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+// Fetch Recommended custom hooks in batch from Gemini
+async function fetchGeminiRecommendations(booksList) {
+  const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${state.geminiApiKey}`;
+
+  const booksPromptStr = booksList.map((b, i) => `[${i+1}] タイトル: ${b.title}, 著者: ${b.author}, あらすじ: ${b.desc}`).join("\n");
+  
+  const promptText = `
+あなたは子ども用の優しくて熱い読書応援マスコット『よんだーくん』です。
+以下の5冊の本に対して、子どもが「うわっ！これ絶対に面白そう！先が読みたい！」とワクワクするような、見どころや謎、面白さのフックを熱く語るコメント（100〜140文字程度）をそれぞれ書いてください。
+
+【おすすめ本リスト】
+${booksPromptStr}
+
+【プロンプト作成ルール】
+1. キャラクター「よんだーくん」の元気で温かい口調（ひらがな・カタカナ中心、漢字は最小限に。〜だよ！〜だね！）で書いてね！
+2. 単なるあらすじ説明はNG！「主人公が絶体絶命になっちゃうんだ！」「この謎の答えは本の中に…！」「キャラクターが超カッコいい！」といった物語の面白さのポイントに焦点を当ててください。
+3. 対象は「小学校中学年〜高学年」です。
+
+【出力フォーマット】
+必ず以下のJSON配列のみを出力し、余計な説明やMarkdown記法（\`\`\`jsonなど）は一切含めないでください。
+[
+  "1冊目の熱いコメント(100-140字)",
+  "2冊目の熱いコメント",
+  "3冊目の熱いコメント",
+  "4冊目の熱いコメント",
+  "5冊目の熱いコメント"
+]
+`;
+
+  const payload = {
+    contents: [
+      {
+        parts: [
+          {
+            text: promptText
+          }
+        ]
+      }
+    ],
+    generationConfig: {
+      maxOutputTokens: 1000,
+      temperature: 0.7
+    }
+  };
+
+  const response = await fetch(apiEndpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    throw new Error("Gemini Recommendations request failed");
+  }
+
+  const data = await response.json();
+  if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
+    // Strip markdown JSON code fence blocks if LLM accidentally outputs them
+    let rawText = data.candidates[0].content.parts[0].text.trim();
+    rawText = rawText.replace(/^```json\s*/i, "").replace(/```$/, "").trim();
+    
+    const parsed = JSON.parse(rawText);
+    if (Array.isArray(parsed) && parsed.length === 5) {
+      return parsed;
+    }
+  }
+  throw new Error("Invalid format returned from Gemini recommendations");
+}
+
+// Add to wishlist handler
+function handleWishlistAdd(title, author, category, categoryName, coverChar, aiSpeech, index) {
+  const item = {
+    id: "wish_" + Date.now() + "_" + index,
+    title: title,
+    author: author,
+    category: category,
+    categoryName: categoryName,
+    coverChar: coverChar,
+    aiSpeech: aiSpeech,
+    dateAdded: getTodayString()
+  };
+
+  state.wishlist.push(item);
+  showToast(`💖 『${shortenTitle(title, 14)}』をよみたいリストに入れたよ！`);
+  triggerConfetti();
+
+  // Check achievements (e.g. wishlist_fan)
+  runBadgeChecks();
+
+  // Smooth dismiss animation
+  animateCardDismiss(index);
+}
+
+// Dismiss card handler (べつの本)
+function handleWishlistDismiss(index) {
+  animateCardDismiss(index);
+}
+
+// Animate and remove card from display
+function animateCardDismiss(index) {
+  const card = document.getElementById(`rec-card-${index}`);
+  if (!card) return;
+
+  card.classList.add("dismissed");
+
+  setTimeout(() => {
+    // Remove from DOM and memory
+    card.remove();
+    
+    // Remove from active state recommendations
+    if (state.currentRecommendations && state.currentRecommendations[index]) {
+      // Set to null to keep indexes consistent during active sessions, then filter out
+      state.currentRecommendations[index] = null;
+    }
+
+    // Check if any cards are still visible
+    const remainingCards = document.querySelectorAll(".recommendation-card");
+    if (remainingCards.length === 0) {
+      // Clear out fully
+      state.currentRecommendations = [];
+      saveState();
+      renderRecommendations(); // Re-render which will now show the completion screen!
+    } else {
+      // Save current status with null filtered
+      saveState();
+    }
+  }, 350);
+}
+
+// Render Parent Wishlist View in Settings Screen
+function renderWishlist() {
+  const container = document.getElementById("parent-wishlist-container");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  if (state.wishlist.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 24px; color: var(--color-text-light);">
+        <p style="font-size: 24px; margin-bottom: 8px;">🎒</p>
+        <p style="font-size: 12px;">子どもが「よみたい！」とえらんだ本はまだありません。<br>ホーム画面でおすすめ本をチェックしてみてね！</p>
+      </div>
+    `;
+    return;
+  }
+
+  state.wishlist.forEach((item, idx) => {
+    const itemCard = document.createElement("div");
+    itemCard.className = "wishlist-item-card";
+    itemCard.id = `wish-item-${idx}`;
+
+    itemCard.innerHTML = `
+      <div class="wishlist-info-box">
+        <div class="wishlist-title">${item.title}</div>
+        <div class="wishlist-author">${item.author} ・ ${item.categoryName}</div>
+        <div class="wishlist-reason">
+          <strong>🦊 よんだーくんのコメ:</strong> ${item.aiSpeech}
+        </div>
+      </div>
+      <button class="wishlist-btn-done" onclick="handleWishlistRemove(${idx})">
+        用意してあげた ✅
+      </button>
+    `;
+
+    container.appendChild(itemCard);
+  });
+}
+
+// Remove from parent wishlist when prepared
+function handleWishlistRemove(index) {
+  if (state.wishlist && state.wishlist[index]) {
+    const bookTitle = state.wishlist[index].title;
+    state.wishlist.splice(index, 1);
+    
+    // Increment wishlist fulfillment count for badge checks
+    state.wishlistFulfilledCount = (state.wishlistFulfilledCount || 0) + 1;
+    saveState();
+    
+    triggerConfetti();
+    showToast(`🎒 『${shortenTitle(bookTitle, 14)}』を用意してあげたね！`);
+    
+    // Check achievements
+    runBadgeChecks();
+    
+    // Refresh parent settings view
+    renderWishlist();
+  }
+}
+
+// Bind recommendation methods globally in window context for inline onclick handlers
+window.handleWishlistAdd = handleWishlistAdd;
+window.handleWishlistDismiss = handleWishlistDismiss;
+window.handleWishlistRemove = handleWishlistRemove;
+window.renderRecommendations = renderRecommendations;
+window.renderWishlist = renderWishlist;
+
