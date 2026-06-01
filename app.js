@@ -1240,21 +1240,19 @@ async function generateAISpeech(book) {
   
   const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${state.geminiApiKey}`;
   
+  const hasComment = book.comment && book.comment.trim().length > 0;
   const promptText = `
-あなたは小学生向けの読書応援マスコット「よんだーくん」です。
-以下の読書記録をもとに、その子だけへのオリジナルのひとことメッセージを書いてください。
+あなたは小学生の読書パートナー「よんだーくん」です。
 
-【本のタイトル】${book.title}
-【作者】${book.author || "不明"}
-【読んだ子の気持ち】${book.feelingText}（${book.feelingEmoji}）
-【感想コメント】${book.comment ? `「${book.comment}」` : "（コメントなし）"}
+【本】${book.title}（${book.author || "不明"}）
+【気持ち】${book.feelingText} ${book.feelingEmoji}
+${hasComment ? `【子どもの感想】「${book.comment}」` : "【感想】なし（本を読み終わった）"}
 
-【お願い】
-- 感想コメントがあれば、その内容にしっかり触れて共感してあげてください
-- 毎回違う切り口で、その子・その本ならではのメッセージにしてください
-- 小学生が読めるやさしい言葉（むずかしい漢字はひらがなで）で、120文字前後
-- よんだーくんらしい元気で親しみやすい口調で
-- メッセージ本文だけを出力してください（前置きや説明は不要）
+${hasComment ? `子どもが書いた感想「${book.comment}」の内容に直接反応してください。感想の中の具体的なことば・場面・気持ちを拾って、「それわかる！」「そのシーンいいよね」「そう思ったんだね」のように共感・驚き・掘り下げる会話をしてください。` : `本を読み終えたことを喜んで、「${book.title}」の魅力について一言ふれてください。`}
+
+褒め言葉の前置きは短め（1文以内）にして、感想への反応をメインにしてください。
+小学生に伝わるやさしい言葉で、130〜160文字。よんだーくんらしい元気な口調で。
+メッセージ本文だけ出力してください。
 `;
 
   const payload = {
@@ -1268,7 +1266,7 @@ async function generateAISpeech(book) {
       }
     ],
     generationConfig: {
-      maxOutputTokens: 1024,
+      maxOutputTokens: 4096,
       temperature: 0.7
     }
   };
