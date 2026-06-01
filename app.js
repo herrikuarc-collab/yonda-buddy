@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Yonda-Buddy (ヨンダーバディ) - Core Application Logic
  * Implements LocalStorage state, Barcode Scanning (html5-qrcode), 
  * openBD API / Google Books API, Gemini API, Mascot Dressing, 
@@ -130,6 +130,169 @@ const LOCAL_AI_TEMPLATES = {
     "わあ、読んだんだね！『{title}』はとってもすてきな本だよ。きみが「{snippet}」って書いてくれたから、よんだーくんもその本が大好きになっちゃった！またおはなししようね！🌸"
   ]
 };
+const CURATED_RECOMMENDATIONS_LIBRARY = [
+  { 
+    title: "四つ子ぐらし1 ひみつの姉妹はじめます！", 
+    author: "ひのひまり", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "👧", 
+    desc: "ひとりぼっちだと思っていた主人公の三女みのが、12才の誕生日にそっくりな四つ子だったことがわかるんだ！しかも四人だけで暮らすことに！ハラハラどきどきのひみつの生活、絶対に先が読みたくなるよ！🌸" 
+  },
+  { 
+    title: "ふしぎ駄菓子屋 銭天堂", 
+    author: "廣嶋玲子", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🪁", 
+    desc: "不思議な駄菓子屋『銭天堂』！そこに売っている駄菓子はね、食べると願いがかなうんだ。だけど、使い方を間違えると大変なことになっちゃうんだ…！ハラハラする不思議な魔法の世界へ、ぼくと一緒に行こう！✨" 
+  },
+  { 
+    title: "エルマーのぼうけん", 
+    author: "ルース・スタイルス・ガネット", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🐉", 
+    desc: "どうぶつ島にとらわれた「りゅうの子」を助けるため、エルマーが知恵と小さな道具（輪ゴムやブラシなど）だけで猛獣たちと戦うんだ！ハラハラする大冒険に、きみも一緒に出発しよう！🧭" 
+  },
+  { 
+    title: "ハリー・ポッターと賢者の石", 
+    author: "J.K.ローリング", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "⚡", 
+    desc: "自分が魔法使いと知ったハリーが、魔法学校に入学！空飛ぶほうきでの試合や、おそろしい闇の魔法使いとのドキドキの対決が待っているよ！本を開いた瞬間から、魔法の世界にひきこまれちゃうよ！🔮" 
+  },
+  { 
+    title: "ルドルフとイッパイアッテナ", 
+    author: "斉藤洋", 
+    category: "animal", 
+    categoryName: "どうぶつ・いきもの", 
+    coverChar: "🐈", 
+    desc: "迷子になって東京へやってきてしまった黒猫のルドルフ。そこで出会ったのは、人間からたくさんの名前で呼ばれる大ボス猫「イッパイアッテナ」！ノラ猫たちの友情と知恵の冒険に、胸がジーンと熱くなるよ！🐾" 
+  },
+  { 
+    title: "都会のトム＆ソーヤ1", 
+    author: "はやみねかおる", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🏙️", 
+    desc: "平凡だけどサバイバルの達人の内人と、大財閥の天才の創也。正反対の二人が、街全体を舞台にした究極のゲームに挑むんだ！ワクワクする謎解きとスリリングな冒険がたっぷりつまった超人気ミステリー！🕵️‍♂️" 
+  },
+  { 
+    title: "ざんねんないきもの事典", 
+    author: "今泉忠明", 
+    category: "animal", 
+    categoryName: "どうぶつ・いきもの", 
+    coverChar: "🐨", 
+    desc: "「コアラはユーカリの毒で一日中寝ている」「ゴリラは知恵がありすぎて知恵熱を出す」など、どうぶつたちの愛らしくて「ざんねん」なヒミツが満載！くすっと笑えて科学がもっと好きになる超人気ベストセラー！🍀" 
+  },
+  { 
+    title: "大ピンチずかん", 
+    author: "鈴木のりたけ", 
+    category: "other", 
+    categoryName: "その他", 
+    coverChar: "🚨", 
+    desc: "「牛乳がこぼれた」「テープの端っこがきえた」など、日常のさまざまな『大ピンチ』をユーモアたっぷりにおもしろおかしく大解剖！読むと大ピンチも笑いとワクワクに変えて乗り越えられる気がしてくるよ！😁" 
+  },
+  { 
+    title: "マジック・ツリーハウス1 恐竜の谷の大冒険", 
+    author: "メアリー・ポープ・オズボーン", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🦖", 
+    desc: "森で見つけた不思議なツリーハウス。本を開いて「行ってみたい」とつぶやくと、なんと本の中の恐竜の世界へタイムスリップ！ティラノサウルスに追われるハラハラドキドキの時間旅行！🦕" 
+  },
+  { 
+    title: "パスワードは、ひ・み・つ", 
+    author: "松原秀行", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "💻", 
+    desc: "パソコン通信で知り合った５人の小学生探偵団が、インターネットに隠された暗号の謎に挑む！次々に起こる不思議な事件を、頭脳とパソコン技術で解決していく、ハラハラどきどきの本格探偵ストーリー！🔁" 
+  },
+  { 
+    title: "らくだい魔女はプリンセス", 
+    author: "石崎洋司", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🧹", 
+    desc: "見習い魔女のフウカが、お城の地下室で不思議な絵を見つけるんだ。だけどフウカの失敗によって、絵の中からおそろしい闇の力が解き放たれてしまう！ハチャメチャな魔法とドキドキの大ぼうけん！✨" 
+  },
+  { 
+    title: "びりっかすの神さま", 
+    author: "岡田淳", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🏃", 
+    desc: "クラスのかけっこで、一番最後（びり）になった人にしか見えないフシギなおじさん「びりっかすの神さま」！クラスのみんながわざと「びり」になろうとする、優しくてフシギな友情物語！ほっこり感動するよ！🌁" 
+  },
+  { 
+    title: "窓ぎわのトットちゃん", 
+    author: "黒柳徹子", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🏫", 
+    desc: "電車の教室に、おもしろいお弁当！ちょっぴり変わったユニークな学校「トモエ学園」に転校したトットちゃん。たくさんの友だちと、優しく温かい校長先生との奇跡のような毎日に心がぽかぽか温かくなるよ！🌸" 
+  },
+  { 
+    title: "海底二万マイル", 
+    author: "ジュール・ヴェルヌ", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🦑", 
+    desc: "巨大なクジラを追っていた博士たちが、海の中で謎の男「ネモ船長」と潜水艦ノーチラス号に遭遇！おそろしい海の怪物や未知の海底遺跡など、ハラハラドキドキがぎっしり詰まったSF大冒険ファンタジー！🗺️" 
+  },
+  { 
+    title: "シートン動物記 オオカミ王ロボ", 
+    author: "アーネスト・T・シートン", 
+    category: "animal", 
+    categoryName: "どうぶつ・いきもの", 
+    coverChar: "🐺", 
+    desc: "どんなワナをも見破る、かしこくて気高いオオカミの王様ロボ。シートンとロボの息づまるちえ比べと、愛する仲間を助けるためにすべてを投げだすロボの姿に、胸が熱くなり涙が止まらなくなる感動の実話！😢" 
+  },
+  { 
+    title: "星の王子さま", 
+    author: "サン＝テグジュペリ", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "👑", 
+    desc: "さばくに不時着したパイロットの前に現れた、小さな星からやってきた金髪の王子さま。王子さまが話してくれたバラの花やキツネとの出会い。「大切なものは、目に見えないんだよ」というあたたかいお話。💫" 
+  },
+  { 
+    title: "科学漫画サバイバル 新しい世界のサバイバル1", 
+    author: "洪在徹", 
+    category: "science", 
+    categoryName: "かがく・しゃかい", 
+    coverChar: "🐜", 
+    desc: "不思議な光線で、アリのサイズに縮んでしまったジオたち！いつもは小さな昆虫たちが、命をおびやかす大きな怪獣となっておそいかかる！超スリリングな科学サバイバルマンガ、ハラハラどきどきだよ！🔥" 
+  },
+  { 
+    title: "大泥棒ホッツェンプロッツ", 
+    author: "プロイスラー", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🎩", 
+    desc: "おばあちゃんの大切なコーヒー挽きをぬすんだ大どろぼうのホッツェンプロッツ！カスペルとゼッペルが捕まえようとするけれど、逆に捕まって悪い魔法使いに売られちゃう！？ハラハラ笑える愉快なぼうけん物語！🎁" 
+  },
+  { 
+    title: "怪盗クイーンはサーカスがお好き", 
+    author: "はやみねかおる", 
+    category: "story", 
+    categoryName: "おはなし本", 
+    coverChar: "🎩", 
+    desc: "だれにも正体がわからない、神出鬼没の怪盗クイーン！狙った宝物は絶対に盗み出すはずが、なぞのサーカス団に先を越されてお宝を盗まれてしまう！華麗でおもしろいバトルとワクワクのトリックミステリー！🃏" 
+  },
+  { 
+    title: "チョコレート工場の秘密", 
+    author: "ロアルド・ダール", 
+    category: "fantasy", 
+    categoryName: "ぼうけん・まほう", 
+    coverChar: "🍫", 
+    desc: "世界一有名で誰も入れなかった不思議なチョコレート工場。ある日、世界に5枚だけのゴールドチケットを当てた子どもたちが工場に招待される！部屋ごとに登場するおかしな光景と、ドキドキハラハラの不思議な見学ツアー！🍭" 
+  }
+];
+
 // Active Scanner Instance
 let html5QrcodeScanner = null;
 let scannedIsbnTemp = null;
@@ -1016,33 +1179,32 @@ async function saveBookReview() {
 // AI Speech Generation (Gemini API or Local)
 async function generateAISpeech(book) {
   if (!state.geminiApiKey) {
-    // No API key, use fallback
     return generateFallbackSpeech(book);
   }
   
   const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${state.geminiApiKey}`;
   
   const promptText = `
-あなたは子ども向けの優しくて可愛い読書応援マスコット（本の妖精）『よんだーくん』です。
-子どもが本を読み終わって、感想を記録しました。
-以下の情報を元に、子どもに向けて、ひらがな・カタカナを多く使った、ものすごく優しく温かい褒めちぎるメッセージを【140文字以内】で作成してください。
+あなたはお子様（小学校中学年〜高学年）向けの読書応援マスコット「よんだーくん」です。
+お子様が本を読み終わって、読書記録をつけてくれました。
+以下の【本の情報】とお子様が登録した【気持ち・感想コメント】をじっくり分析して、
+お子様に向けて、ひらがなやカタカナを多く使った、優しく褒めて意欲を引き出す「よんだーくんの声かけメッセージ」（100〜140文字程度）を作成してください。
 
-【本の内容】
-本のなまえ: ${book.title}
-作者: ${book.author}
-本のジャンル: ${book.categoryName}
+【本の情報】
+・本のタイトル: ${book.title}
+・さくしゃ: ${book.author || "不明"}
+・ジャンル: ${book.categoryName}
 
-【子どもの記録】
-本のきもちスタンプ: ${book.feelingText}（${book.feelingEmoji}）
-子どもが書いた感想テキスト: ${book.comment ? `「${book.comment}」` : "（まだ感想は書いていないよ。本が読めてうれしい気持ちだよ）"}
+【お子様の記録情報】
+・気持ちスタンプ: ${book.feelingText}（${book.feelingEmoji}）
+・感想コメント: ${book.comment ? `「${book.comment}」` : "（感想は書いていませんが、本を最後までよみきりました！）"}
 
-【メッセージ作成のルール】
-1. 絶対に否定的なことは言わず、本を読み切ったことや感じた気持ちを「すごい！」「素晴らしい！」と大絶賛してください。
-2. ひらがなとカタカナをベースに、必ず【小学校で習う簡単な漢字】（例：本、犬、猫、大、小、日、月、友だちなど）のみを使用し、中学生以上で習う難しい漢字（例：「推薦」「評論」「分析」「宿命」「大絶賛」などの「絶」「賛」「繊」「細」といった難しい字）は絶対に使用せず、すべてひらがなまたはカタカナで書いてください。
-3. 感想テキスト（ある場合）の内容に優しく共感してください。
-4. キャラクターとしての元気な口調（語尾に「〜だよ！」「〜だね！」「〜かな？」などをつける）にしてください。
-5. 「よんだーくん」以外の第三者として話すのではなく、あなた自身が「よんだーくん」として語りかけてください。
-6. 返答には余計な解説や余白、マークダウン記法を含めず、メッセージのみを出力してください。
+【メッセージ作成ルール（厳守）】
+1. 最初にお子様に対して、最後まで本を読み切ったことや、気持ち・感想を書いてくれたことに対して「すごい！」「素晴らしい！」と大げさなくらい優しく褒めてあげてください。
+2. ひらがなとカタカナをベースに、必ず【小学校で習う簡単な漢字】（例：本、犬、猫、大、小、読む、書く、日、月、友だち、など）のみを使用し、中学生以上で習う難しい漢字（例：「推薦」「評論」「分析」「宿命」「魅了」「絶体絶命」など）は絶対に使用せず、すべてひらがなまたはカタカナで書いてください。
+3. お子様が書いた感想コメントの内容（もしあれば）に深く寄り添い、優しく共感してあげてください。
+4. キャラクター「よんだーくん」としての優しく元気な口調（「〜だよ！」「〜だね！」「〜かな？」など）で書いてください。
+5. 出力には余計なMarkdownや挨拶、説明テキストは一切含めず、よんだーくんのメッセージ本文（100〜140文字程度）のみを出力してください。
 `;
 
   const payload = {
@@ -1309,6 +1471,7 @@ function handleShopAction(item) {
 }
 
 // Render Bookshelf List
+// Render My Bookshelf Collection View
 function renderBookshelf() {
   const container = document.getElementById("bookshelf-grid-container");
   if (!container) return;
@@ -1317,9 +1480,9 @@ function renderBookshelf() {
   
   if (state.books.length === 0) {
     container.innerHTML = `
-      <div style="grid-column: 1 / span 3; text-align: center; padding: 40px 20px; color: var(--color-text-light);">
-        <p style="font-size: 32px; margin-bottom:12px;">📖</p>
-        <p>本棚はまだからっぽだよ。<br>本をスキャンして、最初の１さつを登録しよう！</p>
+      <div style="grid-column: 1/-1; text-align: center; padding: 40px 20px; color: var(--color-text-light);">
+        <span style="font-size: 48px; display:block; margin-bottom:12px;">\uD83D\uDCD6</span>
+        <p style="font-size:13px; font-weight:900; line-height:1.6;">\u672C\u304C\u307E\u3060\u767B\u9332\u3055\u308C\u3066\u3044\u307E\u305B\u3093\u3002<br>\u30D0\u30FC\u30B3\u30FC\u30C9\u3092\u30B9\u30AD\u30E3\u30F3\u3057\u3066\u6700\u521D\u306E\u672C\u3092\u767B\u9332\u3057\u3088\u3046\uFF01\uD83D\uDE80</p>
       </div>
     `;
     return;
@@ -1347,9 +1510,9 @@ function renderBookshelf() {
       const gIndex = Math.abs(hashCode(book.title)) % gradients.length;
       coverImgHtml = `
         <div class="bookshelf-cover" style="background: ${gradients[gIndex]}; color: white; display: flex; flex-direction:column; justify-content:center; align-items:center; padding: 10px; text-align:center;">
-          <span style="font-size:10px; opacity:0.8; font-weight:normal;">${book.categoryName || 'よみもの'}</span>
+          <span style="font-size:10px; opacity:0.8; font-weight:normal;">${book.categoryName || "\u3048\u307B\u3093"}</span>
           <p style="font-size:10px; font-weight:900; line-height:1.2; margin-top:4px; max-height: 48px; overflow:hidden;">${shortenTitle(book.title, 20)}</p>
-          <span style="font-size:24px; margin-top:6px;">📖</span>
+          <span style="font-size:24px; margin-top:6px;">\uD83D\uDCD6</span>
         </div>
       `;
     }
@@ -1359,7 +1522,7 @@ function renderBookshelf() {
         ${coverImgHtml}
       </div>
       <div class="bookshelf-item-title">${book.title}</div>
-      <div class="bookshelf-item-author">${book.author}</div>
+      <div class="bookshelf-item-author">${book.author || "\u3055\u304F\u3057\u3083\u4E0D\u660E"}</div>
     `;
     
     bookEl.addEventListener("click", () => {
@@ -1370,7 +1533,6 @@ function renderBookshelf() {
   });
 }
 
-// Helper to hash title for consistent cover gradients
 function hashCode(str) {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
@@ -1379,6 +1541,7 @@ function hashCode(str) {
   return hash;
 }
 
+// Render Reading Calendar Stamped Grid
 // Render Reading Calendar Stamped Grid
 function renderCalendar() {
   const container = document.getElementById("calendar-grid-container");
@@ -1391,14 +1554,14 @@ function renderCalendar() {
   const month = today.getMonth(); // 0-indexed
   
   // Set Calendar Title
-  document.getElementById("calendar-month-title").textContent = `${year}年 ${month + 1}月`;
+  document.getElementById("calendar-month-title").textContent = `${year}\u5E74 ${month + 1}\u6708`;
   
   // Get first day of month and total days
   const firstDayIndex = new Date(year, month, 1).getDay(); // 0 (Sun) - 6 (Sat)
   const totalDays = new Date(year, month + 1, 0).getDate();
   
   // Render calendar headers
-  const dayNames = ["日", "月", "火", "水", "木", "金", "土"];
+  const dayNames = ["\u65E5", "\u6708", "\u706B", "\u6C34", "\u6728", "\u91D1", "\u571F"];
   dayNames.forEach(d => {
     const dayHeader = document.createElement("div");
     dayHeader.className = "calendar-header-day";
@@ -1412,7 +1575,6 @@ function renderCalendar() {
     container.appendChild(emptyCell);
   }
   
-  // Render days of the month
   // Render days of the month
   for (let day = 1; day <= totalDays; day++) {
     const dayCell = document.createElement("div");
@@ -1432,14 +1594,14 @@ function renderCalendar() {
       stampEl.className = "calendar-stamp";
       
       // Collect feeling emoji or default star
-      stampEl.textContent = readOnThisDay[0].feelingEmoji || "⭐";
+      stampEl.textContent = readOnThisDay[0].feelingEmoji || "\u2B50";
       dayCell.appendChild(stampEl);
       
       // Click shows what they read!
       dayCell.style.cursor = "pointer";
       dayCell.addEventListener("click", () => {
-        const titles = readOnThisDay.map(b => `『${b.title}』`).join("、");
-        showModalMessage(`${month + 1}月${day}日に読んだ本`, `<p style="text-align:center; font-size: 15px;">${titles}<br>をよんだよ！がんばったね！🌟</p>`);
+        const titles = readOnThisDay.map(b => `\u300E${b.title}\u300F`).join("\u3001");
+        showModalMessage(`${month + 1}\u6708${day}\u65E5\u306B\u8AAD\u3093\u3060\u672C`, `<p style="text-align:center; font-size: 15px; margin: 10px 0;">${titles}<br><br>\u305F\u3059\u304B\u3093\u8AAD\u3093\u3060\u306D\uFF01\u3048\u3089\u3044\u305E\uFF01\uD83C\uDF1F</p>`);
       });
     }
     
@@ -1453,12 +1615,8 @@ function renderCalendar() {
   }
 }
 
-// ----------------------------------------------------
-// UI UTILITIES & DIALOG MODALS
-// ----------------------------------------------------
-
 // Show / Hide Loading Overlay
-function showLoading(show, message = "ロード中...") {
+function showLoading(show, message = "\u30ED\u30FC\u30C9\u4E2D...") {
   const loader = document.getElementById("loading-overlay");
   if (!loader) return;
   
@@ -1466,7 +1624,6 @@ function showLoading(show, message = "ロード中...") {
   loader.style.display = show ? "flex" : "none";
 }
 
-// Trigger Confetti Effect (Uses canvas-confetti)
 function triggerConfetti() {
   if (typeof confetti === 'function') {
     confetti({
@@ -1920,40 +2077,40 @@ async function fetchGeminiRecommendations(booksHistory) {
   const apiEndpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${state.geminiApiKey}`;
 
   const historyText = booksHistory.length > 0 
-    ? booksHistory.map((b, i) => `[${i+1}] タイトル: ${b.title}, 作者: ${b.author || "不明"}, ジャンル: ${b.categoryName}, 気持ちスタンプ: ${b.feeling}, 感想コメント: "${b.comment || "特になし"}"`).join("\n")
-    : "読書履歴はありません。これから読み始めるところです。";
+    ? booksHistory.map((b, i) => `[${i+1}] \u30BF\u30A4\u30C8\u30EB: ${b.title}, \u4F5C\u8005: ${b.author || "\u4E0D\u660E"}, \u30B8\u30E3\u30F3\u30EB: ${b.categoryName}, \u6C17\u6301\u3061\u30B9\u30BF\u30F3\u30D7: ${b.feeling}, \u611F\u60F3\u30B3\u30E1\u30F3\u30C8: "${b.comment || "\u7279\u306B\u306A\u3057"}"`).join("\n")
+    : "\u8AAD\u66F8\u5C65\u6B74\u306F\u3042\u308A\u307E\u305B\u3093\u3002\u3053\u308C\u304B\u308A\u8AAD\u307F\u59CB\u3081\u308B\u3068\u3053\u308D\u3067\u3059\u3002";
 
-  const curatedLibraryStr = CURATED_RECOMMENDATIONS_LIBRARY.map((b, i) => `【${i+1}】 タイトル: ${b.title}, 作者: ${b.author}, カテゴリ: ${b.category}, カテゴリ表示名: ${b.categoryName}, おすすめ絵文字: ${b.coverChar}, 基本紹介: ${b.desc}`).join("\n");
+  const curatedLibraryStr = CURATED_RECOMMENDATIONS_LIBRARY.map((b, i) => `\u3010${i+1}\u3011 \u30BF\u30A4\u30C8\u30EB: ${b.title}, \u4F5C\u8005: ${b.author}, \u30AB\u30C6\u30B4\u30EA: ${b.category}, \u30AB\u30C6\u30B4\u30EA\u8868\u793A\u540D: ${b.categoryName}, \u304A\u3059\u3059\u3081\u7E75\u6587\u5B57: ${b.coverChar}, \u57FA\u672C\u7D39\u4ECB: ${b.desc}`).join("\n");
 
   const promptText = `
-あなたはお子様（小学校中学年〜高学年）向けの読書応援マスコット「よんだーくん」です。
-お子様のこれまでの【読書履歴（タイトルや感想コメント）】をじっくり分析して、
-本棚の【20冊のおすすめ候補ライブラリ】、または【実在する日本の有名な子供向け書籍（児童書、ライトノベル、小説、科学絵本、図鑑など）】の中から、
-今のお子様にぴったりな【実在する本】を厳選して5冊おすすめしてください。
+\u3042\u306A\u305F\u306F\u304A\u5B50\u69D8\uFF08\u5C0F\u5B66\u6821\u4E2D\u5B66\u5E73\u301C\u9AD8\u5B66\u5E73\uFF09\u541B\u3051\u8AAD\u66F8\u5F19\u63F4\u30DE\u30B9\u30B3\u30C3\u30C8\u300C\u3088\u3093\u3060\u30FC\u304F\u3093\u300D\u3067\u3059\u3002
+\u304A\u5B50\u69D8\u306E\u3053\u308C\u307E\u3067\u306E\u3010\u8AAD\u66F8\u5C65\u6B74\uFF08\u30BF\u30A4\u30C8\u30EB\u3084\u611F\u60F3\u30B3\u30E1\u30F3\u30C8\uFF09\u3011\u3092\u3058\u3063\u305F\u308A\u5206\u6790\u3057\u3066\u3002
+\u672C\u68DA\u306E\u301020\u518A\u306E\u304A\u3059\u3059\u3081\u5019\u88DC\u30E9\u30A4\u30D6\u30E9\u30EA\u3011\u3001\u307E\u305F\u306F\u3010\u5B9F\u5728\u3059\u308B\u65E5\u672C\u306E\u6709\u540D\u306A\u5B50\u3068\u3082\u541B\u3051\u66F8\u7C4D\uFF08\u515F\u7AE5\u66F8\u3001\u30E9\u30A4\u30C8\u30CE\u30D9\u30EB\u3001\u5C0F\u8AAC\u3001\u79D1\u5B66\u7D75\u672C\u3001\u56F3\u9452\u306A\u3069\uFF09\u3011\u306E\u4E2D\u304B\u3089\u3002
+\u304A\u5B50\u69D8\u306E\u6C17\u6301\u3061\u306B\u3074\u3063\u305F\u308A\u306A\u3010\u5B9F\u5728\u3059\u308B\u672C\u3011\u3002\u3092\u5393\u9078\u3057\u30665\u518A\u304A\u3059\u3059\u3081\u3057\u3066\u304F\u3060\u3055\u3044\u3002
 
-【お子様の読書履歴（直近読んだ本と感想）】
+\u3010\u304A\u5B50\u69D8\u306E\u8AAD\u66F8\u5C65\u6B74\uFF08\u76F4\u8近\u8AAD\u3093\u306D\u672C\u3068\u611F\u60F3\uFF09\u3011
 ${historyText}
 
-【おすすめ候補ライブラリ（優先的に選んでください。実在する他の有名な児童書も歓迎します）】
+\u3010\u304A\u3059\u3059\u3081\u5019\u88DC\u30E9\u30A4\u30D6\u30E9\u30EA\u3011
 ${curatedLibraryStr}
 
-【レコメンド方針とハルシネーション対策の厳守事項】
-1. 【架空の本は絶対に作らないこと】。必ず日本国内で実際に発行され、小学生に広く読まれている実在する書籍（『四つ子ぐらし』『ふしぎ駄菓子屋 銭天堂』『エルマーのぼうけん』『ルドルフとイッパイアッテナ』などの名作、今どき大人気のエンタメ児童文学、科学絵本、冒険ファンタジーなど）のみを選定してください。
-2. 小学校で習う漢字（簡単な漢字のみ、例：本、犬、猫、大、小、友だち、読む、書く、日、月、など）のみを使用し、中学生以上で習う難しい漢字（例：「推薦」「評論」「分析」「宿命」「魅了」「絶体絶命」など）は絶対に使わないでください。難しい言葉はひらがなやカタカナにひらいて書いてください。
-3. お子様が「うわあ！これ面白そう！読んでみたい！」とワクワクするような紹介メッセージ（100〜140文字程度）をよんだーくんの優しい口調（「〜だよ！」「〜だね！」など）で書いてください。
-4. 返却フォーマットは、必ず以下のJSON配列形式のみを出力してください。Markdownの \`\`\`json のような囲みや、説明の余計なテキストは一切出力しないでください。
+\u3010\u304A\u3059\u3059\u3081\u65B9\u91DD\u3068\u30CF\u30EB\u30B7\u30CD\u30FC\u30B7\u30E7\u30F3\u5BFE\u7B56\u306E\u5393\u5B88\u4E8B\u9805\u3011
+1. \u3010\u67B6\u7A7A\u306E\u672C\u306F\u7D76\u5BFE\u306B\u4F5C\u3089\u306A\u3044\u3053\u3068\u3011\u3002\u5FC5\u305A\u65E5\u672C\u56FD\u5185\u3067\u5B9F\u969B\u306B\u767A\u884C\u3055\u308C\u3001\u5C0F\u5B66\u751F\u306B\u5E83\u304F\u8AAD\u307E\u308C\u3066\u3044\u308B\u5B9F\u5728\u3059\u308B\u66F8\u7C4D\u306E\u307F\u3092\u9078\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002
+2. \u5C0F\u5B66\u6821\u3067\u7FCC\u3046\u7C21\u5358\u306A\u6F22\u5B57\u306E\u307F\u3092\u4F7F\u7528\u3057\u3001\u4E2D\u5B66\u751F\u4EE5\u4E0A\u3067\u7FCC\u3046\u96E3\u3057\u3044\u6F22\u5B57\u306F\u7D76\u5BFE\u306B\u4F7F\u308F\u306A\u3044\u3067\u304F\u3060\u3055\u3044\u3002\u96E3\u3057\u3044\u8A00\u8449\u306F\u3072\u3089\u304C\u306A\u3084\u30AB\u30BF\u30AB\u30CA\u306B\u3072\u3089\u3044\u3066\u66F8\u3052\u3066\u304F\u3060\u3055\u3044\u3002
+3. \u304A\u5B50\u69D8\u304C\u300C\u3046\u308F\u3042\uFF01\u3053\u308C\u9762\u767D\u305D\u3046\uFF01\u8AAD\u307F\u305F\u3044\uFF01\u300D\u3068\u308F\u304F\u308F\u304F\u3059\u308B\u3088\u3046\u306A\u7D39\u4ECB\u30E1\u30C3\u30BB\u30FC\u30B8\u3092\u3088\u3093\u3060\u30FC\u304F\u3093\u306E\u512A\u3057\u3044\u53E3\u8ABF\u3067\u66F8\u3052\u3066\u304F\u3060\u3055\u3044\u3002
+4. \u8FD4\u5374\u30D5\u30A9\u30FC\u30DE\u30C3\u30C8\u306F\u300C\u5FC5\u305A\u4EE5\u4E0B\u306EJSON\u914D\u5217\u306E\u307F\u300D\u3092\u51FA\u529B\u3057\u3001Markdown\u3084\u4F59\u8A08\u306E\u30C5\u30AD\u30B9\u30C8\u306F\u51FA\u529B\u305A\u3001\u305D\u306E\u4ED6\u306E\u8AAC\u660E\u3084\`\`\`json\u306E\u3088\u3046\u306A\u56F2\u307F\u306F\u7D76\u5BFE\u306B\u51FA\u529B\u3057\u306A\u3044\u3067\u304F\u3060\u3055\u3044\u3002
 
-【出力JSONフォーマット】
+\u3010\u51FA\u529BJSON\u30D5\u30A9\u30FC\u30DE\u30C3\u30C8\u3011
 [
   {
-    "title": "本の実在する正確なタイトル",
-    "author": "作者名",
-    "category": "picture または story または animal または fantasy または science または other のいずれか",
-    "categoryName": "えほん・ずかん または おはなし本 または どうぶつ・いきもの または ぼうけん・まほう または かがく・しゃかい または その他のいずれか",
-    "coverChar": "本の内容にぴったりな絵文字1文字 (例: 👑, 🐉, 🐱, 🚨)",
-    "desc": "よんだーくんの紹介メッセージ（小学校漢字制限、100〜140文字程度）"
+    "title": "\u672C\u306E\u5B9F\u5728\u3059\u308B\u6B63\u78BA\u306A\u30BF\u30A4\u30C8\u30EB",
+    "author": "\u4F5C\u8005\u540D",
+    "category": "picture \u307E\u305F\u306F story \u307E\u305F\u306F animal \u307E\u305F\u306F fantasy \u307E\u305F\u306F science \u307E\u305F\u306F other \u306E\u3044\u305A\u308C\u304B",
+    "categoryName": "\u3048\u307B\u3093\u30FB\u305A\u304B\u3093 \u307E\u305F\u306F \u304A\u306F\u306A\u3057\u672C \u307E\u305F\u306F \u3065\u3046\u3076\u3064\u30FB\u3044\u304D\u3082\u306E \u307E\u305F\u306F \u307C\u3046\u3051\u3093\u30FB\u307E\u307B\u3046 \u307E\u305F\u306F \u304B\u304C\u304F\u30FB\u3057\u3083\u304B\u3044 \u307E\u305F\u306F \u305D\u306E\u4ED6\u306E\u3044\u305A\u308C\u304B",
+    "coverChar": "\u672C\u306E\u5185\u5BB9\u306B\u3074\u3063\u305F\u308A\u306A\u7D75\u6587\u5B571\u6587\u5B57 (\u4F8B: \uD83D\uDC51, \uD83D\uDC05, \uD83D\uDC31, \uD83D\uDEA8)",
+    "desc": "\u3088\u3093\u3060\u30FC\u304F\u3093\u306E\u3057\u3087\u3046\u304B\u3044\u30E1\u30C3\u30BB\u30FC\u30B8\uFF08\u5C0F\u5B66\u6821\u6F22\u5B57\u5236\u9650\u3001100\u301C140\u6587\u5B57\u7A0B\u5EA6\uFF09"
   },
-  ... (合計5冊)
+  ... (\u5408\u8A085\u518A)
 ]
 `;
 
@@ -2002,7 +2159,31 @@ ${curatedLibraryStr}
   throw new Error("Invalid format returned from Gemini dynamic recommendations");
 }
 
-// Dismiss card handler (べつの本)
+// handle child "want to read" button
+function handleWishlistAdd(title, author, category, categoryName, coverChar, desc, index) {
+  const wishItem = {
+    title: title,
+    author: author,
+    category: category,
+    categoryName: categoryName,
+    coverChar: coverChar,
+    aiSpeech: desc
+  };
+  
+  // Add to wishlist if not already duplicate
+  if (!state.wishlist.some(b => b.title.toLowerCase() === title.toLowerCase())) {
+    state.wishlist.push(wishItem);
+  }
+  
+  // vibrate if supported
+  if (navigator.vibrate) navigator.vibrate(50);
+  
+  showToast("\uD83D\uDCCB \u30D1\u30D1\u306B\u304A\u3057\u3089\u305B\u3057\u305F\u3088\uFF01");
+  
+  // slide card out
+  animateCardDismiss(index);
+}
+
 function handleWishlistDismiss(index) {
   animateCardDismiss(index);
 }
@@ -2063,7 +2244,7 @@ function renderWishlist() {
     itemCard.innerHTML = `
       <div class="wishlist-info-box">
         <div class="wishlist-title">${item.title}</div>
-        <div class="wishlist-author">${item.author} 繝ｻ ${item.categoryName}</div>
+        <div class="wishlist-author">${item.author} \u30FB ${item.categoryName}</div>
         <div class="wishlist-reason">
           <strong>\uD83E\uDD96 \u3088\u3093\u3060\u30FC\u304F\u3093\u306E\u3057\u3087\u3046\u304B\u3044:</strong> ${item.aiSpeech}
         </div>
