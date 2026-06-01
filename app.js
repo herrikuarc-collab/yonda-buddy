@@ -1284,13 +1284,16 @@ async function generateAISpeech(book) {
   });
 
   if (!response.ok) {
-    throw new Error("Gemini API request failed");
+    const errBody = await response.text();
+    console.error("Gemini speech API error:", response.status, errBody);
+    throw new Error("Gemini API request failed: " + response.status);
   }
 
   const data = await response.json();
   if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0]) {
     return data.candidates[0].content.parts[0].text.trim();
   } else {
+    console.error("Unexpected Gemini response structure:", JSON.stringify(data));
     throw new Error("Invalid Gemini API response structure");
   }
 }
